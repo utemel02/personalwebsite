@@ -20,8 +20,8 @@ export const ButtonGenerateCode: React.FC<ButtonGenerateCodeProps> = ({
       className={`px-4 py-2 rounded-md font-medium transition-colors 
         ${
           disabled
-            ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-            : "bg-blue-600 text-white hover:bg-blue-700 active:bg-blue-800"
+            ? "bg-neutral-300 text-neutral-500 cursor-not-allowed"
+            : "bg-accent text-white hover:bg-accent-dark active:bg-accent-dark focus:ring-2 focus:ring-accent-light focus:ring-opacity-50 focus:outline-none"
         }`}
     >
       {label}

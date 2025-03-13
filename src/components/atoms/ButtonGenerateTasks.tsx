@@ -20,8 +20,8 @@ export const ButtonGenerateTasks: React.FC<ButtonGenerateTasksProps> = ({
       className={`px-4 py-2 rounded-md font-medium transition-colors 
         ${
           disabled
-            ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-            : "bg-blue-600 text-white hover:bg-blue-700 active:bg-blue-800"
+            ? "bg-neutral-300 text-neutral-500 cursor-not-allowed"
+            : "bg-primary text-white hover:bg-primary-dark active:bg-primary-dark focus:ring-2 focus:ring-primary-light focus:ring-opacity-50 focus:outline-none"
         }`}
     >
       {label}

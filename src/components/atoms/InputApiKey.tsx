@@ -29,9 +29,9 @@ export const InputApiKey: React.FC<InputApiKeyProps> = ({
   };
 
   return (
-    <div className="flex flex-col space-y-1">
-      <label htmlFor={name} className="text-sm font-medium text-gray-700">
-        {label} {required && <span className="text-red-500">*</span>}
+    <div className="flex flex-col space-y-2">
+      <label htmlFor={name} className="text-sm font-medium text-neutral-800">
+        {label} {required && <span className="text-danger">*</span>}
       </label>
       <div className="relative">
         <input
@@ -42,13 +42,15 @@ export const InputApiKey: React.FC<InputApiKeyProps> = ({
           onChange={onChange}
           placeholder={placeholder}
           className={`border ${
-            error ? "border-red-500" : "border-gray-300"
-          } px-3 py-2 pr-10 w-full rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
+            error ? "border-danger" : "border-neutral-300"
+          } px-3 py-2 pr-10 w-full rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent bg-surface-light transition-all`}
+          aria-invalid={error ? "true" : "false"}
+          aria-describedby={error ? `${name}-error` : undefined}
         />
         <button
           type="button"
           onClick={toggleShowKey}
-          className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
+          className="absolute right-2 top-1/2 transform -translate-y-1/2 text-neutral-500 hover:text-neutral-700"
           aria-label={showKey ? "Hide API key" : "Show API key"}
         >
           {showKey ? (
@@ -58,7 +60,11 @@ export const InputApiKey: React.FC<InputApiKeyProps> = ({
           )}
         </button>
       </div>
-      {error && <p className="text-red-500 text-xs">{error}</p>}
+      {error && (
+        <p id={`${name}-error`} className="text-danger text-xs mt-1">
+          {error}
+        </p>
+      )}
     </div>
   );
 };

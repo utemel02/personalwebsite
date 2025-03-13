@@ -14,11 +14,11 @@ export const PRDStatusIndicator: React.FC<PRDStatusIndicatorProps> = ({
   // Define styles for different status types
   const statusStyles = {
     pending:
-      "bg-yellow-100 text-yellow-800 border-yellow-300 dark:bg-yellow-900 dark:text-yellow-200",
+      "bg-warning-light/20 text-warning-dark border-warning dark:bg-warning-dark/30 dark:text-warning-light",
     "in-progress":
-      "bg-blue-100 text-blue-800 border-blue-300 dark:bg-blue-900 dark:text-blue-200",
+      "bg-info-light/20 text-info-dark border-info dark:bg-info-dark/30 dark:text-info-light",
     completed:
-      "bg-green-100 text-green-800 border-green-300 dark:bg-green-900 dark:text-green-200",
+      "bg-success-light/20 text-success-dark border-success dark:bg-success-dark/30 dark:text-success-light",
   };
 
   // Define status labels

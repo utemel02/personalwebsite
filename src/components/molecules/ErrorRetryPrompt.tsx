@@ -26,15 +26,15 @@ const ErrorRetryPrompt: React.FC<ErrorRetryPromptProps> = ({
   const hasReachedMaxAttempts = retryAttempts >= maxRetryAttempts;
 
   return (
-    <div className="p-4 border border-red-300 rounded-md bg-red-50 flex flex-col gap-3">
-      <div className="flex items-start gap-2 text-red-700">
+    <div className="p-4 border border-danger rounded-md bg-danger-light/10 flex flex-col gap-3">
+      <div className="flex items-start gap-2 text-danger">
         <AlertCircle className="h-5 w-5 mt-0.5 flex-shrink-0" />
         <div className="flex-1">
           <h4 className="font-medium">Operation Failed</h4>
-          <p className="text-sm text-red-600">{errorMessage}</p>
+          <p className="text-sm text-danger-dark">{errorMessage}</p>
 
           {maxRetryAttempts > 0 && (
-            <p className="text-xs text-red-500 mt-1">
+            <p className="text-xs text-danger mt-1">
               Retry attempts: {retryAttempts} of {maxRetryAttempts}
             </p>
           )}
@@ -45,7 +45,7 @@ const ErrorRetryPrompt: React.FC<ErrorRetryPromptProps> = ({
         {onCancel && (
           <button
             onClick={onCancel}
-            className="px-3 py-1 text-sm text-gray-600 border border-gray-300 rounded hover:bg-gray-50"
+            className="px-3 py-1 text-sm text-neutral-600 border border-neutral-300 rounded hover:bg-neutral-50"
           >
             Cancel
           </button>
@@ -56,8 +56,8 @@ const ErrorRetryPrompt: React.FC<ErrorRetryPromptProps> = ({
           disabled={hasReachedMaxAttempts}
           className={`px-3 py-1 text-sm text-white rounded flex items-center gap-1 ${
             hasReachedMaxAttempts
-              ? "bg-gray-400 cursor-not-allowed"
-              : "bg-blue-600 hover:bg-blue-700"
+              ? "bg-neutral-400 cursor-not-allowed"
+              : "bg-primary hover:bg-primary-dark"
           }`}
         >
           <RefreshCw className="h-3.5 w-3.5" />

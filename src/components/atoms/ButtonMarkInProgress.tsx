@@ -20,8 +20,8 @@ export const ButtonMarkInProgress: React.FC<ButtonMarkInProgressProps> = ({
       className={`px-4 py-2 rounded-md font-medium transition-colors 
         ${
           disabled
-            ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-            : "bg-blue-600 text-white hover:bg-blue-700 active:bg-blue-800"
+            ? "bg-neutral-300 text-neutral-500 cursor-not-allowed"
+            : "bg-warning text-white hover:bg-warning-dark active:bg-warning-dark focus:ring-2 focus:ring-warning-light focus:ring-opacity-50 focus:outline-none"
         }`}
     >
       {label}
