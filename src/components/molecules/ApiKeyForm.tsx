@@ -58,14 +58,16 @@ export const ApiKeyForm: React.FC<ApiKeyFormProps> = ({
       <div className="flex items-center justify-between">
         <button
           type="submit"
-          className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50"
+          className="px-4 py-2 bg-amber-600 text-white rounded-md hover:bg-amber-700 transition-colors focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 disabled:opacity-50"
           disabled={!apiKey.trim()}
         >
           Save Key
         </button>
 
         {isSuccess && (
-          <p className="text-green-600 text-sm">API key saved successfully!</p>
+          <p className="text-emerald-600 text-sm">
+            API key saved successfully!
+          </p>
         )}
       </div>
     </form>

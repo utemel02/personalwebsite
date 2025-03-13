@@ -23,25 +23,27 @@ export const InProgressPromptModal: React.FC<InProgressPromptModalProps> = ({
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white dark:bg-gray-800 rounded-lg p-6 w-full max-w-md">
+      <div className="bg-amber-50 dark:bg-stone-800 rounded-lg p-6 w-full max-w-md">
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-semibold dark:text-white">Start Task</h2>
+          <h2 className="text-xl font-semibold dark:text-amber-50">
+            Start Task
+          </h2>
           <button
             onClick={onClose}
-            className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+            className="text-stone-500 hover:text-stone-700 dark:text-stone-400 dark:hover:text-stone-200"
           >
             <X size={20} />
           </button>
         </div>
 
         <div className="mb-6">
-          <p className="text-gray-600 dark:text-gray-300 mb-4">
+          <p className="text-stone-600 dark:text-amber-100 mb-4">
             Do you want to create a new Git worktree for &quot;{taskName}&quot;?
             This will allow you to work on this task in isolation.
           </p>
 
-          <div className="bg-gray-100 dark:bg-gray-700 p-3 rounded-md mb-4">
-            <p className="font-mono text-sm break-all dark:text-gray-300">
+          <div className="bg-amber-100 dark:bg-stone-700 p-3 rounded-md mb-4">
+            <p className="font-mono text-sm break-all dark:text-amber-100">
               A new Git branch will be created for this task.
             </p>
           </div>
@@ -50,7 +52,7 @@ export const InProgressPromptModal: React.FC<InProgressPromptModalProps> = ({
         <div className="flex justify-end space-x-3">
           <button
             onClick={onClose}
-            className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700"
+            className="px-4 py-2 border border-stone-300 rounded-md text-stone-700 hover:bg-amber-100 dark:border-stone-600 dark:text-amber-100 dark:hover:bg-stone-700"
           >
             Cancel
           </button>

@@ -78,12 +78,12 @@ const DependencyGraphVisualizer: React.FC<DependencyGraphVisualizerProps> = ({
               <path
                 d={`M ${start.x} ${start.y} Q ${controlX} ${controlY} ${end.x} ${end.y}`}
                 fill="none"
-                stroke="#6366F1"
+                stroke="#D97706"
                 strokeWidth="2"
               />
               <polygon
                 points={`${end.x},${end.y} ${arrowPoint1X},${arrowPoint1Y} ${arrowPoint2X},${arrowPoint2Y}`}
-                fill="#6366F1"
+                fill="#D97706"
               />
             </g>,
           );
@@ -95,7 +95,7 @@ const DependencyGraphVisualizer: React.FC<DependencyGraphVisualizerProps> = ({
   };
 
   return (
-    <div className="border border-gray-200 rounded-lg shadow-sm bg-white overflow-hidden">
+    <div className="border border-amber-200 rounded-lg shadow-sm bg-amber-50 overflow-hidden">
       <svg width={width} height={height}>
         {/* Draw the paths/arrows first so they appear behind nodes */}
         {generatePaths()}
@@ -112,17 +112,17 @@ const DependencyGraphVisualizer: React.FC<DependencyGraphVisualizerProps> = ({
                 cx={position.x}
                 cy={position.y}
                 r={35}
-                fill="#EEF2FF"
-                stroke="#6366F1"
+                fill="#FEFCE8"
+                stroke="#D97706"
                 strokeWidth="2"
-                className="transition-all duration-300 hover:fill-indigo-100"
+                className="transition-all duration-300 hover:fill-amber-100"
               />
               <text
                 x={position.x}
                 y={position.y}
                 textAnchor="middle"
                 dominantBaseline="middle"
-                className="text-xs font-medium fill-gray-700"
+                className="text-xs font-medium fill-stone-700"
               >
                 {task.id}
               </text>

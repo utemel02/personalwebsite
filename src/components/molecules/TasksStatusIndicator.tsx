@@ -14,11 +14,11 @@ export const TasksStatusIndicator: React.FC<TasksStatusIndicatorProps> = ({
   // Define styles for different status types
   const statusStyles = {
     pending:
-      "bg-warning-light/20 text-warning-dark border-warning dark:bg-warning-dark/30 dark:text-warning-light",
+      "bg-amber-50 text-amber-700 border-amber-300 dark:bg-amber-900/30 dark:text-amber-200",
     "in-progress":
-      "bg-info-light/20 text-info-dark border-info dark:bg-info-dark/30 dark:text-info-light",
+      "bg-amber-100 text-amber-800 border-amber-500 dark:bg-amber-800/40 dark:text-amber-100",
     completed:
-      "bg-success-light/20 text-success-dark border-success dark:bg-success-dark/30 dark:text-success-light",
+      "bg-emerald-50 text-emerald-700 border-emerald-400 dark:bg-emerald-900/30 dark:text-emerald-200",
   };
 
   // Define status labels

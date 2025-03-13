@@ -27,10 +27,10 @@ export const KanbanColumn: React.FC<KanbanColumnProps> = ({
 }) => {
   // Status-specific header styling
   const headerStyles = {
-    todo: "bg-neutral-100 dark:bg-neutral-700 border-l-4 border-info",
+    todo: "bg-amber-50 dark:bg-stone-700 border-l-4 border-amber-300",
     "in-progress":
-      "bg-warning-light/20 dark:bg-warning-dark/30 border-l-4 border-warning",
-    done: "bg-success-light/20 dark:bg-success-dark/30 border-l-4 border-success",
+      "bg-amber-100 dark:bg-amber-900/30 border-l-4 border-amber-500",
+    done: "bg-emerald-50 dark:bg-emerald-900/30 border-l-4 border-emerald-500",
   };
 
   // Filter tasks that match this column's status
@@ -45,13 +45,13 @@ export const KanbanColumn: React.FC<KanbanColumnProps> = ({
     };
 
   return (
-    <div className="flex flex-col w-full min-w-[280px] max-w-sm bg-surface-light dark:bg-neutral-800 rounded-md shadow-md">
+    <div className="flex flex-col w-full min-w-[280px] max-w-sm bg-amber-50 dark:bg-stone-800 rounded-md shadow-md">
       <div
-        className={`p-4 ${headerStyles[status]} rounded-t-md border-b border-neutral-200 dark:border-neutral-700`}
+        className={`p-4 ${headerStyles[status]} rounded-t-md border-b border-amber-200 dark:border-stone-700`}
       >
-        <h2 className="font-semibold text-neutral-800 dark:text-neutral-200">
+        <h2 className="font-semibold text-stone-800 dark:text-amber-50">
           {columnName}{" "}
-          <span className="ml-1 text-sm font-normal text-neutral-500 dark:text-neutral-400">
+          <span className="ml-1 text-sm font-normal text-stone-500 dark:text-amber-300">
             ({filteredTasks.length})
           </span>
         </h2>
@@ -59,7 +59,7 @@ export const KanbanColumn: React.FC<KanbanColumnProps> = ({
 
       <div className="p-3 flex-1 overflow-y-auto max-h-[70vh] space-y-3">
         {filteredTasks.length === 0 ? (
-          <div className="text-center py-6 text-neutral-500 dark:text-neutral-400 text-sm italic rounded-md border border-dashed border-neutral-300 dark:border-neutral-600">
+          <div className="text-center py-6 text-stone-500 dark:text-amber-300 text-sm italic rounded-md border border-dashed border-amber-300 dark:border-stone-600">
             No tasks in this column
           </div>
         ) : (
