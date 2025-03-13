@@ -27,9 +27,10 @@ export const KanbanColumn: React.FC<KanbanColumnProps> = ({
 }) => {
   // Status-specific header styling
   const headerStyles = {
-    todo: "bg-gray-100 dark:bg-gray-700",
-    "in-progress": "bg-yellow-50 dark:bg-yellow-900/30",
-    done: "bg-green-50 dark:bg-green-900/30",
+    todo: "bg-neutral-100 dark:bg-neutral-700 border-l-4 border-info",
+    "in-progress":
+      "bg-warning-light/20 dark:bg-warning-dark/30 border-l-4 border-warning",
+    done: "bg-success-light/20 dark:bg-success-dark/30 border-l-4 border-success",
   };
 
   // Filter tasks that match this column's status
@@ -44,18 +45,21 @@ export const KanbanColumn: React.FC<KanbanColumnProps> = ({
     };
 
   return (
-    <div className="flex flex-col w-full min-w-[250px] max-w-sm bg-gray-50 dark:bg-slate-900 rounded-md shadow">
+    <div className="flex flex-col w-full min-w-[280px] max-w-sm bg-surface-light dark:bg-neutral-800 rounded-md shadow-md">
       <div
-        className={`p-3 ${headerStyles[status]} rounded-t-md border-b border-gray-200 dark:border-gray-700`}
+        className={`p-4 ${headerStyles[status]} rounded-t-md border-b border-neutral-200 dark:border-neutral-700`}
       >
-        <h2 className="font-semibold text-gray-800 dark:text-gray-200">
-          {columnName} ({filteredTasks.length})
+        <h2 className="font-semibold text-neutral-800 dark:text-neutral-200">
+          {columnName}{" "}
+          <span className="ml-1 text-sm font-normal text-neutral-500 dark:text-neutral-400">
+            ({filteredTasks.length})
+          </span>
         </h2>
       </div>
 
-      <div className="p-2 flex-1 overflow-y-auto max-h-[70vh]">
+      <div className="p-3 flex-1 overflow-y-auto max-h-[70vh] space-y-3">
         {filteredTasks.length === 0 ? (
-          <div className="text-center py-4 text-gray-500 dark:text-gray-400 text-sm italic">
+          <div className="text-center py-6 text-neutral-500 dark:text-neutral-400 text-sm italic rounded-md border border-dashed border-neutral-300 dark:border-neutral-600">
             No tasks in this column
           </div>
         ) : (

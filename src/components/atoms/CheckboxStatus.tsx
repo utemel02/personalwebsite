@@ -31,8 +31,16 @@ export const CheckboxStatus: React.FC<CheckboxStatusProps> = ({
     }
   };
 
+  // Status-specific colors
+  const statusColors = {
+    todo: "text-info hover:text-info-dark",
+    "in-progress": "text-warning hover:text-warning-dark",
+    done: "text-success hover:text-success-dark",
+  };
+
   // Handle the click event to toggle status
-  const handleClick = () => {
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault(); // Prevent event from bubbling up
     if (onToggle) {
       const nextStatus = getNextStatus(status);
       onToggle(nextStatus);
@@ -43,12 +51,17 @@ export const CheckboxStatus: React.FC<CheckboxStatusProps> = ({
   return (
     <button
       onClick={handleClick}
-      className={`text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 transition-colors ${className}`}
+      className={`${statusColors[status]} transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50 rounded p-0.5 ${className}`}
       aria-label={`Mark as ${getNextStatus(status)}`}
+      title={`Current status: ${status}. Click to mark as ${getNextStatus(
+        status,
+      )}`}
     >
-      {status === "todo" && <Square size={size} />}
-      {status === "in-progress" && <MinusSquare size={size} />}
-      {status === "done" && <CheckSquare size={size} />}
+      {status === "todo" && <Square size={size} strokeWidth={1.5} />}
+      {status === "in-progress" && (
+        <MinusSquare size={size} strokeWidth={1.5} />
+      )}
+      {status === "done" && <CheckSquare size={size} strokeWidth={1.5} />}
     </button>
   );
 };

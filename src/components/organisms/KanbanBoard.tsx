@@ -38,8 +38,8 @@ export const KanbanBoard: React.FC<KanbanBoardProps> = ({
   };
 
   return (
-    <div className="w-full overflow-x-auto">
-      <div className="flex flex-row gap-4 p-4 min-w-fit">
+    <div className="w-full overflow-x-auto bg-bg-light rounded-lg shadow-md">
+      <div className="flex flex-row gap-6 p-6 min-w-fit">
         <KanbanColumn
           columnName="To Do"
           status="todo"

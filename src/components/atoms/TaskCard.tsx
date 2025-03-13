@@ -22,9 +22,9 @@ export const TaskCard: React.FC<TaskCardProps> = ({
 }) => {
   // Status-specific styling
   const statusClasses = {
-    todo: "border-l-4 border-l-gray-400",
-    "in-progress": "border-l-4 border-l-yellow-400",
-    done: "border-l-4 border-l-green-500",
+    todo: "border-l-4 border-l-info",
+    "in-progress": "border-l-4 border-l-warning",
+    done: "border-l-4 border-l-success",
   };
 
   // Handle status toggle separately from card click
@@ -40,36 +40,47 @@ export const TaskCard: React.FC<TaskCardProps> = ({
     onClick?.();
   };
 
+  // Handle keyboard events
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") {
+      onClick?.();
+    }
+  };
+
   return (
     <div
-      className={`bg-white dark:bg-slate-800 rounded-md shadow-sm p-4 mb-2 hover:shadow-md transition-shadow cursor-pointer ${statusClasses[status]}`}
+      className={`bg-surface-light dark:bg-neutral-800 rounded-md shadow p-4 hover:shadow-md transition-all cursor-pointer ${statusClasses[status]}`}
       onClick={handleCardClick}
+      role="button"
+      tabIndex={0}
+      aria-label={`Task: ${title}, Status: ${status}`}
+      onKeyDown={handleKeyDown}
     >
-      <div className="flex justify-between items-start mb-2">
-        <h3 className="font-medium text-gray-800 dark:text-gray-200">
+      <div className="flex justify-between items-start mb-3">
+        <h3 className="font-medium text-neutral-800 dark:text-neutral-200 line-clamp-2">
           {title}
         </h3>
         <CheckboxStatus
           status={status}
           onToggle={handleStatusToggle}
-          className="flex-shrink-0 ml-2"
+          className="flex-shrink-0 ml-2 mt-0.5"
         />
       </div>
 
       {description && (
-        <p className="text-sm text-gray-600 dark:text-gray-400">
+        <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-3 line-clamp-3">
           {description}
         </p>
       )}
 
       <div className="mt-2 flex justify-between items-center">
         <span
-          className={`text-xs px-2 py-1 rounded-full ${
+          className={`text-xs px-2.5 py-1 rounded-full font-medium ${
             status === "todo"
-              ? "bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-300"
+              ? "bg-neutral-200 text-neutral-700 dark:bg-neutral-700 dark:text-neutral-300"
               : status === "in-progress"
-              ? "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-100"
-              : "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-100"
+              ? "bg-warning-light/20 text-warning-dark dark:bg-warning-dark/30 dark:text-warning-light"
+              : "bg-success-light/20 text-success-dark dark:bg-success-dark/30 dark:text-success-light"
           }`}
         >
           {status === "todo"
