@@ -7,3 +7,4 @@
 - Added Storybook with Button component and stories, updated .cursorrules with Storybook guidelines
 - Captured screenshot of Button component stories in Storybook
 - Completed Story A1: Created UI components for cloning starter repository, including ButtonCloneRepo atom, CloneRepoModal molecule, RepoSetupSection organism, and integrated them into the dashboard page.
+- Completed Story A2 - Configure Project Details, creating InputText and TextareaDescription atoms, ProjectDetailsForm molecule, and ProjectSetupSection organism, along with their Storybook stories.
