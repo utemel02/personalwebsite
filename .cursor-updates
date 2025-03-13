@@ -12,3 +12,5 @@
 - Completed Story A4: Created EnvVariableRow, EnvTable, and EnvConfigSection components with their Storybook stories for environment variable management.
 - Completed Story B1: Created UI components for BRD generation including ButtonGenerateBRD atom, BRDStatusIndicator molecule, and BRDGenerationSection organism with full Storybook documentation and interactive states.
 - Completed Story B2: Implemented the Generate PRD from BRD UI components including ButtonGeneratePRD atom, PRDStatusIndicator molecule, and PRDGenerationSection organism with all accompanying Storybook stories.
+- Created UI components for generating Tasks Markdown file (Story B3) including ButtonGenerateTasks, TasksStatusIndicator, and TasksGenerationSection with corresponding Storybook stories.
+- Completed Story B4: Developed DocumentWorkflowTimeline organism and DocumentWorkflowPage template to visualize the document generation workflow with dynamic status displays and responsive design.
