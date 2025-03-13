@@ -14,6 +14,7 @@ const meta: Meta<typeof TaskCard> = {
       options: ["todo", "in-progress", "done"],
     },
     onClick: { action: "clicked" },
+    onStatusChange: { action: "status changed" },
   },
 };
 
@@ -26,6 +27,7 @@ export const Todo: Story = {
     description: "Implement a basic task card with status indicator",
     status: "todo",
     onClick: action("task clicked"),
+    onStatusChange: action("status changed"),
   },
 };
 
@@ -35,6 +37,7 @@ export const InProgress: Story = {
     description: "Create a component that holds multiple task cards",
     status: "in-progress",
     onClick: action("task clicked"),
+    onStatusChange: action("status changed"),
   },
 };
 
@@ -44,6 +47,7 @@ export const Done: Story = {
     description: "Create the basic folder structure for the project",
     status: "done",
     onClick: action("task clicked"),
+    onStatusChange: action("status changed"),
   },
 };
 
@@ -52,6 +56,7 @@ export const WithoutDescription: Story = {
     title: "Short task without description",
     status: "todo",
     onClick: action("task clicked"),
+    onStatusChange: action("status changed"),
   },
 };
 
@@ -62,5 +67,16 @@ export const LongTitle: Story = {
     description: "A description for the task with a long title",
     status: "todo",
     onClick: action("task clicked"),
+    onStatusChange: action("status changed"),
+  },
+};
+
+export const WithStatusChangeOnly: Story = {
+  args: {
+    title: "Task with status toggle only",
+    description:
+      "Click the checkbox to toggle status, but the card doesn't have a click handler",
+    status: "todo",
+    onStatusChange: action("status changed"),
   },
 };

@@ -1,45 +1,33 @@
 import { KanbanColumn } from "../components/molecules/KanbanColumn";
 import { Meta, StoryObj } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
-import { Task } from "../components/molecules/KanbanColumn";
+import { TaskStatus } from "../components/atoms/TaskCard";
 
 // Sample tasks for demonstration
-const mockTasks: Task[] = [
+const mockTasks = [
   {
     id: "task-1",
-    title: "Create TaskCard Component",
-    description: "Design and implement a reusable task card component",
-    status: "todo",
+    title: "Create KanbanColumn Component",
+    description: "Build a component that can display task cards in a column",
+    status: "todo" as TaskStatus,
   },
   {
     id: "task-2",
-    title: "Implement KanbanColumn",
-    description: "Create a column component that displays tasks",
-    status: "todo",
+    title: "Style KanbanColumn",
+    description: "Add Tailwind styling to the column component",
+    status: "todo" as TaskStatus,
   },
   {
     id: "task-3",
-    title: "Style TaskCard with Tailwind",
-    description: "Apply appropriate styling using Tailwind CSS classes",
-    status: "in-progress",
+    title: "Build TaskCard",
+    description: "Create the individual task card component",
+    status: "in-progress" as TaskStatus,
   },
   {
     id: "task-4",
-    title: "Add drag-and-drop functionality",
-    description: "Allow tasks to be dragged between columns",
-    status: "in-progress",
-  },
-  {
-    id: "task-5",
-    title: "Project Setup",
-    description: "Initialize the project with Next.js and Tailwind",
-    status: "done",
-  },
-  {
-    id: "task-6",
-    title: "Create component structure",
-    description: "Set up the atomic design folder structure",
-    status: "done",
+    title: "Set up project structure",
+    description: "Create all necessary folders and files",
+    status: "done" as TaskStatus,
   },
 ];
 
@@ -51,18 +39,20 @@ const meta: Meta<typeof KanbanColumn> = {
   },
   argTypes: {
     onTaskClick: { action: "task clicked" },
+    onTaskStatusChange: { action: "task status changed" },
   },
 };
 
 export default meta;
 type Story = StoryObj<typeof KanbanColumn>;
 
-export const TodoColumn: Story = {
+export const ToDoColumn: Story = {
   args: {
     columnName: "To Do",
     status: "todo",
     tasks: mockTasks,
     onTaskClick: action("task clicked"),
+    onTaskStatusChange: action("task status changed"),
   },
 };
 
@@ -72,6 +62,7 @@ export const InProgressColumn: Story = {
     status: "in-progress",
     tasks: mockTasks,
     onTaskClick: action("task clicked"),
+    onTaskStatusChange: action("task status changed"),
   },
 };
 
@@ -81,14 +72,36 @@ export const DoneColumn: Story = {
     status: "done",
     tasks: mockTasks,
     onTaskClick: action("task clicked"),
+    onTaskStatusChange: action("task status changed"),
   },
 };
 
 export const EmptyColumn: Story = {
   args: {
-    columnName: "Empty Column",
+    columnName: "To Do",
     status: "todo",
-    tasks: [], // No tasks
+    tasks: [],
     onTaskClick: action("task clicked"),
+    onTaskStatusChange: action("task status changed"),
+  },
+};
+
+export const ManyTasks: Story = {
+  args: {
+    columnName: "To Do",
+    status: "todo",
+    tasks: [
+      ...mockTasks.filter((t) => t.status === "todo"),
+      ...Array(10)
+        .fill(0)
+        .map((_, i) => ({
+          id: `extra-task-${i}`,
+          title: `Additional Task ${i + 1}`,
+          description: `This is an extra task #${i + 1} for testing overflow`,
+          status: "todo" as TaskStatus,
+        })),
+    ],
+    onTaskClick: action("task clicked"),
+    onTaskStatusChange: action("task status changed"),
   },
 };

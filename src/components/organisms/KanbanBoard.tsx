@@ -2,15 +2,18 @@
 
 import React, { useState, useEffect } from "react";
 import KanbanColumn, { Task } from "../molecules/KanbanColumn";
+import { TaskStatus } from "../atoms/TaskCard";
 
 export interface KanbanBoardProps {
   tasks: Task[];
   onTaskClick?: (taskId: string) => void;
+  onTaskStatusChange?: (taskId: string, newStatus: TaskStatus) => void;
 }
 
 export const KanbanBoard: React.FC<KanbanBoardProps> = ({
   tasks,
   onTaskClick,
+  onTaskStatusChange,
 }) => {
   // State for sorted tasks (could be expanded to handle updates)
   const [boardTasks, setBoardTasks] = useState<Task[]>(tasks);
@@ -20,6 +23,20 @@ export const KanbanBoard: React.FC<KanbanBoardProps> = ({
     setBoardTasks(tasks);
   }, [tasks]);
 
+  // Handle task status changes internally if no external handler is provided
+  const handleTaskStatusChange = (taskId: string, newStatus: TaskStatus) => {
+    if (onTaskStatusChange) {
+      // If an external handler is provided, use it
+      onTaskStatusChange(taskId, newStatus);
+    } else {
+      // Otherwise, update internal state
+      const updatedTasks = boardTasks.map((task) =>
+        task.id === taskId ? { ...task, status: newStatus } : task,
+      );
+      setBoardTasks(updatedTasks);
+    }
+  };
+
   return (
     <div className="w-full overflow-x-auto">
       <div className="flex flex-row gap-4 p-4 min-w-fit">
@@ -28,6 +45,7 @@ export const KanbanBoard: React.FC<KanbanBoardProps> = ({
           status="todo"
           tasks={boardTasks}
           onTaskClick={onTaskClick}
+          onTaskStatusChange={handleTaskStatusChange}
         />
 
         <KanbanColumn
@@ -35,6 +53,7 @@ export const KanbanBoard: React.FC<KanbanBoardProps> = ({
           status="in-progress"
           tasks={boardTasks}
           onTaskClick={onTaskClick}
+          onTaskStatusChange={handleTaskStatusChange}
         />
 
         <KanbanColumn
@@ -42,6 +61,7 @@ export const KanbanBoard: React.FC<KanbanBoardProps> = ({
           status="done"
           tasks={boardTasks}
           onTaskClick={onTaskClick}
+          onTaskStatusChange={handleTaskStatusChange}
         />
       </div>
     </div>

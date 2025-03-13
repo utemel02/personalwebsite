@@ -15,6 +15,7 @@ export interface KanbanColumnProps {
   status: TaskStatus;
   tasks: Task[];
   onTaskClick?: (taskId: string) => void;
+  onTaskStatusChange?: (taskId: string, newStatus: TaskStatus) => void;
 }
 
 export const KanbanColumn: React.FC<KanbanColumnProps> = ({
@@ -22,6 +23,7 @@ export const KanbanColumn: React.FC<KanbanColumnProps> = ({
   status,
   tasks,
   onTaskClick,
+  onTaskStatusChange,
 }) => {
   // Status-specific header styling
   const headerStyles = {
@@ -32,6 +34,14 @@ export const KanbanColumn: React.FC<KanbanColumnProps> = ({
 
   // Filter tasks that match this column's status
   const filteredTasks = tasks.filter((task) => task.status === status);
+
+  // Handle task status change
+  const handleTaskStatusChange =
+    (taskId: string) => (newStatus: TaskStatus) => {
+      if (onTaskStatusChange) {
+        onTaskStatusChange(taskId, newStatus);
+      }
+    };
 
   return (
     <div className="flex flex-col w-full min-w-[250px] max-w-sm bg-gray-50 dark:bg-slate-900 rounded-md shadow">
@@ -56,6 +66,7 @@ export const KanbanColumn: React.FC<KanbanColumnProps> = ({
               description={task.description}
               status={task.status}
               onClick={() => onTaskClick && onTaskClick(task.id)}
+              onStatusChange={handleTaskStatusChange(task.id)}
             />
           ))
         )}

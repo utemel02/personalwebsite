@@ -5,6 +5,7 @@ import {
 import { Meta, StoryObj } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import { Task } from "../components/molecules/KanbanColumn";
+import { TaskStatus } from "../components/atoms/TaskCard";
 
 // Sample tasks for the Kanban board
 const mockTasks: Task[] = [
@@ -13,46 +14,46 @@ const mockTasks: Task[] = [
     title: "Create TaskCard Component",
     description:
       "Design and implement a reusable task card component with status indicators",
-    status: "todo",
+    status: "todo" as TaskStatus,
   },
   {
     id: "task-2",
     title: "Implement KanbanColumn",
     description:
       "Create a column component that can display multiple tasks of a specific status",
-    status: "todo",
+    status: "todo" as TaskStatus,
   },
   {
     id: "task-3",
     title: "Build KanbanBoard",
     description: "Combine columns into a full Kanban board with task filtering",
-    status: "todo",
+    status: "todo" as TaskStatus,
   },
   {
     id: "task-4",
     title: "Add Tailwind Styling",
     description:
       "Style all components using Tailwind CSS for a consistent look and feel",
-    status: "in-progress",
+    status: "in-progress" as TaskStatus,
   },
   {
     id: "task-5",
     title: "Create Storybook Stories",
     description: "Add comprehensive Storybook stories for all components",
-    status: "in-progress",
+    status: "in-progress" as TaskStatus,
   },
   {
     id: "task-6",
     title: "Set up Project Structure",
     description:
       "Initialize the project with proper folder structure and dependencies",
-    status: "done",
+    status: "done" as TaskStatus,
   },
   {
     id: "task-7",
     title: "Design Component Interfaces",
     description: "Define TypeScript interfaces for all components",
-    status: "done",
+    status: "done" as TaskStatus,
   },
 ];
 
@@ -93,6 +94,7 @@ const meta: Meta<typeof KanbanBoard> = {
   },
   argTypes: {
     onTaskClick: { action: "task clicked" },
+    onTaskStatusChange: { action: "task status changed" },
   },
 };
 
@@ -103,6 +105,7 @@ export const DefaultBoard: Story = {
   args: {
     tasks: mockTasks,
     onTaskClick: action("task clicked"),
+    onTaskStatusChange: action("task status changed"),
   },
 };
 
@@ -110,6 +113,7 @@ export const ParsedFromMarkdown: Story = {
   args: {
     tasks: parseTasksFromMarkdown(sampleMarkdown),
     onTaskClick: action("task clicked"),
+    onTaskStatusChange: action("task status changed"),
   },
 };
 
@@ -117,5 +121,21 @@ export const EmptyBoard: Story = {
   args: {
     tasks: [],
     onTaskClick: action("task clicked"),
+    onTaskStatusChange: action("task status changed"),
+  },
+};
+
+export const WithInternalStateManagement: Story = {
+  args: {
+    tasks: mockTasks,
+    // No external handlers provided, so the component will handle state internally
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "This example uses the internal state management of the KanbanBoard component to handle status changes without external handlers.",
+      },
+    },
   },
 };

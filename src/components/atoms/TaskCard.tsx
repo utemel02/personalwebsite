@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import CheckboxStatus from "./CheckboxStatus";
 
 export type TaskStatus = "todo" | "in-progress" | "done";
 
@@ -9,6 +10,7 @@ export interface TaskCardProps {
   description?: string;
   status: TaskStatus;
   onClick?: () => void;
+  onStatusChange?: (newStatus: TaskStatus) => void;
 }
 
 export const TaskCard: React.FC<TaskCardProps> = ({
@@ -16,6 +18,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({
   description,
   status,
   onClick,
+  onStatusChange,
 }) => {
   // Status-specific styling
   const statusClasses = {
@@ -24,14 +27,34 @@ export const TaskCard: React.FC<TaskCardProps> = ({
     done: "border-l-4 border-l-green-500",
   };
 
+  // Handle status toggle separately from card click
+  const handleStatusToggle = (newStatus: TaskStatus) => {
+    if (onStatusChange) {
+      onStatusChange(newStatus);
+    }
+  };
+
+  // Handle card click but prevent propagation from checkbox click
+  const handleCardClick = (e: React.MouseEvent) => {
+    if (e.defaultPrevented) return;
+    onClick?.();
+  };
+
   return (
     <div
       className={`bg-white dark:bg-slate-800 rounded-md shadow-sm p-4 mb-2 hover:shadow-md transition-shadow cursor-pointer ${statusClasses[status]}`}
-      onClick={onClick}
+      onClick={handleCardClick}
     >
-      <h3 className="font-medium text-gray-800 dark:text-gray-200 mb-1">
-        {title}
-      </h3>
+      <div className="flex justify-between items-start mb-2">
+        <h3 className="font-medium text-gray-800 dark:text-gray-200">
+          {title}
+        </h3>
+        <CheckboxStatus
+          status={status}
+          onToggle={handleStatusToggle}
+          className="flex-shrink-0 ml-2"
+        />
+      </div>
 
       {description && (
         <p className="text-sm text-gray-600 dark:text-gray-400">
