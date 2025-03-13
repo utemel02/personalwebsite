@@ -17,3 +17,4 @@
 - Implemented Story C1 (Kanban Task Management) including TaskCard atom, KanbanColumn molecule, and KanbanBoard organism components with Storybook stories for each and a markdown parser utility.
 - Completed Story C2 - Added checkbox status toggle functionality to Kanban tasks, allowing users to cycle through todo, in-progress, and done states.
 - Implemented Story D1 components including ButtonMarkInProgress atom, InProgressPromptModal molecule, and TaskInProgressFlow organism with Storybook stories for all components.
+- Implemented Story D2 "Merge Worktree on Task Completion (UI)" by creating ButtonMarkDone atom, MergeConflictModal molecule, and TaskCompletionFlow organism components with their corresponding Storybook stories.
