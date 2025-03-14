@@ -96,7 +96,7 @@ export default {
         },
         bg: {
           light: "#fafaf8",
-          DEFAULT: "#e7e4dc",
+          DEFAULT: "#fafafa",
           dark: "#36402d",
         },
         surface: {

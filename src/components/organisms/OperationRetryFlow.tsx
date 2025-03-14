@@ -81,9 +81,13 @@ const OperationRetryFlow: React.FC<OperationRetryFlowProps> = ({
   return (
     <div className="mb-4">
       <div className="mb-2">
-        <h3 className="text-lg font-medium">{operationInfo.name}</h3>
+        <h3 className="text-lg font-medium text-stone-800 dark:text-amber-50">
+          {operationInfo.name}
+        </h3>
         {operationInfo.description && (
-          <p className="text-sm text-gray-600">{operationInfo.description}</p>
+          <p className="text-sm text-stone-600 dark:text-amber-200">
+            {operationInfo.description}
+          </p>
         )}
       </div>
 
@@ -96,8 +100,8 @@ const OperationRetryFlow: React.FC<OperationRetryFlowProps> = ({
       />
 
       {isLoading && (
-        <div className="mt-2 text-sm text-blue-600 flex items-center">
-          <div className="mr-2 h-4 w-4 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+        <div className="mt-2 text-sm text-amber-600 dark:text-amber-400 flex items-center">
+          <div className="mr-2 h-4 w-4 border-2 border-amber-600 dark:border-amber-400 border-t-transparent rounded-full animate-spin"></div>
           Retrying operation...
         </div>
       )}

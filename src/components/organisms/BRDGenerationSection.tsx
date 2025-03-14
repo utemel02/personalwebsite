@@ -40,12 +40,12 @@ export const BRDGenerationSection: React.FC<BRDGenerationSectionProps> = ({
   };
 
   return (
-    <div className="p-5 border rounded-lg bg-white dark:bg-gray-800 shadow-sm">
-      <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-3">
+    <div className="p-5 border border-amber-200 rounded-lg bg-amber-50 dark:bg-stone-800 dark:border-stone-700 shadow-sm">
+      <h3 className="text-lg font-medium text-stone-800 dark:text-amber-50 mb-3">
         Business Requirements Document (BRD)
       </h3>
 
-      <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
+      <p className="text-sm text-stone-600 dark:text-amber-200 mb-4">
         Click to generate a Business Requirements Document (BRD) from your
         project description. This document will outline the business objectives,
         scope, and requirements for your project.

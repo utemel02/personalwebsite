@@ -3,7 +3,7 @@
 import { FC, useState } from "react";
 import ButtonMarkDone from "../atoms/ButtonMarkDone";
 import MergeConflictModal from "../molecules/MergeConflictModal";
-import { toast } from "react-toastify";
+import { toast } from "../atoms/ToastNotifications";
 
 interface ConflictFile {
   path: string;
@@ -67,7 +67,7 @@ const TaskCompletionFlow: FC<TaskCompletionFlowProps> = ({
   };
 
   return (
-    <div>
+    <div className="flex items-center justify-start">
       <ButtonMarkDone
         onClick={handleMarkDone}
         disabled={isProcessing}

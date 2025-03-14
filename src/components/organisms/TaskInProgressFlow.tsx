@@ -50,12 +50,12 @@ export const TaskInProgressFlow: React.FC<TaskInProgressFlowProps> = ({
 
   return (
     <div className="flex flex-col space-y-4">
-      <div className="flex items-center justify-between p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
+      <div className="flex items-center justify-between p-4 bg-amber-50 dark:bg-stone-800 rounded-lg shadow border border-amber-200 dark:border-stone-700">
         <div>
-          <h3 className="font-medium text-gray-900 dark:text-white">
+          <h3 className="font-medium text-stone-800 dark:text-amber-50">
             {taskName}
           </h3>
-          <p className="text-sm text-gray-500 dark:text-gray-400">
+          <p className="text-sm text-stone-600 dark:text-amber-200">
             Click Start to create a Git worktree for this task
           </p>
         </div>

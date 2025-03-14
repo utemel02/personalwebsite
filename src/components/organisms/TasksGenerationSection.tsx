@@ -9,18 +9,20 @@ import {
 
 interface TasksGenerationSectionProps {
   initialStatus?: TasksStatus;
+  isPRDGenerated?: boolean;
   onGenerateTasks?: () => Promise<void>;
 }
 
 export const TasksGenerationSection: React.FC<TasksGenerationSectionProps> = ({
   initialStatus = "pending",
+  isPRDGenerated = false,
   onGenerateTasks,
 }) => {
   const [status, setStatus] = useState<TasksStatus>(initialStatus);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleGenerateTasks = async () => {
-    if (isLoading || status === "completed") return;
+    if (isLoading || status === "completed" || !isPRDGenerated) return;
 
     setIsLoading(true);
     setStatus("in-progress");
@@ -29,12 +31,11 @@ export const TasksGenerationSection: React.FC<TasksGenerationSectionProps> = ({
       if (onGenerateTasks) {
         await onGenerateTasks();
       } else {
-        // Mock delay for demo purposes - would be removed in actual implementation
+        // Mock delay for demo purposes
         await new Promise((resolve) => setTimeout(resolve, 2000));
       }
       setStatus("completed");
     } catch (error) {
-      // In case of error, revert to pending
       setStatus("pending");
       console.error("Error generating tasks:", error);
     } finally {
@@ -43,22 +44,27 @@ export const TasksGenerationSection: React.FC<TasksGenerationSectionProps> = ({
   };
 
   return (
-    <div className="p-5 border rounded-lg bg-white dark:bg-gray-800 shadow-sm">
-      <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-3">
-        Tasks Markdown Generation
+    <div className="p-5 border border-amber-200 rounded-lg bg-amber-50 dark:bg-stone-800 dark:border-stone-700 shadow-sm">
+      <h3 className="text-lg font-medium text-stone-800 dark:text-amber-50 mb-3">
+        Tasks Markdown File
       </h3>
 
-      <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
-        Generate a tasks markdown file (tasks_001.md) based on the Product
-        Requirements Document. This will create a structured list of development
-        tasks for your project.
+      <p className="text-sm text-stone-600 dark:text-amber-200 mb-4">
+        Generate a structured tasks markdown file based on your PRD. This will
+        create a breakdown of development tasks in the `tasks_001.md` file.
       </p>
 
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <ButtonGenerateTasks
           onClick={handleGenerateTasks}
-          disabled={isLoading || status === "completed"}
-          label={status === "completed" ? "Tasks Generated" : "Generate Tasks"}
+          disabled={!isPRDGenerated || isLoading || status === "completed"}
+          label={
+            !isPRDGenerated
+              ? "Generate PRD First"
+              : status === "completed"
+              ? "Tasks Generated"
+              : "Generate Tasks"
+          }
         />
         <TasksStatusIndicator status={status} />
       </div>
