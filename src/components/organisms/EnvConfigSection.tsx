@@ -53,22 +53,24 @@ export const EnvConfigSection: React.FC<EnvConfigSectionProps> = ({
   };
 
   return (
-    <section className="bg-white rounded-lg shadow-md p-6 max-w-4xl mx-auto">
+    <section className="bg-amber-50 dark:bg-stone-800 rounded-lg shadow-md p-6 max-w-4xl mx-auto border border-amber-200 dark:border-stone-700">
       <div className="flex items-center mb-4">
-        <FileText className="h-6 w-6 text-blue-600 mr-2" />
-        <h2 className="text-xl font-semibold">Environment Variables</h2>
+        <FileText className="h-6 w-6 text-amber-600 dark:text-amber-400 mr-3" />
+        <h2 className="text-xl font-semibold text-stone-800 dark:text-amber-50">
+          Environment Variables
+        </h2>
       </div>
 
-      <p className="text-gray-600 mb-6">
+      <p className="text-stone-600 dark:text-amber-200 mb-6">
         Configure your project's environment variables. These will be stored in
         a .env file at the root of your project. Sensitive variables like API
         keys and passwords will be masked in the UI.
       </p>
 
       {saveSuccess && (
-        <div className="mb-6 bg-green-50 p-4 rounded-md flex items-center">
-          <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
-          <span className="text-green-700">
+        <div className="mb-6 bg-emerald-50 dark:bg-emerald-900/20 p-4 rounded-md flex items-center border border-emerald-200 dark:border-emerald-800">
+          <CheckCircle className="h-5 w-5 text-emerald-600 dark:text-emerald-400 mr-2 flex-shrink-0" />
+          <span className="text-emerald-700 dark:text-emerald-300">
             Environment variables have been saved to .env file
           </span>
         </div>
@@ -76,10 +78,10 @@ export const EnvConfigSection: React.FC<EnvConfigSectionProps> = ({
 
       <EnvTable variables={variables} onVariableChange={handleVariableChange} />
 
-      <div className="mt-6 flex gap-4">
+      <div className="mt-6 flex flex-wrap gap-4">
         <button
           onClick={handleAddVariable}
-          className="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+          className="px-4 py-2 bg-white dark:bg-stone-900 border border-amber-300 dark:border-stone-600 text-stone-700 dark:text-amber-100 rounded-md hover:bg-amber-50 dark:hover:bg-stone-700 transition-colors focus:outline-none focus:ring-2 focus:ring-amber-500 dark:focus:ring-amber-700 focus:ring-offset-2"
         >
           Add Variable
         </button>
@@ -87,10 +89,13 @@ export const EnvConfigSection: React.FC<EnvConfigSectionProps> = ({
         <button
           onClick={handleSaveEnv}
           disabled={isLoading || variables.length === 0}
-          className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50"
+          className="flex items-center px-4 py-2 bg-amber-600 text-white rounded-md hover:bg-amber-700 transition-colors focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 disabled:opacity-50"
         >
           {isLoading ? (
-            "Saving..."
+            <span className="flex items-center">
+              <div className="mr-2 h-4 w-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+              Saving...
+            </span>
           ) : (
             <>
               <Save className="h-4 w-4 mr-2" />
@@ -100,11 +105,17 @@ export const EnvConfigSection: React.FC<EnvConfigSectionProps> = ({
         </button>
       </div>
 
-      {error && <div className="mt-4 text-red-600 text-sm">{error}</div>}
+      {error && (
+        <div className="mt-4 text-red-600 dark:text-red-400 text-sm">
+          {error}
+        </div>
+      )}
 
-      <div className="mt-6 pt-4 border-t border-gray-200">
-        <h3 className="text-sm font-medium text-gray-700">Important Note</h3>
-        <p className="text-gray-600 text-sm mt-1">
+      <div className="mt-6 pt-4 border-t border-amber-200 dark:border-stone-700">
+        <h3 className="text-sm font-medium text-stone-700 dark:text-amber-100">
+          Important Note
+        </h3>
+        <p className="text-stone-600 dark:text-amber-200 text-sm mt-1">
           Environment variables contain sensitive information. Never commit your
           .env file to version control. The .env file is automatically added to
           .gitignore for your protection.

@@ -81,22 +81,31 @@ export default function KanbanBoardPage() {
   };
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-6 text-gray-800 dark:text-white">
-        Project Kanban Board
-      </h1>
+    <div className="container mx-auto p-6">
+      <div className="mb-8">
+        <h1 className="text-2xl font-display font-bold text-stone-800 dark:text-amber-50 mb-2">
+          Project Kanban Board
+        </h1>
+        <p className="text-stone-600 dark:text-amber-200">
+          Track and manage your project tasks through their various stages of
+          completion.
+        </p>
+      </div>
 
       {isLoading ? (
-        <div className="flex justify-center items-center h-64">
-          <div className="text-gray-500 dark:text-gray-400">
+        <div className="flex justify-center items-center h-64 bg-amber-50 dark:bg-stone-800 rounded-lg border border-amber-200 dark:border-stone-700">
+          <div className="flex items-center text-stone-600 dark:text-amber-200">
+            <div className="mr-3 h-5 w-5 border-2 border-amber-600 dark:border-amber-400 border-t-transparent rounded-full animate-spin"></div>
             Loading tasks...
           </div>
         </div>
       ) : (
-        <KanbanBoard
-          tasks={tasks}
-          onTaskStatusChange={handleTaskStatusChange}
-        />
+        <div className="rounded-lg overflow-hidden">
+          <KanbanBoard
+            tasks={tasks}
+            onTaskStatusChange={handleTaskStatusChange}
+          />
+        </div>
       )}
     </div>
   );

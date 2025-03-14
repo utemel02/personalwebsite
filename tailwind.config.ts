@@ -94,9 +94,19 @@ export default {
           900: "#36402d",
           foreground: "#ffffff",
         },
+        amber: {
+          50: "#fafaf8",
+          100: "#f2f1ed",
+          200: "#e7e4dc",
+          300: "#d9d5ca",
+          400: "#b5b0a7",
+          500: "#969189",
+          600: "#7a756f",
+          700: "#5d5954",
+        },
         bg: {
           light: "#fafaf8",
-          DEFAULT: "#fafafa",
+          DEFAULT: "#e7e4dc",
           dark: "#36402d",
         },
         surface: {

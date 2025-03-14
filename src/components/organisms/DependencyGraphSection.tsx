@@ -17,7 +17,7 @@ const DependencyGraphSection: React.FC<DependencyGraphSectionProps> = ({
   description = "A visual representation of task dependencies. Each node represents a task, and arrows indicate dependencies between tasks.",
 }) => {
   return (
-    <section className="p-6 bg-amber-50 rounded-lg shadow-sm border border-amber-200 dark:bg-stone-800 dark:border-stone-700">
+    <section className="p-6 bg-light rounded-lg shadow-sm border border-amber-200 dark:bg-stone-800 dark:border-stone-700">
       <h2 className="text-xl font-semibold text-stone-800 dark:text-amber-50 mb-2">
         {title}
       </h2>

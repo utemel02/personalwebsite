@@ -36,7 +36,7 @@ export default function MultipleTaskSetsPage() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-2xl font-bold mb-8 text-gray-800 dark:text-white">
+      <h1 className="text-2xl font-display font-bold mb-8 text-stone-800 dark:text-amber-50">
         Task Sets
       </h1>
 
@@ -48,32 +48,32 @@ export default function MultipleTaskSetsPage() {
         />
       </div>
 
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm">
-        <div className="p-4 border-b border-gray-200 dark:border-gray-700">
-          <h2 className="text-lg font-medium text-gray-800 dark:text-white">
+      <div className="bg-amber-50 dark:bg-stone-800 rounded-lg shadow-sm border border-amber-200 dark:border-stone-700">
+        <div className="p-4 border-b border-amber-200 dark:border-stone-700">
+          <h2 className="text-lg font-display font-medium text-stone-800 dark:text-amber-50">
             Available Task Sets
           </h2>
         </div>
 
-        <ul className="divide-y divide-gray-200 dark:divide-gray-700">
+        <ul className="divide-y divide-amber-200 dark:divide-stone-700">
           {taskSets.map((taskSet) => (
             <li
               key={taskSet.id}
-              className="p-4 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+              className="p-4 hover:bg-amber-100/50 dark:hover:bg-stone-700/70 transition-colors"
             >
               <div className="flex justify-between items-center">
                 <div>
-                  <h3 className="font-medium text-gray-900 dark:text-white">
+                  <h3 className="font-medium text-stone-800 dark:text-amber-50">
                     {taskSet.name}
                   </h3>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                  <p className="text-sm text-stone-600 dark:text-amber-200">
                     Created on {taskSet.createdAt}
                   </p>
                 </div>
                 <div className="flex space-x-2">
                   <Link
                     href={`/kanban?taskSet=${taskSet.id}`}
-                    className="px-3 py-1 text-sm rounded-md bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300 hover:bg-blue-200 dark:hover:bg-blue-800 transition-colors"
+                    className="px-3 py-1 text-sm rounded-md bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300 hover:bg-amber-200 dark:hover:bg-amber-800/40 transition-colors"
                   >
                     View Kanban
                   </Link>

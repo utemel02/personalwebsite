@@ -14,7 +14,7 @@ export const PRDStatusIndicator: React.FC<PRDStatusIndicatorProps> = ({
   // Define styles for different status types
   const statusStyles = {
     pending:
-      "bg-amber-50 text-amber-700 border-amber-300 dark:bg-amber-900/30 dark:text-amber-200",
+      "bg-light text-amber-700 border-amber-300 dark:bg-amber-900/30 dark:text-amber-200",
     "in-progress":
       "bg-amber-100 text-amber-800 border-amber-500 dark:bg-amber-800/40 dark:text-amber-100",
     completed:

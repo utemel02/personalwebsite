@@ -50,7 +50,7 @@ export const TaskInProgressFlow: React.FC<TaskInProgressFlowProps> = ({
 
   return (
     <div className="flex flex-col space-y-4">
-      <div className="flex items-center justify-between p-4 bg-amber-50 dark:bg-stone-800 rounded-lg shadow border border-amber-200 dark:border-stone-700">
+      <div className="flex items-center justify-between p-4 bg-light dark:bg-stone-800 rounded-lg shadow border border-amber-200 dark:border-stone-700">
         <div>
           <h3 className="font-medium text-stone-800 dark:text-amber-50">
             {taskName}

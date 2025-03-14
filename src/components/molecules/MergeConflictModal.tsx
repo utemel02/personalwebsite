@@ -27,7 +27,7 @@ const MergeConflictModal: FC<MergeConflictModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-      <div className="relative w-full max-w-lg rounded-lg bg-amber-50 p-6 shadow-lg dark:bg-stone-800">
+      <div className="relative w-full max-w-lg rounded-lg bg-light p-6 shadow-lg dark:bg-stone-800">
         <button
           onClick={onClose}
           className="absolute right-4 top-4 text-stone-500 hover:text-stone-700 dark:text-amber-300 dark:hover:text-amber-200"

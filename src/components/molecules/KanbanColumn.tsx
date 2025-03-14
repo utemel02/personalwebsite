@@ -45,7 +45,7 @@ export const KanbanColumn: React.FC<KanbanColumnProps> = ({
     };
 
   return (
-    <div className="flex flex-col w-full min-w-[280px] max-w-sm bg-amber-50 dark:bg-stone-800 rounded-md shadow-md">
+    <div className="flex flex-col w-full min-w-[280px] max-w-sm bg-white dark:bg-stone-900 rounded-md shadow-sm border border-amber-100 dark:border-stone-700 hover:shadow-md transition-shadow">
       <div
         className={`p-4 ${headerStyles[status]} rounded-t-md border-b border-amber-200 dark:border-stone-700`}
       >
@@ -57,9 +57,9 @@ export const KanbanColumn: React.FC<KanbanColumnProps> = ({
         </h2>
       </div>
 
-      <div className="p-3 flex-1 overflow-y-auto max-h-[70vh] space-y-3">
+      <div className="p-4 flex-1 overflow-y-auto max-h-[65vh] space-y-4">
         {filteredTasks.length === 0 ? (
-          <div className="text-center py-6 text-stone-500 dark:text-amber-300 text-sm italic rounded-md border border-dashed border-amber-300 dark:border-stone-600">
+          <div className="text-center py-10 text-stone-500 dark:text-amber-300 text-sm italic rounded-md border border-dashed border-amber-300 dark:border-stone-600">
             No tasks in this column
           </div>
         ) : (

@@ -95,7 +95,7 @@ const DependencyGraphVisualizer: React.FC<DependencyGraphVisualizerProps> = ({
   };
 
   return (
-    <div className="border border-amber-200 rounded-lg shadow-sm bg-amber-50 overflow-hidden">
+    <div className="border border-amber-200 rounded-lg shadow-sm bg-light overflow-hidden">
       <svg width={width} height={height}>
         {/* Draw the paths/arrows first so they appear behind nodes */}
         {generatePaths()}

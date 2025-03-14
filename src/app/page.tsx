@@ -26,22 +26,25 @@ export default async function Page() {
 
       <main className="flex-1 flex flex-col w-full mx-auto">
         <ClientProvider>
-          <div className="flex-1 flex items-start justify-center  bg-gradient-to-b from-white to-neutral-50 dark:from-neutral-900 dark:to-neutral-950">
+          <div className="flex-1 flex items-start justify-center bg-gradient-to-b from-amber-50 to-stone-100 dark:from-stone-900 dark:to-stone-950">
             {session ? (
               // Authenticated View
               <section className="max-w-7xl w-full space-y-8 animate-fade-in">
-                <h1> Welcome {session.user?.name}</h1>
+                <h1 className="text-stone-800 dark:text-amber-50 font-display">
+                  {" "}
+                  Welcome {session.user?.name}
+                </h1>
               </section>
             ) : (
               // Marketing View
               <section className="max-w-7xl w-full space-y-8 animate-fade-in">
                 <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
-                  <h1 className="text-4xl font-bold mt-10">
+                  <h1 className="text-4xl font-bold mt-10 text-stone-800 dark:text-amber-50 font-display">
                     Welcome - Click the button below to get started
                   </h1>
                   <Link
                     href="/auth/signin"
-                    className="group w-full sm:w-auto flex items-center justify-center gap-2 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white rounded-lg px-8 py-4 text-lg font-medium shadow-lg shadow-blue-500/20 transition-all duration-200 hover:shadow-xl hover:shadow-blue-500/30"
+                    className="group w-full sm:w-auto flex items-center justify-center gap-2 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white rounded-lg px-8 py-4 text-lg font-medium shadow-lg shadow-amber-500/20 transition-all duration-200 hover:shadow-xl hover:shadow-amber-500/30"
                   >
                     Get Started
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -54,27 +57,27 @@ export default async function Page() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900">
+      <footer className="border-t border-amber-200 dark:border-stone-800 bg-amber-50 dark:bg-stone-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <span className="text-sm text-neutral-600 dark:text-neutral-400">
+          <span className="text-sm text-stone-600 dark:text-amber-200">
             © {new Date().getFullYear()} All Rights Reserved
           </span>
-          <div className="flex items-center gap-6 text-sm text-neutral-600 dark:text-neutral-400">
+          <div className="flex items-center gap-6 text-sm text-stone-600 dark:text-amber-200">
             <Link
               href="/privacy"
-              className="hover:text-blue-600 dark:hover:text-blue-400"
+              className="hover:text-amber-600 dark:hover:text-amber-400"
             >
               Privacy Policy
             </Link>
             <Link
               href="/terms"
-              className="hover:text-blue-600 dark:hover:text-blue-400"
+              className="hover:text-amber-600 dark:hover:text-amber-400"
             >
               Terms of Service
             </Link>
             <Link
               href="/contact"
-              className="hover:text-blue-600 dark:hover:text-blue-400"
+              className="hover:text-amber-600 dark:hover:text-amber-400"
             >
               Contact
             </Link>

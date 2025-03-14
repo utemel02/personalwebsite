@@ -55,7 +55,7 @@ export default function DocumentWorkflowPage() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-2xl font-bold mb-8 text-gray-800 dark:text-white">
+      <h1 className="text-2xl font-display font-bold mb-8 text-stone-800 dark:text-amber-50">
         Document Workflow
       </h1>
 
@@ -70,21 +70,21 @@ export default function DocumentWorkflowPage() {
 
       {/* Document generation sections */}
       <div className="space-y-8">
-        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm">
+        <div className="bg-amber-50 dark:bg-stone-800 p-6 rounded-lg shadow-sm border border-amber-200 dark:border-stone-700">
           <BRDGenerationSection
             initialStatus={brdStatus}
             onGenerateBRD={handleGenerateBRD}
           />
         </div>
 
-        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm">
+        <div className="bg-amber-50 dark:bg-stone-800 p-6 rounded-lg shadow-sm border border-amber-200 dark:border-stone-700">
           <PRDGenerationSection
             initialStatus={prdStatus}
             onGeneratePRD={handleGeneratePRD}
           />
         </div>
 
-        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm">
+        <div className="bg-amber-50 dark:bg-stone-800 p-6 rounded-lg shadow-sm border border-amber-200 dark:border-stone-700">
           <TasksGenerationSection
             initialStatus={tasksStatus}
             onGenerateTasks={handleGenerateTasks}

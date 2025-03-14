@@ -47,7 +47,7 @@ const ErrorRetryPrompt: React.FC<ErrorRetryPromptProps> = ({
         {onCancel && (
           <button
             onClick={onCancel}
-            className="px-3 py-1 text-sm text-stone-600 border border-stone-300 rounded hover:bg-amber-50 dark:text-amber-100 dark:border-stone-600 dark:hover:bg-stone-700"
+            className="px-3 py-1 text-sm text-stone-600 border border-stone-300 rounded hover:bg-light dark:text-amber-100 dark:border-stone-600 dark:hover:bg-stone-700"
           >
             Cancel
           </button>

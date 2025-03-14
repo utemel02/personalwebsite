@@ -20,7 +20,7 @@ export const EnvTable: React.FC<EnvTableProps> = ({
 }) => {
   if (variables.length === 0) {
     return (
-      <div className="p-4 bg-amber-50 border border-amber-200 rounded-md text-stone-500 text-center">
+      <div className="p-4 bg-light border border-amber-200 rounded-md text-stone-500 text-center">
         No environment variables configured yet.
       </div>
     );
@@ -28,7 +28,7 @@ export const EnvTable: React.FC<EnvTableProps> = ({
 
   return (
     <div className="border border-amber-200 rounded-md overflow-hidden">
-      <div className="bg-amber-50 px-4 py-3 border-b border-amber-200 flex">
+      <div className="bg-light px-4 py-3 border-b border-amber-200 flex">
         <div className="font-semibold text-stone-700 min-w-32">
           Variable Name
         </div>

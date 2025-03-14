@@ -24,7 +24,7 @@ const DocumentWorkflowTimeline: React.FC<DocumentWorkflowTimelineProps> = ({
   tasksStatus,
 }) => {
   return (
-    <div className="w-full bg-amber-50 dark:bg-stone-800 p-6 rounded-lg shadow-sm border border-amber-200 dark:border-stone-700">
+    <div className="w-full bg-light dark:bg-stone-800 p-6 rounded-lg shadow-sm border border-amber-200 dark:border-stone-700">
       <h2 className="text-xl font-semibold text-stone-800 dark:text-amber-50 mb-6">
         Document Generation Workflow
       </h2>

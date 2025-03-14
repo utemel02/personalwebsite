@@ -33,21 +33,23 @@ export const ApiKeySection: React.FC<ApiKeySectionProps> = ({
   };
 
   return (
-    <section className="bg-white rounded-lg shadow-md p-6 max-w-xl mx-auto">
+    <section className="bg-amber-50 dark:bg-stone-800 rounded-lg shadow-md p-6 max-w-xl mx-auto border border-amber-200 dark:border-stone-700">
       <div className="flex items-center mb-4">
-        <Key className="h-6 w-6 text-blue-600 mr-2" />
-        <h2 className="text-xl font-semibold">Manage API Keys</h2>
+        <Key className="h-6 w-6 text-amber-600 dark:text-amber-400 mr-3" />
+        <h2 className="text-xl font-semibold text-stone-800 dark:text-amber-50">
+          Manage API Keys
+        </h2>
       </div>
 
-      <p className="text-gray-600 mb-6">
+      <p className="text-stone-600 dark:text-amber-200 mb-6">
         Your API key is securely stored and used for authentication with
         external services. Keep this key private and never share it publicly.
       </p>
 
       {hasKey && (
-        <div className="mb-6 bg-green-50 p-4 rounded-md flex items-center">
-          <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
-          <span className="text-green-700">
+        <div className="mb-6 bg-emerald-50 dark:bg-emerald-900/20 p-4 rounded-md flex items-center border border-emerald-200 dark:border-emerald-800">
+          <CheckCircle className="h-5 w-5 text-emerald-600 dark:text-emerald-400 mr-2 flex-shrink-0" />
+          <span className="text-emerald-700 dark:text-emerald-300">
             API key has been saved and is ready to use
           </span>
         </div>
@@ -55,15 +57,24 @@ export const ApiKeySection: React.FC<ApiKeySectionProps> = ({
 
       <ApiKeyForm onSaveKey={handleSaveKey} initialValue={savedApiKey} />
 
-      {error && <div className="mt-4 text-red-600 text-sm">{error}</div>}
-
-      {isLoading && (
-        <div className="mt-4 text-gray-600 text-sm">Saving API key...</div>
+      {error && (
+        <div className="mt-4 text-red-600 dark:text-red-400 text-sm">
+          {error}
+        </div>
       )}
 
-      <div className="mt-6 pt-4 border-t border-gray-200">
-        <h3 className="text-sm font-medium text-gray-700">Important Note</h3>
-        <p className="text-gray-600 text-sm mt-1">
+      {isLoading && (
+        <div className="mt-4 flex items-center text-stone-600 dark:text-amber-300 text-sm">
+          <div className="mr-2 h-4 w-4 border-2 border-amber-600 dark:border-amber-400 border-t-transparent rounded-full animate-spin"></div>
+          Saving API key...
+        </div>
+      )}
+
+      <div className="mt-6 pt-4 border-t border-amber-200 dark:border-stone-700">
+        <h3 className="text-sm font-medium text-stone-700 dark:text-amber-100">
+          Important Note
+        </h3>
+        <p className="text-stone-600 dark:text-amber-200 text-sm mt-1">
           If you refresh or reset your API key, you'll need to update it here.
           The key is encrypted when stored and never exposed in client-side
           code.

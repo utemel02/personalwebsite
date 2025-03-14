@@ -27,3 +27,5 @@
 - Updated all components with standardized earth-tone color palette, replaced specific color references, and created a comprehensive DesignSystem storybook for showcasing the design system.
 - Updated all molecule components to use earth-tone color scheme, including ClaudeCLIOutput, ErrorRetryPrompt, and the status indicator components (TasksStatusIndicator, PRDStatusIndicator, BRDStatusIndicator).
 - Updated all organism components to use earth-tone color scheme, including OperationRetryFlow, DocumentWorkflowTimeline, DependencyGraphSection, CodeGenerationSection, TaskCompletionFlow, TaskInProgressFlow, and the generation sections (BRDGenerationSection, PRDGenerationSection, TasksGenerationSection).
+- Improved Kanban board UI with consistent earth-tone colors, better spacing, enhanced visual hierarchy, and optimized task card presentation for improved readability and user experience.
+- Updated all dashboard pages with earth-tone color palette, including the main app page, dashboard page, document-workflow page, and multiple-task-sets page, for a consistent visual identity across the application.

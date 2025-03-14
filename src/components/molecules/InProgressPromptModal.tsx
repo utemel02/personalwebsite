@@ -23,7 +23,7 @@ export const InProgressPromptModal: React.FC<InProgressPromptModalProps> = ({
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-amber-50 dark:bg-stone-800 rounded-lg p-6 w-full max-w-md">
+      <div className="bg-light dark:bg-stone-800 rounded-lg p-6 w-full max-w-md">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl font-semibold dark:text-amber-50">
             Start Task

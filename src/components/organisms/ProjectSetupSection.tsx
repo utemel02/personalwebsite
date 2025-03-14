@@ -16,19 +16,19 @@ export const ProjectSetupSection: React.FC<ProjectSetupSectionProps> = ({
   initialData,
 }) => {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 max-w-3xl mx-auto">
+    <div className="bg-amber-50 dark:bg-stone-800 rounded-lg shadow-md p-6 max-w-3xl mx-auto border border-amber-200 dark:border-stone-700">
       <div className="mb-6">
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+        <h2 className="text-2xl font-display font-bold text-stone-800 dark:text-amber-50 mb-3">
           Configure Project Details
         </h2>
-        <p className="text-gray-600 dark:text-gray-300">
+        <p className="text-stone-600 dark:text-amber-200">
           Fill out these details to set up your project metadata. This
           information will be used to configure your project and generate the
           necessary documentation.
         </p>
       </div>
 
-      <div className="border-t border-gray-200 dark:border-gray-700 pt-6">
+      <div className="border-t border-amber-200 dark:border-stone-700 pt-6">
         <ProjectDetailsForm onSubmit={onSubmit} initialData={initialData} />
       </div>
     </div>

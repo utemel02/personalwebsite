@@ -44,7 +44,7 @@ export const TasksGenerationSection: React.FC<TasksGenerationSectionProps> = ({
   };
 
   return (
-    <div className="p-5 border border-amber-200 rounded-lg bg-amber-50 dark:bg-stone-800 dark:border-stone-700 shadow-sm">
+    <div className="p-5 border border-amber-200 rounded-lg bg-light dark:bg-stone-800 dark:border-stone-700 shadow-sm">
       <h3 className="text-lg font-medium text-stone-800 dark:text-amber-50 mb-3">
         Tasks Markdown File
       </h3>

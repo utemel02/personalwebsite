@@ -22,9 +22,9 @@ export const TaskCard: React.FC<TaskCardProps> = ({
 }) => {
   // Status-specific styling
   const statusClasses = {
-    todo: "border-l-4 border-l-info",
-    "in-progress": "border-l-4 border-l-warning",
-    done: "border-l-4 border-l-success",
+    todo: "border-l-4 border-l-amber-300",
+    "in-progress": "border-l-4 border-l-amber-500",
+    done: "border-l-4 border-l-emerald-500",
   };
 
   // Handle status toggle separately from card click
@@ -49,7 +49,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({
 
   return (
     <div
-      className={`bg-surface-light dark:bg-neutral-800 rounded-md shadow p-4 hover:shadow-md transition-all cursor-pointer ${statusClasses[status]}`}
+      className={`bg-white dark:bg-stone-800 rounded-md shadow-sm p-4 hover:shadow-md transition-shadow cursor-pointer ${statusClasses[status]} border border-amber-100 dark:border-stone-700`}
       onClick={handleCardClick}
       role="button"
       tabIndex={0}
@@ -57,7 +57,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({
       onKeyDown={handleKeyDown}
     >
       <div className="flex justify-between items-start mb-3">
-        <h3 className="font-medium text-neutral-800 dark:text-neutral-200 line-clamp-2">
+        <h3 className="font-medium text-stone-800 dark:text-amber-50 line-clamp-2">
           {title}
         </h3>
         <CheckboxStatus
@@ -68,7 +68,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({
       </div>
 
       {description && (
-        <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-3 line-clamp-3">
+        <p className="text-sm text-stone-600 dark:text-amber-200 mb-3 line-clamp-3">
           {description}
         </p>
       )}
@@ -77,10 +77,10 @@ export const TaskCard: React.FC<TaskCardProps> = ({
         <span
           className={`text-xs px-2.5 py-1 rounded-full font-medium ${
             status === "todo"
-              ? "bg-neutral-200 text-neutral-700 dark:bg-neutral-700 dark:text-neutral-300"
+              ? "bg-amber-50 text-amber-700 dark:bg-amber-900/20 dark:text-amber-200"
               : status === "in-progress"
-              ? "bg-warning-light/20 text-warning-dark dark:bg-warning-dark/30 dark:text-warning-light"
-              : "bg-success-light/20 text-success-dark dark:bg-success-dark/30 dark:text-success-light"
+              ? "bg-amber-100 text-amber-800 dark:bg-amber-800/30 dark:text-amber-100"
+              : "bg-emerald-50 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-200"
           }`}
         >
           {status === "todo"
