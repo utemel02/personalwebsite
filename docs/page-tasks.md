@@ -75,7 +75,7 @@
   - Pass empty `conflictFiles` and placeholder functions (`onClose`, `onAccept`, `onCancel`) to the modal props.
   - _Deferred: Actual conflict detection logic, specific UI elements within the modal (diff view, specific buttons), real trigger._
 
-- [ ] **9. Generate More Tasks Modal Structure (Placeholder Component):**
+- [x] **9. Generate More Tasks Modal Structure (Placeholder Component):**
   - Create a minimal component file `src/components/organisms/GenerateMoreTasksModal.tsx`.
   - Use basic `div`s and Tailwind for modal appearance.
   - Inside the content box, add:
