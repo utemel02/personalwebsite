@@ -67,7 +67,7 @@
     - A close button (e.g., using `X` icon from `lucide-react`).
   - _Note: This component is structurally new but uses existing components internally. Data/state/trigger logic deferred._
 
-- [ ] **8. Conflict Resolution UI (Using Existing Modal) (`src/app/(dashboard)/page.tsx` or relevant trigger location):**
+- [x] **8. Conflict Resolution UI (Using Existing Modal) (`src/app/(dashboard)/page.tsx` or relevant trigger location):**
 
   - Import the existing `MergeConflictModal` (`src/components/molecules/MergeConflictModal.tsx`).
   - Add state (`useState`) to control the `isOpen` prop of the `MergeConflictModal`.
