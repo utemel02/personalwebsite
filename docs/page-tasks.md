@@ -55,7 +55,7 @@
   - Ensure basic Tailwind styling for placement.
   - _Deferred: Button click handlers._
 
-- [ ] **7. Task View Modal Structure (Placeholder Component):**
+- [x] **7. Task View Modal Structure (Placeholder Component):**
 
   - Create a minimal component file `src/components/organisms/TaskViewModal.tsx` for layout structure.
   - Use basic `div`s and Tailwind for modal appearance (overlay, content box).
