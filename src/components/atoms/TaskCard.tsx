@@ -145,7 +145,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({
       </div>
 
       {/* Task Action Buttons */}
-      <div className="mt-4 pt-3 border-t border-amber-100 dark:border-stone-700 flex justify-between">
+      <div className="hidden mt-4 pt-3 border-t border-amber-100 dark:border-stone-700  justify-between">
         <Button variant="secondary" size="sm" onClick={handleViewDetailsClick}>
           View Details
         </Button>

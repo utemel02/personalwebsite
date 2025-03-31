@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "@/components/Button";
+import Link from "next/link";
 
 export default function Page() {
   return (
@@ -17,7 +18,9 @@ export default function Page() {
           <p className="text-stone-600 dark:text-amber-200 mb-6">
             Create a new AI-assisted app from a prompt.
           </p>
-          <Button variant="primary">Create New</Button>
+          <Link href="/new-project">
+            <Button variant="primary">Create New</Button>
+          </Link>
         </div>
 
         {/* Card 2: Open Existing Project */}
