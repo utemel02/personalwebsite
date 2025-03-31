@@ -30,14 +30,14 @@
   - Pass static "pending" statuses to `DocumentWorkflowTimeline` for now.
   - _Deferred: Dynamic status updates, actual trigger logic._
 
-- [ ] **4. Project Dashboard Screen Layout (`src/app/(dashboard)/page.tsx`):**
+- [x] **4. Project Dashboard Screen Layout (`src/app/(dashboard)/page.tsx`):**
 
   - **Modify** the existing `src/app/(dashboard)/page.tsx`.
   - Implement a two-column layout using Tailwind Flexbox or Grid (Sidebar left, Main Area right).
   - **Sidebar:** Create a `div` placeholder. Add simple text "Sidebar Content Placeholder".
   - **Main Area:** Place the existing `KanbanBoard` component (`src/components/organisms/KanbanBoard.tsx`) within this area. Pass the sample tasks from the existing page file.
 
-- [ ] **5. Dashboard Sidebar Content (`src/app/(dashboard)/page.tsx`):**
+- [x] **5. Dashboard Sidebar Content (`src/app/(dashboard)/page.tsx`):**
 
   - Inside the Sidebar `div` created in the previous step:
   - Add placeholder text for "Project Name".
