@@ -4,6 +4,7 @@ import React from "react";
 import CheckboxStatus from "./CheckboxStatus";
 import { motion } from "framer-motion";
 import { Calendar, Clock } from "lucide-react";
+import { Button } from "@/components/Button";
 
 export type TaskStatus = "todo" | "in-progress" | "done";
 
@@ -15,6 +16,8 @@ export interface TaskCardProps {
   onStatusChange?: (newStatus: TaskStatus) => void;
   dueDate?: Date;
   priority?: "low" | "medium" | "high";
+  onViewDetails?: () => void;
+  onStartTask?: () => void;
 }
 
 export const TaskCard: React.FC<TaskCardProps> = ({
@@ -25,6 +28,8 @@ export const TaskCard: React.FC<TaskCardProps> = ({
   onStatusChange,
   dueDate,
   priority = "medium",
+  onViewDetails,
+  onStartTask,
 }) => {
   // Status-specific styling
   const statusClasses = {
@@ -57,6 +62,19 @@ export const TaskCard: React.FC<TaskCardProps> = ({
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
       onClick?.();
+    }
+  };
+
+  // Handle button clicks and prevent propagation to card
+  const handleViewDetailsClick = () => {
+    if (onViewDetails) {
+      onViewDetails();
+    }
+  };
+
+  const handleStartTaskClick = () => {
+    if (onStartTask) {
+      onStartTask();
     }
   };
 
@@ -124,6 +142,22 @@ export const TaskCard: React.FC<TaskCardProps> = ({
             {priority.charAt(0).toUpperCase() + priority.slice(1)}
           </span>
         </div>
+      </div>
+
+      {/* Task Action Buttons */}
+      <div className="mt-4 pt-3 border-t border-amber-100 dark:border-stone-700 flex justify-between">
+        <Button variant="secondary" size="sm" onClick={handleViewDetailsClick}>
+          View Details
+        </Button>
+
+        <Button
+          variant={status === "in-progress" ? "secondary" : "primary"}
+          size="sm"
+          onClick={handleStartTaskClick}
+          className={status === "done" ? "opacity-50 cursor-not-allowed" : ""}
+        >
+          Start Task
+        </Button>
       </div>
     </motion.div>
   );

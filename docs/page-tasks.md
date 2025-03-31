@@ -46,7 +46,7 @@
   - Add two `Button` components (`src/components/Button.tsx` with secondary variant) labeled "Open in Cursor" and "Open in Windsurf".
   - _Deferred: Dropdown population, button functionality._
 
-- [ ] **6. Update Task Card (Necessary Modification) (`src/components/atoms/TaskCard.tsx`):**
+- [x] **6. Update Task Card (Necessary Modification) (`src/components/atoms/TaskCard.tsx`):**
 
   - **Modify** `src/components/atoms/TaskCard.tsx`.
   - Add two new small `Button` components (`src/components/Button.tsx`, consider `size="sm"` and secondary variant) inside the card layout (e.g., footer).
