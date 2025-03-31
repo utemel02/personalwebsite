@@ -1,38 +1,59 @@
 "use client";
 
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import InputText from "@/components/atoms/InputText";
 import TextareaDescription from "@/components/atoms/TextareaDescription";
-import ApiKeySection from "@/components/organisms/ApiKeySection";
+import DirectoryPicker from "@/components/atoms/DirectoryPicker";
+import RepositoryCloneOption from "@/components/molecules/RepositoryCloneOption";
 import { Button } from "@/components/Button";
-import DocumentWorkflowTimeline from "@/components/organisms/DocumentWorkflowTimeline";
+import { api } from "@/lib/trpc/react";
+import { toast } from "react-toastify";
 
 export default function NewProjectPage() {
+  const router = useRouter();
   const [projectName, setProjectName] = useState("");
-  const [saveLocation, setSaveLocation] = useState("");
-  const [appDescription, setAppDescription] = useState("");
-  const [apiKey, setApiKey] = useState("");
-  const [isGenerating, setIsGenerating] = useState(false);
+  const [projectPath, setProjectPath] = useState("");
+  const [projectDescription, setProjectDescription] = useState("");
+  const [isRepositoryCloned, setIsRepositoryCloned] = useState(false);
 
-  const handleGenerateRequirements = async () => {
-    // This functionality is deferred
-    console.log("Generate requirements clicked");
-    setIsGenerating(true);
+  // Create project mutation
+  const createProject = api.project.createProject.useMutation({
+    onSuccess: (data) => {
+      if (data.success) {
+        toast.success("Project created successfully!");
+        // Redirect to document workflow page with project ID and path
+        router.push(
+          `/document-workflow?projectId=${
+            data.projectId || ""
+          }&projectPath=${encodeURIComponent(data.projectPath || "")}`,
+        );
+      } else {
+        toast.error(`Failed to create project: ${data.error}`);
+      }
+    },
+    onError: (error) => {
+      toast.error(`Error creating project: ${error.message}`);
+    },
+  });
+
+  const handleCreateProject = async () => {
+    // Create the project first
+    createProject.mutate({
+      projectName,
+      projectDescription,
+      projectPath,
+    });
   };
 
-  // Mock function for API key handling (deferred functionality)
-  const handleSaveApiKey = async (key: string) => {
-    setApiKey(key);
-    return Promise.resolve();
+  // Handle repository cloned event
+  const handleRepositoryCloned = () => {
+    setIsRepositoryCloned(true);
+    toast.success("Repository cloned successfully!");
   };
 
   // Check if form is complete to enable the button
-  const isFormComplete = !!(
-    projectName &&
-    saveLocation &&
-    appDescription &&
-    apiKey
-  );
+  const isFormComplete = !!(projectName && projectPath && projectDescription);
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-4xl">
@@ -49,49 +70,39 @@ export default function NewProjectPage() {
           name="projectName"
         />
 
-        <InputText
-          label="Save Location"
-          placeholder="/path/to/your/project"
-          value={saveLocation}
-          onChange={(e) => setSaveLocation(e.target.value)}
-          name="saveLocation"
+        <DirectoryPicker
+          label="Project Location"
+          value={projectPath}
+          onChange={setProjectPath}
+          name="projectPath"
         />
 
         <TextareaDescription
           label="Describe your app idea"
           placeholder="Provide a detailed description of your application idea..."
-          value={appDescription}
-          onChange={(e) => setAppDescription(e.target.value)}
-          name="appDescription"
+          value={projectDescription}
+          onChange={(e) => setProjectDescription(e.target.value)}
+          name="projectDescription"
           rows={6}
         />
 
-        <div className="pt-4">
-          <ApiKeySection savedApiKey={apiKey} onSaveApiKey={handleSaveApiKey} />
-        </div>
+        {projectPath && (
+          <RepositoryCloneOption
+            projectPath={projectPath}
+            onRepositoryCloned={handleRepositoryCloned}
+          />
+        )}
 
         <div className="pt-4">
           <Button
-            onClick={isFormComplete ? handleGenerateRequirements : undefined}
+            onClick={handleCreateProject}
             className={!isFormComplete ? "opacity-50 cursor-not-allowed" : ""}
           >
-            Generate Requirements
+            {createProject.isPending
+              ? "Creating Project..."
+              : "Create Project & Continue"}
           </Button>
         </div>
-
-        {/* Document Generation Progress Display */}
-        {isGenerating && (
-          <div className="mt-8 pt-8 border-t border-amber-200 dark:border-stone-700">
-            <h2 className="text-2xl font-bold text-stone-800 dark:text-amber-50 mb-6">
-              Generation Progress
-            </h2>
-            <DocumentWorkflowTimeline
-              brdStatus="pending"
-              prdStatus="pending"
-              tasksStatus="pending"
-            />
-          </div>
-        )}
       </div>
     </div>
   );

@@ -2,6 +2,8 @@
 
 ---
 
+NOTE: Users will be running the web app locally so assume that the server-side environment will be their own filesystem.
+
 ## **1. Home Screen – Project Entry Point**
 
 ### Purpose:

@@ -32,3 +32,4 @@
 - Implemented Tasks 1-3 from the MVP Screen Layout Implementation checklist: created a fresh Home Screen with two cards for project creation/loading, added a New Project Setup screen with input fields and API key section, and added Document Generation Progress display with a workflow timeline.
 - Completed all tasks in the MVP Screen Layout Implementation checklist: implemented Project Dashboard layout, updated TaskCard with action buttons, created TaskViewModal, added Conflict Resolution UI, and built GenerateMoreTasksModal component.
 - Added Link component from Next.js to make the "Create New" button navigate to the new-project page.
+- Added project creation and document generation functionality with tRPC routers, file system integration, and AI-powered document generation using Claude API
