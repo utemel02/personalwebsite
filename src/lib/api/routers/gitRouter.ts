@@ -51,7 +51,6 @@ export const gitRouter = createTRPCRouter({
         // Create a directory for the worktree
         const worktreePath = path.join(
           input.projectPath,
-          "../",
           `${sanitizedBranchName}-worktree`,
         );
         try {
@@ -78,6 +77,54 @@ export const gitRouter = createTRPCRouter({
             error instanceof Error
               ? error.message
               : "Unknown error creating git worktree",
+        };
+      }
+    }),
+
+  // Remove a git worktree when a task is completed
+  removeWorktree: publicProcedure
+    .input(
+      z.object({
+        projectPath: z.string(),
+        branchName: z.string(),
+      }),
+    )
+    .mutation(async ({ input }) => {
+      try {
+        // Sanitize branch name to ensure it's git-friendly
+        const sanitizedBranchName = sanitizeBranchName(input.branchName);
+        const worktreePath = path.join(
+          input.projectPath,
+          `${sanitizedBranchName}-worktree`,
+        );
+
+        // First check if the worktree exists
+        try {
+          await fs.access(worktreePath);
+        } catch (error) {
+          return {
+            success: false,
+            error: "Worktree directory not found",
+          };
+        }
+
+        // Remove the worktree
+        const result = await execPromise(
+          `cd "${input.projectPath}" && git worktree remove "${worktreePath}"`,
+        );
+
+        return {
+          success: true,
+          output: result.stdout,
+        };
+      } catch (error) {
+        console.error("Error removing git worktree:", error);
+        return {
+          success: false,
+          error:
+            error instanceof Error
+              ? error.message
+              : "Unknown error removing git worktree",
         };
       }
     }),
