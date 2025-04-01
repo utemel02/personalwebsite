@@ -27,146 +27,129 @@ export default function DashboardPage() {
   const [isLoadingProject, setIsLoadingProject] = useState(false);
   const [isLoadingTasks, setIsLoadingTasks] = useState(false);
 
-  // Setup mutations
-  const updateTasksMutation = api.fileSystem.updateTasksMarkdown.useMutation();
-  const createWorktreeMutation = api.git.createWorktree.useMutation();
+  // Project data fetching
+  const { data: projectData, isLoading: isProjectLoading } =
+    api.project.getProjectDetails.useQuery(
+      { projectPath },
+      { enabled: !!projectPath },
+    );
 
-  // 1) When user picks a new directory, load the project details
-  const handleDirectoryChange = async (dirPath: string) => {
-    setProjectPath(dirPath);
-    setProjectName("");
-    setTaskFiles([]);
-    setSelectedTaskFile("");
-    setTasks([]);
+  // Task files fetching
+  const { data: taskFilesData, isLoading: isTaskFilesLoading } =
+    api.fileSystem.getTaskFiles.useQuery(
+      { projectPath },
+      { enabled: !!projectPath },
+    );
 
-    if (dirPath) {
-      await loadProject(dirPath);
-    }
-  };
+  // Task data fetching
+  const { data: taskData, isLoading: isTasksLoading } =
+    api.fileSystem.parseTaskMarkdown.useQuery(
+      { filePath: selectedTaskFile },
+      { enabled: !!selectedTaskFile },
+    );
 
-  // 2) Load the project by reading forq.json and tasks_*.md files
-  const loadProject = async (dirPath: string) => {
-    try {
-      setIsLoadingProject(true);
-
-      // Get project details from forq.json
-      const projectDetailsResp = await api.project.getProjectDetails.useQuery({
-        projectPath: dirPath,
-      }).data;
-
-      if (!projectDetailsResp?.success) {
-        throw new Error(
-          projectDetailsResp?.error || "Failed to load project details",
-        );
-      }
-
-      setProjectName(projectDetailsResp.project?.name || "(Unnamed Project)");
-
-      // Get task files from docs directory
-      const taskFilesResp = await api.fileSystem.getTaskFiles.useQuery({
-        projectPath: dirPath,
-      }).data;
-
-      if (!taskFilesResp?.success) {
-        toast.warn(taskFilesResp?.error || "No task files found");
-        setTaskFiles([]);
-      } else {
-        setTaskFiles(taskFilesResp.files);
-      }
-    } catch (error: any) {
-      toast.error(`Failed to load project: ${error.message}`);
-      console.error(error);
-    } finally {
-      setIsLoadingProject(false);
-    }
-  };
-
-  // 3) If user selects a tasks file, load tasks from that file
-  const handleSelectTaskFile = async (filePath: string) => {
-    if (!filePath) {
-      setSelectedTaskFile("");
-      setTasks([]);
-      return;
-    }
-
-    try {
-      setIsLoadingTasks(true);
-      setSelectedTaskFile(filePath);
-
-      const tasksResp = await api.fileSystem.parseTaskMarkdown.useQuery({
-        filePath,
-      }).data;
-
-      if (!tasksResp?.success) {
-        throw new Error(tasksResp?.error || "Failed to parse tasks");
-      }
-
-      setTasks(tasksResp.tasks);
-    } catch (error: any) {
-      console.error(error);
-      toast.error(`Could not load tasks from file: ${error.message}`);
-    } finally {
-      setIsLoadingTasks(false);
-    }
-  };
-
-  // 4) Handle task status changes
-  const handleTaskStatusChange = async (
-    taskId: string,
-    newStatus: TaskStatus,
-  ) => {
-    try {
-      // Find task by ID and get its title
-      const task = tasks.find((t) => t.id === taskId);
-      if (!task) return;
-
-      // Update task in state (optimistic update)
-      const updatedTasks = tasks.map((t) =>
-        t.id === taskId ? { ...t, status: newStatus } : t,
-      );
-      setTasks(updatedTasks);
-
-      // If transitioning to in-progress, create git worktree
-      if (newStatus === "in-progress" && task.status !== "in-progress") {
-        createGitWorktree(taskId, task.title);
-      }
-
-      // Update the task file on the server
-      await updateTasksMutation.mutateAsync({
-        filePath: selectedTaskFile,
-        tasks: updatedTasks,
-      });
-    } catch (error: any) {
+  // Update tasks mutation
+  const updateTasksMutation = api.fileSystem.updateTasksMarkdown.useMutation({
+    onSuccess: () => {
+      toast.success("Task status updated");
+    },
+    onError: (error) => {
       toast.error(`Failed to update task: ${error.message}`);
-      console.error(error);
-    }
-  };
+    },
+  });
 
-  // 5) Create git worktree for a task
-  const createGitWorktree = async (taskId: string, taskTitle: string) => {
-    try {
-      // Create branch name based on task
-      const branchName = `feature/${taskId.replace("task-", "")}_${taskTitle
-        .toLowerCase()
-        .replace(/[^\w-]/g, "-")
-        .substring(0, 30)}`;
-
-      // Call git worktree creation endpoint
-      const result = await createWorktreeMutation.mutateAsync({
-        projectPath,
-        branchName,
-        taskId,
-      });
-
+  // Git worktree mutation
+  const createWorktreeMutation = api.git.createWorktree.useMutation({
+    onSuccess: (result) => {
       if (result.success) {
         toast.success(`Created worktree at ${result.worktreePath}`);
       } else {
-        throw new Error(result.error);
+        toast.error(result.error || "Failed to create worktree");
       }
-    } catch (error: any) {
+    },
+    onError: (error) => {
       toast.error(`Git worktree creation failed: ${error.message}`);
-      console.error("Git worktree error:", error);
+    },
+  });
+
+  // Update state based on fetched data
+  useEffect(() => {
+    if (projectData?.success) {
+      setProjectName(projectData.project?.name || "(Unnamed Project)");
     }
+  }, [projectData]);
+
+  useEffect(() => {
+    if (taskFilesData?.success) {
+      setTaskFiles(taskFilesData.files);
+    } else if (taskFilesData && !taskFilesData.success) {
+      toast.warn(taskFilesData.error || "No task files found");
+      setTaskFiles([]);
+    }
+  }, [taskFilesData]);
+
+  useEffect(() => {
+    if (taskData?.success) {
+      setTasks(taskData.tasks);
+    } else if (taskData && !taskData.success) {
+      toast.error(taskData.error || "Failed to parse tasks");
+      setTasks([]);
+    }
+  }, [taskData]);
+
+  // When user picks a new directory, load the project details
+  const handleDirectoryChange = (dirPath: string) => {
+    setProjectPath(dirPath);
+    setSelectedTaskFile("");
+    setTasks([]);
+  };
+
+  // When user selects a tasks file, set as selected
+  const handleSelectTaskFile = (filePath: string) => {
+    setSelectedTaskFile(filePath);
+    if (!filePath) {
+      setTasks([]);
+    }
+  };
+
+  // Handle task status changes
+  const handleTaskStatusChange = (taskId: string, newStatus: TaskStatus) => {
+    // Find task by ID and get its title
+    const task = tasks.find((t) => t.id === taskId);
+    if (!task) return;
+
+    // Update task in state (optimistic update)
+    const updatedTasks = tasks.map((t) =>
+      t.id === taskId ? { ...t, status: newStatus } : t,
+    );
+    setTasks(updatedTasks);
+
+    // If transitioning to in-progress, create git worktree
+    if (newStatus === "in-progress" && task.status !== "in-progress") {
+      createGitWorktree(taskId, task.title);
+    }
+
+    // Update the task file on the server
+    updateTasksMutation.mutate({
+      filePath: selectedTaskFile,
+      tasks: updatedTasks,
+    });
+  };
+
+  // Create git worktree for a task
+  const createGitWorktree = (taskId: string, taskTitle: string) => {
+    // Create branch name based on task
+    const branchName = `feature/${taskId.replace("task-", "")}_${taskTitle
+      .toLowerCase()
+      .replace(/[^\w-]/g, "-")
+      .substring(0, 30)}`;
+
+    // Call git worktree creation endpoint
+    createWorktreeMutation.mutate({
+      projectPath,
+      branchName,
+      taskId,
+    });
   };
 
   // Get selected task file name from path
@@ -195,7 +178,7 @@ export default function DashboardPage() {
           onChange={handleDirectoryChange}
           name="projectDirectory"
         />
-        {isLoadingProject && (
+        {isProjectLoading && (
           <p className="mt-2 text-sm text-stone-600 dark:text-amber-200">
             Loading project info...
           </p>
@@ -233,7 +216,7 @@ export default function DashboardPage() {
               </option>
             ))}
           </select>
-          {isLoadingTasks && (
+          {isTasksLoading && (
             <p className="mt-2 text-sm text-stone-600 dark:text-amber-200">
               Loading tasks...
             </p>
@@ -255,7 +238,7 @@ export default function DashboardPage() {
       )}
 
       {/* If no tasks found but we have a selected file */}
-      {selectedTaskFile && !isLoadingTasks && tasks.length === 0 && (
+      {selectedTaskFile && !isTasksLoading && tasks.length === 0 && (
         <div className="text-sm text-stone-600 dark:text-amber-200 p-4 bg-amber-50 dark:bg-stone-800 rounded-md border border-amber-200 dark:border-stone-700">
           No tasks found in this file.
         </div>

@@ -35,3 +35,4 @@
 - Added project creation and document generation functionality with tRPC routers, file system integration, and AI-powered document generation using Claude API
 - Fixed bug in repository cloning: now correctly sanitizes project names to create valid directory names and shows the full destination path to users
 - Implemented dashboard page with project selection, forq.json parsing, task file listing, task parsing, and git worktree creation placeholder.
+- Refactored dashboard page to leverage existing KanbanBoard component and move logic to the backend with proper tRPC endpoints.
