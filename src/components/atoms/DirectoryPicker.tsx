@@ -101,6 +101,7 @@ export default function DirectoryPicker({
             {directoryContents?.success ? (
               directoryContents.items
                 .filter((item) => item.isDirectory)
+                .filter((item) => !item.name.startsWith("."))
                 .map((item) => (
                   <div
                     key={item.path}

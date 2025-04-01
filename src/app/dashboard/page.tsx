@@ -2,153 +2,45 @@
 
 import React, { useState, useEffect } from "react";
 import DirectoryPicker from "@/components/atoms/DirectoryPicker";
+import KanbanBoard from "@/components/organisms/KanbanBoard";
 import { api } from "@/lib/trpc/react";
 import { toast } from "react-toastify";
 import Link from "next/link";
 import { Button } from "@/components/Button";
-
-// Directory item interface
-interface DirectoryItem {
-  name: string;
-  path: string;
-  isDirectory: boolean;
-  size: number;
-  modified: string;
-}
-
-// Task interface
-interface Task {
-  id: string;
-  title: string;
-  status: "todo" | "in-progress" | "done";
-  description: string;
-}
+import { Task } from "@/lib/api/routers/fileSystemRouter";
+import { TaskStatus } from "@/components/atoms/TaskCard";
 
 export default function DashboardPage() {
   // State: selected directory
   const [projectPath, setProjectPath] = useState("");
-  // State: project name (from forq.json)
+  // State: project name
   const [projectName, setProjectName] = useState("");
   // State: list of tasks_ files
-  const [taskFiles, setTaskFiles] = useState<string[]>([]);
+  const [taskFiles, setTaskFiles] = useState<{ name: string; path: string }[]>(
+    [],
+  );
   // State: currently selected tasks file
   const [selectedTaskFile, setSelectedTaskFile] = useState("");
   // State: tasks to display
-  const [tasks, setTasks] = useState<any[]>([]);
+  const [tasks, setTasks] = useState<Task[]>([]);
   // Loading states
   const [isLoadingProject, setIsLoadingProject] = useState(false);
   const [isLoadingTasks, setIsLoadingTasks] = useState(false);
 
-  // Function to parse markdown for tasks
-  // This is a simplified version, ideally we'd import from a shared util
-  const parseTasksFromMarkdown = (markdown: string) => {
-    const lines = markdown.split("\n");
-    const tasks: any[] = [];
-
-    // Simple parsing logic - find checkbox lines
-    for (let i = 0; i < lines.length; i++) {
-      const line = lines[i].trim();
-
-      // Check for task markers
-      if (line.startsWith("- [ ]")) {
-        // To do task
-        tasks.push({
-          id: `task-${tasks.length + 1}`,
-          title: line.substring(5).trim(),
-          status: "todo",
-          description: "",
-        });
-      } else if (line.startsWith("- [x]")) {
-        // Done task
-        tasks.push({
-          id: `task-${tasks.length + 1}`,
-          title: line.substring(5).trim(),
-          status: "done",
-          description: "",
-        });
-      } else if (line.startsWith("- [-]")) {
-        // In progress task
-        tasks.push({
-          id: `task-${tasks.length + 1}`,
-          title: line.substring(5).trim(),
-          status: "in-progress",
-          description: "",
-        });
-      }
-    }
-
-    return tasks;
-  };
-
-  // Placeholder function for git worktree creation
-  async function initializeGitWorktree(taskId: string, taskTitle: string) {
-    console.log(
-      `Creating worktree branch: feature/${taskId}_${sanitizeTitle(taskTitle)}`,
-    );
-
-    // This is a placeholder - in a real implementation, we would call
-    // a tRPC endpoint that would execute Git commands via child_process.exec
-
-    // Example implementation:
-    // const branchName = `feature/${taskId}_${sanitizeTitle(taskTitle)}`;
-    // const result = await api.git.createWorktree.mutate({
-    //   projectPath,
-    //   branchName,
-    //   taskId
-    // });
-
-    console.log("Worktree created successfully (simulated)");
-    toast.success("Created new git worktree branch (placeholder)");
-
-    // Simulate calling Claude CLI
-    runClaudeCLI(taskId);
-  }
-
-  // Helper function to sanitize task titles for branch names
-  function sanitizeTitle(title: string): string {
-    return title
-      .toLowerCase()
-      .replace(/[^\w\s-]/g, "")
-      .replace(/\s+/g, "-")
-      .replace(/-+/g, "-")
-      .substring(0, 50);
-  }
-
-  // Placeholder for Claude CLI integration
-  async function runClaudeCLI(taskId: string) {
-    console.log(`AI assistant generating code for task ${taskId}...`);
-    // In a real implementation, this would use child_process.exec to call the Claude CLI
-    // or make API calls to the Claude API
-  }
-
-  // Handle task status change, potentially creating a git worktree
-  const handleTaskStatusChange = (
-    taskId: string,
-    newStatus: "todo" | "in-progress" | "done",
-    taskTitle: string,
-  ) => {
-    // Update task status in UI
-    setTasks((prevTasks) =>
-      prevTasks.map((t) => (t.id === taskId ? { ...t, status: newStatus } : t)),
-    );
-
-    // If task is being moved to in-progress, initialize git worktree
-    if (newStatus === "in-progress") {
-      initializeGitWorktree(taskId, taskTitle);
-    }
-  };
+  // Setup mutations
+  const updateTasksMutation = api.fileSystem.updateTasksMarkdown.useMutation();
+  const createWorktreeMutation = api.git.createWorktree.useMutation();
 
   // 1) When user picks a new directory, load the project details
-  const handleDirectoryChange = (dirPath: string) => {
+  const handleDirectoryChange = async (dirPath: string) => {
     setProjectPath(dirPath);
     setProjectName("");
     setTaskFiles([]);
     setSelectedTaskFile("");
     setTasks([]);
+
     if (dirPath) {
-      loadProject(dirPath).catch((err) => {
-        console.error(err);
-      });
+      await loadProject(dirPath);
     }
   };
 
@@ -157,56 +49,29 @@ export default function DashboardPage() {
     try {
       setIsLoadingProject(true);
 
-      // Check if `forq.json` exists, read it
-      const forqFilePath = `${dirPath}/forq.json`;
-      const forqResp = await api.fileSystem.listDirectory.useQuery({
-        path: dirPath,
+      // Get project details from forq.json
+      const projectDetailsResp = await api.project.getProjectDetails.useQuery({
+        projectPath: dirPath,
       }).data;
 
-      if (!forqResp?.success) {
-        throw new Error(`Cannot read directory: ${dirPath}`);
+      if (!projectDetailsResp?.success) {
+        throw new Error(
+          projectDetailsResp?.error || "Failed to load project details",
+        );
       }
 
-      // Make sure `forq.json` actually is in that directory
-      const forqJsonExists = forqResp.items.some(
-        (item: DirectoryItem) => item.name === "forq.json" && !item.isDirectory,
-      );
-      if (!forqJsonExists) {
-        throw new Error("No forq.json file found in this folder.");
-      }
+      setProjectName(projectDetailsResp.project?.name || "(Unnamed Project)");
 
-      // If it exists, read it
-      const forqFileData = await api.fileSystem.readFile.useQuery({
-        path: forqFilePath,
+      // Get task files from docs directory
+      const taskFilesResp = await api.fileSystem.getTaskFiles.useQuery({
+        projectPath: dirPath,
       }).data;
 
-      if (!forqFileData?.success) {
-        throw new Error("Failed to read forq.json file.");
-      }
-      const projectConfig = JSON.parse(forqFileData.content);
-      setProjectName(projectConfig.name || "(Unnamed Project)");
-
-      // Next, look for docs subfolder
-      const docsPath = `${dirPath}/docs`;
-      const docsResp = await api.fileSystem.listDirectory.useQuery({
-        path: docsPath,
-      }).data;
-
-      if (!docsResp?.success) {
-        // It's possible no docs folder exists
+      if (!taskFilesResp?.success) {
+        toast.warn(taskFilesResp?.error || "No task files found");
         setTaskFiles([]);
-        toast.warn("No docs folder found, or cannot read /docs directory.");
       } else {
-        // Filter for tasks_*.md
-        const foundTaskFiles = docsResp.items
-          .filter((item: DirectoryItem) => {
-            const isMd = item.name.endsWith(".md");
-            const startsWithTasks = item.name.startsWith("tasks_");
-            return !item.isDirectory && isMd && startsWithTasks;
-          })
-          .map((item: DirectoryItem) => item.name);
-
-        setTaskFiles(foundTaskFiles);
+        setTaskFiles(taskFilesResp.files);
       }
     } catch (error: any) {
       toast.error(`Failed to load project: ${error.message}`);
@@ -217,32 +82,98 @@ export default function DashboardPage() {
   };
 
   // 3) If user selects a tasks file, load tasks from that file
-  const handleSelectTaskFile = async (fileName: string) => {
-    setSelectedTaskFile(fileName);
-    setTasks([]);
-    if (!fileName) return;
+  const handleSelectTaskFile = async (filePath: string) => {
+    if (!filePath) {
+      setSelectedTaskFile("");
+      setTasks([]);
+      return;
+    }
 
     try {
       setIsLoadingTasks(true);
-      const docsPath = `${projectPath}/docs/${fileName}`;
-      const resp = await api.fileSystem.readFile.useQuery({
-        path: docsPath,
+      setSelectedTaskFile(filePath);
+
+      const tasksResp = await api.fileSystem.parseTaskMarkdown.useQuery({
+        filePath,
       }).data;
 
-      if (!resp?.success) {
-        throw new Error("Failed to read tasks file");
+      if (!tasksResp?.success) {
+        throw new Error(tasksResp?.error || "Failed to parse tasks");
       }
 
-      const content = resp.content;
-      // Use parseTasksFromMarkdown
-      const parsedTasks = parseTasksFromMarkdown(content);
-      setTasks(parsedTasks);
+      setTasks(tasksResp.tasks);
     } catch (error: any) {
       console.error(error);
-      toast.error(`Could not load tasks from ${fileName}`);
+      toast.error(`Could not load tasks from file: ${error.message}`);
     } finally {
       setIsLoadingTasks(false);
     }
+  };
+
+  // 4) Handle task status changes
+  const handleTaskStatusChange = async (
+    taskId: string,
+    newStatus: TaskStatus,
+  ) => {
+    try {
+      // Find task by ID and get its title
+      const task = tasks.find((t) => t.id === taskId);
+      if (!task) return;
+
+      // Update task in state (optimistic update)
+      const updatedTasks = tasks.map((t) =>
+        t.id === taskId ? { ...t, status: newStatus } : t,
+      );
+      setTasks(updatedTasks);
+
+      // If transitioning to in-progress, create git worktree
+      if (newStatus === "in-progress" && task.status !== "in-progress") {
+        createGitWorktree(taskId, task.title);
+      }
+
+      // Update the task file on the server
+      await updateTasksMutation.mutateAsync({
+        filePath: selectedTaskFile,
+        tasks: updatedTasks,
+      });
+    } catch (error: any) {
+      toast.error(`Failed to update task: ${error.message}`);
+      console.error(error);
+    }
+  };
+
+  // 5) Create git worktree for a task
+  const createGitWorktree = async (taskId: string, taskTitle: string) => {
+    try {
+      // Create branch name based on task
+      const branchName = `feature/${taskId.replace("task-", "")}_${taskTitle
+        .toLowerCase()
+        .replace(/[^\w-]/g, "-")
+        .substring(0, 30)}`;
+
+      // Call git worktree creation endpoint
+      const result = await createWorktreeMutation.mutateAsync({
+        projectPath,
+        branchName,
+        taskId,
+      });
+
+      if (result.success) {
+        toast.success(`Created worktree at ${result.worktreePath}`);
+      } else {
+        throw new Error(result.error);
+      }
+    } catch (error: any) {
+      toast.error(`Git worktree creation failed: ${error.message}`);
+      console.error("Git worktree error:", error);
+    }
+  };
+
+  // Get selected task file name from path
+  const getSelectedFileName = () => {
+    if (!selectedTaskFile) return "";
+    const parts = selectedTaskFile.split("/");
+    return parts[parts.length - 1];
   };
 
   return (
@@ -297,8 +228,8 @@ export default function DashboardPage() {
           >
             <option value="">-- Choose --</option>
             {taskFiles.map((file) => (
-              <option key={file} value={file}>
-                {file}
+              <option key={file.path} value={file.path}>
+                {file.name}
               </option>
             ))}
           </select>
@@ -310,59 +241,22 @@ export default function DashboardPage() {
         </div>
       )}
 
-      {/* Display tasks */}
+      {/* Kanban Board for Tasks */}
       {selectedTaskFile && tasks.length > 0 && (
-        <div className="bg-amber-50 dark:bg-stone-800 p-4 rounded-md border border-amber-200 dark:border-stone-700">
+        <div className="mt-6">
           <h3 className="text-lg font-medium mb-4 text-stone-800 dark:text-amber-50">
-            Tasks from {selectedTaskFile}
+            Tasks from {getSelectedFileName()}
           </h3>
-          <div className="space-y-2">
-            {tasks.map((task) => (
-              <div
-                key={task.id}
-                className={`p-3 rounded-md ${
-                  task.status === "todo"
-                    ? "bg-amber-100 dark:bg-stone-700"
-                    : task.status === "in-progress"
-                    ? "bg-blue-100 dark:bg-blue-900/30"
-                    : "bg-green-100 dark:bg-green-900/30"
-                }`}
-              >
-                <div className="flex items-center justify-between">
-                  <span className="font-medium">{task.title}</span>
-                  <div className="flex items-center space-x-2">
-                    <span className="text-xs px-2 py-1 rounded-full bg-amber-200 dark:bg-stone-600">
-                      {task.status}
-                    </span>
-                    <button
-                      onClick={() => {
-                        const nextStatus =
-                          task.status === "todo"
-                            ? "in-progress"
-                            : task.status === "in-progress"
-                            ? "done"
-                            : "todo";
-                        handleTaskStatusChange(task.id, nextStatus, task.title);
-                      }}
-                      className="text-xs px-3 py-1 bg-amber-500 hover:bg-amber-600 text-white rounded-md"
-                    >
-                      {task.status === "todo"
-                        ? "Start"
-                        : task.status === "in-progress"
-                        ? "Complete"
-                        : "Reset"}
-                    </button>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+          <KanbanBoard
+            tasks={tasks}
+            onTaskStatusChange={handleTaskStatusChange}
+          />
         </div>
       )}
 
       {/* If no tasks found but we have a selected file */}
       {selectedTaskFile && !isLoadingTasks && tasks.length === 0 && (
-        <div className="text-sm text-stone-600 dark:text-amber-200">
+        <div className="text-sm text-stone-600 dark:text-amber-200 p-4 bg-amber-50 dark:bg-stone-800 rounded-md border border-amber-200 dark:border-stone-700">
           No tasks found in this file.
         </div>
       )}

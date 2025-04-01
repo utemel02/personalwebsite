@@ -2,6 +2,7 @@ import { createCallerFactory, createTRPCRouter } from "./trpc";
 import { documentRouter } from "./routers/documentRouter";
 import { projectRouter } from "./routers/projectRouter";
 import { fileSystemRouter } from "./routers/fileSystemRouter";
+import { gitRouter } from "./routers/gitRouter";
 
 /**
  * This is the primary router for your server.
@@ -12,6 +13,7 @@ export const appRouter = createTRPCRouter({
   document: documentRouter,
   project: projectRouter,
   fileSystem: fileSystemRouter,
+  git: gitRouter,
 });
 
 // export type definition of API

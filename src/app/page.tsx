@@ -15,10 +15,7 @@ export default function HomePage() {
 
   // Handle import project click - for now just route to placeholder
   const handleImportProject = () => {
-    // This will be implemented in future iterations
-    alert(
-      "Import project functionality will be implemented in a future update",
-    );
+    router.push("/dashboard");
   };
 
   return (
@@ -61,7 +58,7 @@ export default function HomePage() {
             onClick={handleImportProject}
             className="flex items-center justify-center"
           >
-            Import Project
+            Open Project
             <FolderOpenIcon className="ml-2 h-4 w-4" />
           </Button>
         </div>

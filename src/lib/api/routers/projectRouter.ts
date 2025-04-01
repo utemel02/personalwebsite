@@ -191,4 +191,48 @@ export const projectRouter = createTRPCRouter({
         };
       }
     }),
+
+  // Get project details from forq.json
+  getProjectDetails: publicProcedure
+    .input(
+      z.object({
+        projectPath: z.string(),
+      }),
+    )
+    .query(async ({ input }) => {
+      try {
+        const forqJsonPath = path.join(input.projectPath, "forq.json");
+
+        // Check if forq.json exists
+        try {
+          await fs.access(forqJsonPath);
+        } catch (error) {
+          return {
+            success: false,
+            error: "forq.json not found in the specified directory",
+          };
+        }
+
+        // Read and parse forq.json
+        const content = await fs.readFile(forqJsonPath, "utf-8");
+        const projectData = JSON.parse(content);
+
+        return {
+          success: true,
+          project: {
+            id: projectData.id || "",
+            name: projectData.name || "(Unnamed Project)",
+            description: projectData.description || "",
+            createdAt: projectData.createdAt || "",
+            updatedAt: projectData.updatedAt || "",
+          },
+        };
+      } catch (error) {
+        console.error("Error getting project details:", error);
+        return {
+          success: false,
+          error: error instanceof Error ? error.message : "Unknown error",
+        };
+      }
+    }),
 });
