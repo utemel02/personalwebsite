@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import InputText from "@/components/atoms/InputText";
 import TextareaDescription from "@/components/atoms/TextareaDescription";
@@ -9,13 +9,32 @@ import RepositoryCloneOption from "@/components/molecules/RepositoryCloneOption"
 import { Button } from "@/components/Button";
 import { api } from "@/lib/trpc/react";
 import { toast } from "react-toastify";
+import { sanitizeFileName, joinPaths } from "@/lib/utils/shared";
+import path from "path";
 
 export default function NewProjectPage() {
   const router = useRouter();
   const [projectName, setProjectName] = useState("");
-  const [projectPath, setProjectPath] = useState("");
+  const [baseDirectory, setBaseDirectory] = useState("");
   const [projectDescription, setProjectDescription] = useState("");
   const [isRepositoryCloned, setIsRepositoryCloned] = useState(false);
+  const [sanitizedName, setSanitizedName] = useState("");
+  const [fullProjectPath, setFullProjectPath] = useState("");
+
+  // Update sanitized name and full project path when inputs change
+  useEffect(() => {
+    if (projectName) {
+      const sanitized = sanitizeFileName(projectName);
+      setSanitizedName(sanitized);
+
+      if (baseDirectory) {
+        setFullProjectPath(path.join(baseDirectory, sanitized));
+      }
+    } else {
+      setSanitizedName("");
+      setFullProjectPath(baseDirectory);
+    }
+  }, [projectName, baseDirectory]);
 
   // Create project mutation
   const createProject = api.project.createProject.useMutation({
@@ -42,7 +61,7 @@ export default function NewProjectPage() {
     createProject.mutate({
       projectName,
       projectDescription,
-      projectPath,
+      projectPath: fullProjectPath,
     });
   };
 
@@ -53,7 +72,12 @@ export default function NewProjectPage() {
   };
 
   // Check if form is complete to enable the button
-  const isFormComplete = !!(projectName && projectPath && projectDescription);
+  const isFormComplete = !!(
+    projectName &&
+    baseDirectory &&
+    projectDescription &&
+    sanitizedName
+  );
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-4xl">
@@ -70,11 +94,26 @@ export default function NewProjectPage() {
           name="projectName"
         />
 
+        {projectName && sanitizedName && (
+          <div className="px-3 py-2 rounded bg-amber-50/50 dark:bg-stone-800/50 text-sm text-stone-600 dark:text-amber-200 border border-amber-200 dark:border-stone-700">
+            <p>
+              <span className="font-medium">Directory name:</span>{" "}
+              {sanitizedName}
+            </p>
+            {fullProjectPath && (
+              <p className="mt-1">
+                <span className="font-medium">Full path:</span>{" "}
+                {fullProjectPath}
+              </p>
+            )}
+          </div>
+        )}
+
         <DirectoryPicker
-          label="Project Location"
-          value={projectPath}
-          onChange={setProjectPath}
-          name="projectPath"
+          label="Select Parent Directory"
+          value={baseDirectory}
+          onChange={setBaseDirectory}
+          name="baseDirectory"
         />
 
         <TextareaDescription
@@ -86,9 +125,11 @@ export default function NewProjectPage() {
           rows={6}
         />
 
-        {projectPath && (
+        {baseDirectory && projectName && sanitizedName && (
           <RepositoryCloneOption
-            projectPath={projectPath}
+            baseDirectory={baseDirectory}
+            projectName={sanitizedName}
+            fullProjectPath={fullProjectPath}
             onRepositoryCloned={handleRepositoryCloned}
           />
         )}

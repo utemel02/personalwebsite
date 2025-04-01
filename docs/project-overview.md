@@ -4,6 +4,8 @@
 
 NOTE: Users will be running the web app locally so assume that the server-side environment will be their own filesystem.
 
+Use the src/lib/aiClient.ts file to make API calls to Claude.
+
 ## **1. Home Screen – Project Entry Point**
 
 ### Purpose:

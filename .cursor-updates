@@ -33,3 +33,4 @@
 - Completed all tasks in the MVP Screen Layout Implementation checklist: implemented Project Dashboard layout, updated TaskCard with action buttons, created TaskViewModal, added Conflict Resolution UI, and built GenerateMoreTasksModal component.
 - Added Link component from Next.js to make the "Create New" button navigate to the new-project page.
 - Added project creation and document generation functionality with tRPC routers, file system integration, and AI-powered document generation using Claude API
+- Fixed bug in repository cloning: now correctly sanitizes project names to create valid directory names and shows the full destination path to users

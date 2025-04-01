@@ -5,7 +5,9 @@ import { api } from "@/lib/trpc/react";
 import { Button } from "@/components/Button";
 
 interface RepositoryCloneOptionProps {
-  projectPath: string;
+  projectName: string;
+  baseDirectory: string;
+  fullProjectPath: string;
   onRepositoryCloned: () => void;
 }
 
@@ -17,7 +19,9 @@ interface CloneResponseData {
 }
 
 export default function RepositoryCloneOption({
-  projectPath,
+  projectName,
+  baseDirectory,
+  fullProjectPath,
   onRepositoryCloned,
 }: RepositoryCloneOptionProps) {
   const [isCloning, setIsCloning] = useState(false);
@@ -41,7 +45,7 @@ export default function RepositoryCloneOption({
   });
 
   const handleCloneRepository = async () => {
-    if (!projectPath) {
+    if (!fullProjectPath) {
       setCloneError("Please select a project directory first");
       return;
     }
@@ -50,7 +54,7 @@ export default function RepositoryCloneOption({
     setCloneError(null);
 
     cloneRepository.mutate({
-      projectPath,
+      projectPath: fullProjectPath,
       repositoryUrl: "git@github.com:kleneway/next-ai-starter.git",
     });
   };
@@ -66,10 +70,19 @@ export default function RepositoryCloneOption({
         with a batteries-included Next.js setup optimized for AI applications.
       </p>
 
+      <div className="mb-4 p-3 bg-amber-100/50 dark:bg-stone-700/50 rounded border border-amber-200 dark:border-stone-600 text-sm">
+        <p>
+          <span className="font-medium">Project:</span> {projectName}
+        </p>
+        <p className="mt-1 break-all">
+          <span className="font-medium">Destination:</span> {fullProjectPath}
+        </p>
+      </div>
+
       <Button
         onClick={handleCloneRepository}
         className={`${
-          isCloning || !projectPath ? "opacity-70 cursor-not-allowed" : ""
+          isCloning || !fullProjectPath ? "opacity-70 cursor-not-allowed" : ""
         }`}
       >
         {isCloning ? "Cloning Repository..." : "Clone Template Repository"}
