@@ -1,6 +1,6 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
-import DocumentWorkflowPage from "@/app/(dashboard)/document-workflow/page";
+import DocumentWorkflowPage from "@/app/document-workflow/page";
 
 const meta: Meta<typeof DocumentWorkflowPage> = {
   title: "Pages/DocumentWorkflowPage",

@@ -22,10 +22,8 @@ export default function HomePage() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-12 max-w-5xl">
-      <h1 className="text-4xl font-bold text-center text-stone-800 dark:text-amber-50 mb-8">
-        FORQ
-      </h1>
+    <div className="container mx-auto px-4 py-6 max-w-5xl">
+      <img src="/logo.png" alt="Forq Logo" className="w-32 h-32 mx-auto" />
       <p className="text-center text-stone-600 dark:text-amber-200 mb-12 max-w-2xl mx-auto">
         Create AI-powered applications from a simple prompt. Generate
         requirements, design specifications, and task lists all in one place.
@@ -61,7 +59,7 @@ export default function HomePage() {
           </p>
           <Button
             onClick={handleImportProject}
-            className="flex items-center justify-center bg-amber-100 dark:bg-stone-700 text-stone-800 dark:text-amber-100 hover:bg-amber-200 dark:hover:bg-stone-600"
+            className="flex items-center justify-center"
           >
             Import Project
             <FolderOpenIcon className="ml-2 h-4 w-4" />

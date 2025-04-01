@@ -22,6 +22,27 @@ export const fileSystemRouter = createTRPCRouter({
     }
   }),
 
+  // Read file contents
+  readFile: publicProcedure
+    .input(z.object({ path: z.string() }))
+    .query(async ({ input }) => {
+      try {
+        const content = await fs.readFile(input.path, "utf-8");
+        return {
+          success: true,
+          content,
+        };
+      } catch (error) {
+        console.error("Error reading file:", error);
+        return {
+          success: false,
+          content: "",
+          error:
+            error instanceof Error ? error.message : "Unknown readFile error",
+        };
+      }
+    }),
+
   // List directory contents
   listDirectory: publicProcedure
     .input(

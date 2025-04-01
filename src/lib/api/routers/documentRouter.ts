@@ -28,8 +28,7 @@ export const documentRouter = createTRPCRouter({
         // Generate BRD using AI
         const brdContent = await generateChatCompletion(
           [{ role: "user", content: brdPrompt }],
-          "SONNET", // Using Claude 3.5 Sonnet for complex reasoning
-          { temperature: 0.7 },
+          "O1", // Using Claude 3.5 Sonnet for complex reasoning
         );
 
         // Save BRD to project directory
@@ -76,8 +75,7 @@ export const documentRouter = createTRPCRouter({
         // Generate PRD using AI
         const prdContent = await generateChatCompletion(
           [{ role: "user", content: prdPrompt }],
-          "SONNET", // Using Claude 3.5 Sonnet for complex reasoning
-          { temperature: 0.7 },
+          "O1", // Using Claude 3.5 Sonnet for complex reasoning
         );
 
         // Save PRD to project directory
@@ -129,8 +127,7 @@ export const documentRouter = createTRPCRouter({
         // Generate Task List using AI
         const taskContent = await generateChatCompletion(
           [{ role: "user", content: taskPrompt }],
-          "SONNET", // Using Claude 3.5 Sonnet for complex reasoning
-          { temperature: 0.7 },
+          "O1", // Using Claude 3.5 Sonnet for complex reasoning
         );
 
         // Save Task List to project directory
