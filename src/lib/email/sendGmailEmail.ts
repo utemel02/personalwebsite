@@ -1,16 +1,11 @@
-import { google } from 'googleapis';
 import nodemailer from 'nodemailer';
 
-// These credentials should be stored securely in environment variables
-// For development, you can use a credentials.json file and token.json file
-const CLIENT_ID = process.env.GMAIL_CLIENT_ID;
-const CLIENT_SECRET = process.env.GMAIL_CLIENT_SECRET;
-const REFRESH_TOKEN = process.env.GMAIL_REFRESH_TOKEN;
-const REDIRECT_URI = 'https://developers.google.com/oauthplayground';
-const USER_EMAIL = 'umuttemel2004@gmail.com'; // The email you're sending from
+// This uses a Gmail App Password instead of OAuth2
+const EMAIL_ADDRESS = process.env.EMAIL_ADDRESS || 'umuttemel2004@gmail.com';
+const EMAIL_APP_PASSWORD = process.env.EMAIL_APP_PASSWORD;
 
 /**
- * Sends an email using Gmail API with OAuth2 authentication
+ * Sends an email using Gmail with App Password authentication
  */
 export async function sendContactEmail({
   name,
@@ -22,34 +17,19 @@ export async function sendContactEmail({
   message: string;
 }) {
   try {
-    const oauth2Client = new google.auth.OAuth2(
-      CLIENT_ID,
-      CLIENT_SECRET,
-      REDIRECT_URI
-    );
-
-    oauth2Client.setCredentials({
-      refresh_token: REFRESH_TOKEN,
-    });
-
-    const accessToken = await oauth2Client.getAccessToken();
-
+    // Create transporter with App Password
     const transport = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        type: 'OAuth2',
-        user: USER_EMAIL,
-        clientId: CLIENT_ID,
-        clientSecret: CLIENT_SECRET,
-        refreshToken: REFRESH_TOKEN,
-        accessToken: accessToken?.token || '',
+        user: EMAIL_ADDRESS,
+        pass: EMAIL_APP_PASSWORD,
       },
     });
 
     // Create email content
     const mailOptions = {
-      from: `"Website Contact Form" <${USER_EMAIL}>`,
-      to: USER_EMAIL,
+      from: `"Website Contact Form" <${EMAIL_ADDRESS}>`,
+      to: EMAIL_ADDRESS,
       subject: `New Contact Form Submission from ${name}`,
       text: `
 Name: ${name}
