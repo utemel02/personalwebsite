@@ -78,9 +78,20 @@ export default function ContactPage() {
     setIsSubmitting(true);
     
     try {
-      // In a real app, this would send an email to umuttemel2004@gmail.com
-      // For demo purposes, we'll simulate a successful submission
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      // Send the form data to our API endpoint
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      
+      const data = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to send message');
+      }
       
       // Reset form after successful submission
       setFormData({ name: "", email: "", message: "" });
@@ -91,6 +102,7 @@ export default function ContactPage() {
         setSubmitStatus(null);
       }, 5000);
     } catch (error) {
+      console.error('Error sending message:', error);
       setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
