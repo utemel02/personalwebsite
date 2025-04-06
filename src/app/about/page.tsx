@@ -20,18 +20,17 @@ export default function AboutPage() {
 
   return (
     <div className="container mx-auto px-4 py-12 max-w-5xl">
-      <div className="flex flex-col md:flex-row items-center gap-8 mb-12">
+      <div className="flex flex-col md:flex-row items-start md:items-center gap-8 mb-12">
         <motion.div 
           initial={{ opacity: 0 }} 
           animate={{ opacity: 1 }}
-          className="relative w-40 h-40 md:w-56 md:h-56 rounded-full overflow-hidden border-4 border-amber-300 dark:border-stone-600 shadow-xl"
+          className="relative w-40 h-40 rounded-full overflow-hidden border-4 border-amber-300 dark:border-stone-600 shadow-xl flex-shrink-0 mx-auto md:mx-0"
         >
           <Image
             src="/linkedInpfp.jpeg"
             alt="Umut Temel"
             fill
             className="object-cover"
-            sizes="(max-width: 768px) 160px, 224px"
             priority
             quality={95}
           />
