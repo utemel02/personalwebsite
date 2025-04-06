@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/Button";
 import { ArrowRightIcon, ExternalLinkIcon, DownloadIcon } from "lucide-react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function HomePage() {
   const router = useRouter();
@@ -79,10 +80,12 @@ export default function HomePage() {
             transition={{ type: "spring", stiffness: 300 }}
             className="relative w-64 h-64 rounded-full overflow-hidden border-4 border-amber-200 dark:border-stone-700 shadow-lg"
           >
-            <img
-              src="/placeholder-profile.jpg"
+            <Image
+              src="/linkedInpfp.jpeg"
               alt="Umut Temel"
-              className="w-full h-full object-cover"
+              fill
+              className="object-cover"
+              priority
             />
           </motion.div>
         </div>

@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { MailIcon, LinkedinIcon, GithubIcon, CheckCircleIcon, AlertCircleIcon } from "lucide-react";
 import { Button } from "@/components/Button";
+import Image from "next/image";
 
 interface FormData {
   name: string;
@@ -104,23 +105,40 @@ export default function ContactPage() {
 
   return (
     <div className="container mx-auto px-4 py-12 max-w-5xl">
-      <motion.h1 
-        initial={{ opacity: 0 }} 
-        animate={{ opacity: 1 }} 
-        className="text-4xl font-bold text-stone-800 dark:text-amber-100 mb-4"
-      >
-        Get in Touch
-      </motion.h1>
-      
-      <motion.p
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.1 }}
-        className="text-stone-600 dark:text-amber-200 mb-8 max-w-2xl"
-      >
-        I'm always interested in hearing about new opportunities, collaborations, or just connecting with fellow technology enthusiasts. 
-        Feel free to reach out using the form below or through any of my direct contact channels.
-      </motion.p>
+      <div className="flex flex-col md:flex-row items-center gap-8 mb-12">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="relative w-32 h-32 rounded-full overflow-hidden border-4 border-amber-200 dark:border-stone-700 shadow-lg"
+        >
+          <Image
+            src="/linkedInpfp.jpeg"
+            alt="Umut Temel"
+            fill
+            className="object-cover"
+            priority
+          />
+        </motion.div>
+        <div>
+          <motion.h1 
+            initial={{ opacity: 0 }} 
+            animate={{ opacity: 1 }} 
+            className="text-4xl font-bold text-stone-800 dark:text-amber-100 mb-4"
+          >
+            Get in Touch
+          </motion.h1>
+          
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.1 }}
+            className="text-stone-600 dark:text-amber-200 max-w-2xl"
+          >
+            I'm always interested in hearing about new opportunities, collaborations, or just connecting with fellow technology enthusiasts. 
+            Feel free to reach out using the form below or through any of my direct contact channels.
+          </motion.p>
+        </div>
+      </div>
       
       <div className="md:flex md:gap-12">
         {/* Contact Form */}

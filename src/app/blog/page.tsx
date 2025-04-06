@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { CalendarIcon, TagIcon, ArrowRightIcon } from "lucide-react";
 import { Button } from "@/components/Button";
+import Image from "next/image";
 
 interface BlogPost {
   id: string;
@@ -174,11 +175,14 @@ export default function BlogPage() {
               About the Author
             </h3>
             <div className="flex items-center mb-4">
-              <img 
-                src="/placeholder-profile.jpg" 
-                alt="Umut Temel" 
-                className="w-16 h-16 rounded-full mr-4 border-2 border-amber-200 dark:border-stone-700"
-              />
+              <div className="relative w-16 h-16 rounded-full mr-4 border-2 border-amber-200 dark:border-stone-700 overflow-hidden">
+                <Image 
+                  src="/linkedInpfp.jpeg" 
+                  alt="Umut Temel" 
+                  fill
+                  className="object-cover"
+                />
+              </div>
               <div>
                 <p className="font-medium text-stone-800 dark:text-amber-100">Umut Temel</p>
                 <p className="text-sm text-stone-600 dark:text-amber-200">AI & Cybersecurity Specialist</p>

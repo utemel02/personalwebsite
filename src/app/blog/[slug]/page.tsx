@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { CalendarIcon, ArrowLeftIcon, TagIcon, LinkedinIcon, TwitterIcon, FacebookIcon, CopyIcon } from "lucide-react";
 import { Button } from "@/components/Button";
+import Image from "next/image";
 
 interface BlogPostPageProps {
   params: {
@@ -19,7 +20,7 @@ const blogPosts = {
     date: "2023-07-15",
     author: "Umut Temel",
     authorTitle: "AI & Cybersecurity Specialist",
-    authorImage: "/placeholder-profile.jpg",
+    authorImage: "/linkedInpfp.jpeg",
     tags: ["AI", "Cybersecurity", "Machine Learning"],
     content: `
 # Securing AI Systems Against Modern Threats
@@ -253,11 +254,14 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
         </div>
         
         <div className="flex items-center mb-8 pb-8 border-b border-amber-200 dark:border-stone-700">
-          <img 
-            src={post.authorImage} 
-            alt={post.author} 
-            className="w-12 h-12 rounded-full mr-4 border-2 border-amber-200 dark:border-stone-700"
-          />
+          <div className="relative w-12 h-12 rounded-full mr-4 border-2 border-amber-200 dark:border-stone-700 overflow-hidden">
+            <Image 
+              src={post.authorImage} 
+              alt={post.author} 
+              fill
+              className="object-cover"
+            />
+          </div>
           <div>
             <p className="font-medium text-stone-800 dark:text-amber-100">{post.author}</p>
             <p className="text-sm text-stone-600 dark:text-amber-200">{post.authorTitle}</p>

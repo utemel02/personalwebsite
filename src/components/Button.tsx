@@ -1,49 +1,48 @@
-import React from "react";
+import React from 'react';
+import Link from 'next/link';
 
-interface ButtonProps {
-  children: React.ReactNode;
-  variant?: "primary" | "secondary";
-  size?: "sm" | "md" | "lg";
-  onClick?: () => void;
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: 'default' | 'outline' | 'ghost';
+  size?: 'sm' | 'md' | 'lg';
   className?: string;
-  disabled?: boolean;
+  href?: string;
+  children: React.ReactNode;
 }
 
-export const Button: React.FC<ButtonProps> = ({
+export const Button = ({
+  variant = 'default',
+  size = 'md',
+  className = '',
+  href,
   children,
-  variant = "primary",
-  size = "md",
-  onClick,
-  className = "",
-  disabled = false,
-}) => {
-  const baseStyles =
-    "rounded-md font-medium transition-colors focus:outline-none";
-
-  const disabledStyles =
-    "bg-neutral-300 text-neutral-500 cursor-not-allowed dark:bg-neutral-700 dark:text-neutral-400";
-
+  ...props
+}: ButtonProps) => {
+  const baseStyles = 'inline-flex items-center justify-center font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 disabled:opacity-50 disabled:pointer-events-none';
+  
   const variantStyles = {
-    primary:
-      "bg-primary hover:bg-primary-dark text-primary-foreground active:bg-primary-dark focus:ring-2 focus:ring-primary-light focus:ring-opacity-50",
-    secondary:
-      "bg-neutral-100 hover:bg-neutral-200 text-neutral-900 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:text-white focus:ring-2 focus:ring-neutral-300 dark:focus:ring-neutral-600",
+    default: 'bg-amber-600 text-white hover:bg-amber-700 dark:bg-amber-500 dark:hover:bg-amber-600',
+    outline: 'border border-amber-600 text-amber-600 hover:bg-amber-50 dark:border-amber-400 dark:text-amber-400 dark:hover:bg-stone-800',
+    ghost: 'text-amber-600 hover:bg-amber-50 dark:text-amber-400 dark:hover:bg-stone-800',
   };
-
+  
   const sizeStyles = {
-    sm: "px-4 py-2 text-sm",
-    md: "px-6 py-3 text-base",
-    lg: "px-8 py-4 text-lg",
+    sm: 'text-xs px-3 py-1 rounded',
+    md: 'text-sm px-4 py-2 rounded-md',
+    lg: 'text-base px-6 py-3 rounded-lg',
   };
-
+  
+  const classes = `${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${className}`;
+  
+  if (href) {
+    return (
+      <Link href={href} className={classes}>
+        {children}
+      </Link>
+    );
+  }
+  
   return (
-    <button
-      onClick={onClick}
-      disabled={disabled}
-      className={`${baseStyles} ${
-        disabled ? disabledStyles : variantStyles[variant]
-      } ${sizeStyles[size]} ${className}`}
-    >
+    <button className={classes} {...props}>
       {children}
     </button>
   );

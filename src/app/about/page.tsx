@@ -2,6 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function AboutPage() {
   const fadeIn = {
@@ -19,13 +20,39 @@ export default function AboutPage() {
 
   return (
     <div className="container mx-auto px-4 py-12 max-w-5xl">
-      <motion.h1 
-        initial={{ opacity: 0 }} 
-        animate={{ opacity: 1 }} 
-        className="text-4xl font-bold text-stone-800 dark:text-amber-100 mb-8"
-      >
-        About Me
-      </motion.h1>
+      <div className="flex flex-col md:flex-row items-center gap-8 mb-12">
+        <motion.div 
+          initial={{ opacity: 0 }} 
+          animate={{ opacity: 1 }}
+          className="relative w-40 h-40 md:w-56 md:h-56 rounded-full overflow-hidden border-4 border-amber-200 dark:border-stone-700 shadow-lg"
+        >
+          <Image
+            src="/linkedInpfp.jpeg"
+            alt="Umut Temel"
+            fill
+            className="object-cover"
+            priority
+          />
+        </motion.div>
+        <div>
+          <motion.h1 
+            initial={{ opacity: 0 }} 
+            animate={{ opacity: 1 }} 
+            className="text-4xl font-bold text-stone-800 dark:text-amber-100 mb-4"
+          >
+            About Me
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.1 }}
+            className="text-stone-600 dark:text-amber-200"
+          >
+            AI Engineer and Cybersecurity Specialist passionate about creating innovative, 
+            secure solutions at the intersection of artificial intelligence and information security.
+          </motion.p>
+        </div>
+      </div>
 
       {/* Background Section */}
       <motion.section 

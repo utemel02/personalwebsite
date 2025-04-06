@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRightIcon, ExternalLinkIcon, CodeIcon, GithubIcon } from "lucide-react";
 import { Button } from "@/components/Button";
+import Image from "next/image";
 
 interface Project {
   id: string;
@@ -26,7 +27,7 @@ export default function ProjectsPage() {
       description: 
         "Cloud Cards is an interactive tool designed to help AI researchers and developers identify and address bias in dataset labels. By providing intuitive visualizations of label distributions across different demographic groups, Cloud Cards enables more ethical and fair AI development. The tool was adopted by multiple research institutions and has been cited in several publications on AI ethics. I designed and implemented the frontend visualization components using React and D3.js, while also contributing to the backend analytics engine built with Python and TensorFlow.",
       techStack: ["React", "D3.js", "Python", "TensorFlow", "Flask", "AWS"],
-      image: "/placeholder-project1.jpg",
+      image: "/cloud_whitelogo.png",
       demoLink: "https://example.com/cloud-cards",
       codeLink: "https://github.com/username/cloud-cards",
       expanded: false
@@ -38,7 +39,7 @@ export default function ProjectsPage() {
       description: 
         "During my internship at the NATO Cooperative Cyber Defence Centre of Excellence, I contributed to the development of an AI-driven threat detection system for critical infrastructure protection. This project implemented advanced machine learning algorithms to identify potential cyber threats in real-time, improving detection rates by 27% compared to traditional signature-based methods. I was responsible for designing and implementing the anomaly detection module using supervised and unsupervised learning techniques, as well as conducting rigorous testing against simulated attack scenarios.",
       techStack: ["Python", "TensorFlow", "Cybersecurity", "Anomaly Detection", "Docker"],
-      image: "/placeholder-project2.jpg",
+      image: "/cloud_whitelogo.png",
       expanded: false
     },
     {
@@ -48,7 +49,7 @@ export default function ProjectsPage() {
       description: 
         "As part of my research at Michigan State University's AI Ethics Lab, I developed a comprehensive framework for detecting and mitigating bias in machine learning systems. This project involved creating tools to analyze training data, model architectures, and output distributions to identify potential sources of unfairness. The framework includes both technical components (statistical analysis tools, model auditing systems) and process guidelines for development teams. This work resulted in two peer-reviewed publications and has been integrated into curriculum materials for computer science ethics courses.",
       techStack: ["Python", "Fairness Metrics", "Statistical Analysis", "Jupyter", "Scikit-learn"],
-      image: "/placeholder-project3.jpg",
+      image: "/cloud_whitelogo.png",
       codeLink: "https://github.com/username/ethical-computing",
       expanded: false
     }
@@ -107,18 +108,19 @@ export default function ProjectsPage() {
             className="bg-amber-50 dark:bg-stone-800 rounded-lg overflow-hidden border border-amber-200 dark:border-stone-700 hover:shadow-md transition-shadow"
           >
             <div className="md:flex">
-              <div className="md:w-1/3 h-48 md:h-auto overflow-hidden bg-stone-200 dark:bg-stone-700">
-                <img 
+              <div className="md:w-1/3 h-48 md:h-auto relative overflow-hidden bg-stone-200 dark:bg-stone-700">
+                <Image 
                   src={project.image} 
-                  alt={project.title} 
-                  className="w-full h-full object-cover"
+                  alt={project.title}
+                  fill
+                  className="object-contain p-4"
                 />
               </div>
               <div className="p-6 md:w-2/3">
                 <h2 className="text-2xl font-bold text-stone-800 dark:text-amber-100 mb-1">{project.title}</h2>
                 <p className="text-amber-600 dark:text-amber-400 font-medium mb-4">{project.tagline}</p>
                 
-                <p className="text-stone-600 dark:text-amber-200 mb-4 line-clamp-3">
+                <p className="text-stone-600 dark:text-amber-200 mb-4">
                   {project.expanded ? project.description : `${project.description.slice(0, 200)}...`}
                 </p>
                 
