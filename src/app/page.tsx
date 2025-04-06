@@ -1,68 +1,134 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/Button";
-import { ArrowRightIcon, FolderOpenIcon } from "lucide-react";
+import { ArrowRightIcon, ExternalLinkIcon, DownloadIcon } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function HomePage() {
   const router = useRouter();
+  const [descriptorIndex, setDescriptorIndex] = useState(0);
+  const descriptors = ["AI Engineer", "Cybersecurity Researcher", "Full-Stack Developer"];
 
-  // Handle create new project click
-  const handleCreateNew = () => {
-    router.push("/new-project");
-  };
-
-  // Handle import project click - for now just route to placeholder
-  const handleImportProject = () => {
-    router.push("/dashboard");
-  };
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setDescriptorIndex((prevIndex) => (prevIndex + 1) % descriptors.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
-    <div className="container mx-auto px-4 py-6 max-w-5xl">
-      <img src="/logo.png" alt="Forq Logo" className="w-32 h-32 mx-auto" />
-      <p className="text-center text-stone-600 dark:text-amber-200 mb-12 max-w-2xl mx-auto">
-        Create AI-powered applications from a simple prompt. Generate
-        requirements, design specifications, and task lists all in one place.
-      </p>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
-        {/* New Project Card */}
-        <div className="bg-amber-50 dark:bg-stone-800 p-8 rounded-lg shadow-sm border border-amber-200 dark:border-stone-700 hover:shadow-md transition-shadow flex flex-col">
-          <h2 className="text-2xl font-bold text-stone-800 dark:text-amber-100 mb-4">
-            Start New Project
-          </h2>
-          <p className="text-stone-600 dark:text-amber-200 mb-6 flex-grow">
-            Create a new AI-assisted app from a prompt. Generate requirements,
-            specifications, and a detailed task list.
+    <div className="container mx-auto px-4 py-12 max-w-5xl">
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="flex flex-col md:flex-row items-center gap-8 mb-16"
+      >
+        <div className="w-full md:w-1/2">
+          <h1 className="text-4xl md:text-5xl font-bold text-stone-800 dark:text-amber-100 mb-4">
+            Hello, I'm Umut Temel
+          </h1>
+          <div className="h-8 mb-6">
+            <motion.p
+              key={descriptors[descriptorIndex]}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.5 }}
+              className="text-xl text-amber-600 dark:text-amber-400 font-semibold"
+            >
+              {descriptors[descriptorIndex]}
+            </motion.p>
+          </div>
+          <p className="text-stone-600 dark:text-amber-200 mb-8">
+            I'm passionate about developing innovative solutions at the intersection of AI and cybersecurity. 
+            With experience from my NATO internship and success with Cloud Cards, I build secure and 
+            intelligent applications that solve real-world problems.
           </p>
-          <Button
-            onClick={handleCreateNew}
-            className="flex items-center justify-center"
-          >
-            Create New
-            <ArrowRightIcon className="ml-2 h-4 w-4" />
-          </Button>
+          <div className="flex flex-wrap gap-4">
+            <Button 
+              onClick={() => router.push('/projects')}
+              className="flex items-center"
+            >
+              View Projects
+              <ArrowRightIcon className="ml-2 h-4 w-4" />
+            </Button>
+            <Button 
+              onClick={() => router.push('/resume')}
+              variant="outline"
+              className="flex items-center"
+            >
+              View Résumé
+              <ExternalLinkIcon className="ml-2 h-4 w-4" />
+            </Button>
+            <Button 
+              onClick={() => router.push('/contact')}
+              variant="outline"
+              className="flex items-center"
+            >
+              Contact Me
+              <ArrowRightIcon className="ml-2 h-4 w-4" />
+            </Button>
+          </div>
         </div>
-
-        {/* Import Project Card */}
-        <div className="bg-amber-50 dark:bg-stone-800 p-8 rounded-lg shadow-sm border border-amber-200 dark:border-stone-700 hover:shadow-md transition-shadow flex flex-col">
-          <h2 className="text-2xl font-bold text-stone-800 dark:text-amber-100 mb-4">
-            Open Existing Project
-          </h2>
-          <p className="text-stone-600 dark:text-amber-200 mb-6 flex-grow">
-            Open and manage an existing Forq workspace. Resume work on a
-            previously started project.
+        <div className="w-full md:w-1/2 flex justify-center">
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 300 }}
+            className="relative w-64 h-64 rounded-full overflow-hidden border-4 border-amber-200 dark:border-stone-700 shadow-lg"
+          >
+            <img
+              src="/placeholder-profile.jpg"
+              alt="Umut Temel"
+              className="w-full h-full object-cover"
+            />
+          </motion.div>
+        </div>
+      </motion.div>
+      
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8, delay: 0.4 }}
+        className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16"
+      >
+        <div className="bg-amber-50 dark:bg-stone-800 p-6 rounded-lg border border-amber-200 dark:border-stone-700">
+          <h3 className="text-xl font-bold text-stone-800 dark:text-amber-100 mb-3">AI Innovation</h3>
+          <p className="text-stone-600 dark:text-amber-200">
+            Developing cutting-edge AI solutions for complex problems in security and automation.
           </p>
-          <Button
-            onClick={handleImportProject}
-            className="flex items-center justify-center"
-          >
-            Open Project
-            <FolderOpenIcon className="ml-2 h-4 w-4" />
-          </Button>
         </div>
-      </div>
+        <div className="bg-amber-50 dark:bg-stone-800 p-6 rounded-lg border border-amber-200 dark:border-stone-700">
+          <h3 className="text-xl font-bold text-stone-800 dark:text-amber-100 mb-3">Cybersecurity</h3>
+          <p className="text-stone-600 dark:text-amber-200">
+            Implementing secure systems and researching advanced security techniques for modern applications.
+          </p>
+        </div>
+        <div className="bg-amber-50 dark:bg-stone-800 p-6 rounded-lg border border-amber-200 dark:border-stone-700">
+          <h3 className="text-xl font-bold text-stone-800 dark:text-amber-100 mb-3">Full-Stack Development</h3>
+          <p className="text-stone-600 dark:text-amber-200">
+            Building end-to-end applications with modern frameworks like Next.js, React, and Node.js.
+          </p>
+        </div>
+      </motion.div>
+      
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8, delay: 0.6 }}
+        className="bg-amber-50 dark:bg-stone-800 p-8 rounded-lg border border-amber-200 dark:border-stone-700 mb-16"
+      >
+        <h2 className="text-2xl font-bold text-stone-800 dark:text-amber-100 mb-4">Latest Blog Posts</h2>
+        <p className="text-stone-600 dark:text-amber-200 mb-4">
+          Check out my latest thoughts on AI, cybersecurity, and development.
+        </p>
+        <Button onClick={() => router.push('/blog')} className="flex items-center">
+          View All Posts
+          <ArrowRightIcon className="ml-2 h-4 w-4" />
+        </Button>
+      </motion.div>
     </div>
   );
 }

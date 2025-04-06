@@ -141,3 +141,109 @@ npx prisma migrate deploy                  # Deploy migrations to production
 ## 📝 License
 
 MIT License
+
+# Umut Temel - Personal Website
+
+A modern, responsive personal website for Umut Temel, showcasing his experience, projects, and expertise in AI and Cybersecurity.
+
+## Features
+
+- **Responsive Design**: Looks great on all devices from mobile to desktop
+- **Dark/Light Mode**: Color scheme adapts to user preferences with manual toggle
+- **Animated UI**: Subtle animations using Framer Motion for enhanced user experience
+- **Page Structure**:
+  - **Home**: Landing page with animated hero section and key highlights
+  - **About**: Detailed background information about education, skills, and professional journey
+  - **Projects**: Showcase of key projects with details and tech stack
+  - **Blog**: Articles and insights with tag filtering
+  - **Contact**: Form with validation and direct contact options
+  - **Résumé**: Interactive, print-friendly résumé with downloadable PDF option
+
+## Tech Stack
+
+- **Next.js**: React framework for the frontend with TypeScript support
+- **Tailwind CSS**: Utility-first CSS framework for styling
+- **Framer Motion**: Animation library for React
+- **React Hooks**: For state management and side effects
+- **Next.js Image Component**: For optimized image loading
+- **React Icons**: For UI icons
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 18.0.0 or later
+- npm or yarn package manager
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/username/personal-website-umut.git
+   cd personal-website-umut
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+
+3. Run the development server:
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
+
+4. Open [http://localhost:3000](http://localhost:3000) in your browser to view the website.
+
+## Build for Production
+
+```bash
+npm run build
+npm start
+# or
+yarn build
+yarn start
+```
+
+## Project Structure
+
+```
+├── public/            # Static assets like images
+├── src/
+│   ├── app/           # Next.js App Router structure
+│   │   ├── about/     # About page
+│   │   ├── blog/      # Blog pages
+│   │   ├── contact/   # Contact page
+│   │   ├── projects/  # Projects page
+│   │   ├── resume/    # Resume page
+│   │   ├── layout.tsx # Root layout
+│   │   └── page.tsx   # Home page
+│   ├── components/    # Reusable UI components
+│   ├── hooks/         # Custom React hooks
+│   ├── lib/           # Utility functions
+│   └── stories/       # Storybook stories
+├── .storybook/        # Storybook configuration
+└── README.md          # Project documentation
+```
+
+## Future Enhancements
+
+- Add a CMS for managing blog content
+- Implement more interactive visualizations for projects
+- Add client-side search functionality for blog posts
+- Integrate a portfolio gallery with image lightbox
+- Add support for multiple languages
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Acknowledgements
+
+- The Next.js team for the amazing framework
+- Tailwind CSS for the utility-first CSS framework
+- Vercel for hosting capabilities
