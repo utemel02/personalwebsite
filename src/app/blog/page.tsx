@@ -24,35 +24,35 @@ export default function BlogPage() {
   const blogPosts: BlogPost[] = [
     {
       id: "1",
-      title: "Securing AI Systems Against Modern Threats",
-      date: "2023-07-15",
-      excerpt: "As AI systems become more prevalent in critical infrastructure, ensuring their security against sophisticated attacks is paramount. This post explores emerging threats and defense strategies for AI systems in production.",
-      tags: ["AI", "Cybersecurity", "Machine Learning"],
-      slug: "securing-ai-systems"
+      title: "My Experience as a NATO AI Consultant",
+      date: "2023-09-10",
+      excerpt: "A personal reflection on my role as an AI Consultant at SHAPE/NATO, focusing on cybersecurity challenges and implementing AI-driven security protocols in an international organization.",
+      tags: ["AI", "Cybersecurity", "NATO", "Personal"],
+      slug: "nato-ai-consultant-experience"
     },
     {
       id: "2",
-      title: "Building Ethical Datasets for Computer Vision",
-      date: "2023-05-22",
-      excerpt: "Ethical considerations in dataset construction are often overlooked in computer vision projects. Learn how to create diverse and balanced datasets that minimize bias in model training.",
-      tags: ["Ethics", "Computer Vision", "AI", "Datasets"],
-      slug: "ethical-datasets-cv"
+      title: "Ethical Computing: Impact on Marginalized Communities",
+      date: "2023-07-15",
+      excerpt: "An exploration of my research at Michigan State University on ethical computing practices and their influence on marginalized communities, including lessons learned and future directions.",
+      tags: ["Ethics", "Research", "AI", "Computing"],
+      slug: "ethical-computing-research"
     },
     {
       id: "3",
-      title: "My Experience as a NATO Cybersecurity Intern",
-      date: "2023-03-18",
-      excerpt: "A personal reflection on my internship at the NATO Cooperative Cyber Defence Centre of Excellence, the challenges faced, and lessons learned in international cybersecurity cooperation.",
-      tags: ["Cybersecurity", "NATO", "Personal"],
-      slug: "nato-internship-experience"
+      title: "Building Cloud Cards: A Digital Business Card Platform",
+      date: "2023-05-22",
+      excerpt: "A technical deep dive into the development of Cloud Cards, discussing the challenges of creating a digital business card platform with Next.js, TypeScript, and MongoDB.",
+      tags: ["Web Development", "Next.js", "TypeScript", "Project"],
+      slug: "building-cloud-cards"
     },
     {
       id: "4",
-      title: "Implementing Zero-Trust Architecture in Modern Applications",
-      date: "2023-01-04",
-      excerpt: "Zero-trust security principles are essential for modern application design. This guide covers practical implementation strategies for web and mobile applications.",
-      tags: ["Security", "Architecture", "Zero-Trust"],
-      slug: "zero-trust-implementation"
+      title: "Balancing Dual Degrees in Tech and Business",
+      date: "2023-03-18",
+      excerpt: "Insights and strategies for successfully managing dual degrees in Computer Science Engineering and Supply Chain Management while maintaining academic excellence.",
+      tags: ["Education", "Computer Science", "Supply Chain", "Personal"],
+      slug: "dual-degree-journey"
     },
   ];
 
@@ -185,11 +185,11 @@ export default function BlogPage() {
               </div>
               <div>
                 <p className="font-medium text-stone-800 dark:text-amber-100">Umut Temel</p>
-                <p className="text-sm text-stone-600 dark:text-amber-200">AI & Cybersecurity Specialist</p>
+                <p className="text-sm text-stone-600 dark:text-amber-200">CS & Supply Chain Student | AI Researcher</p>
               </div>
             </div>
             <p className="text-stone-600 dark:text-amber-200 text-sm mb-6">
-              I write about the intersection of AI, cybersecurity, and modern software development.
+              I write about my experiences in AI consulting, cybersecurity research, and education as a dual-degree student at Michigan State University.
             </p>
             
             <h3 className="text-lg font-semibold text-stone-800 dark:text-amber-100 mb-3">

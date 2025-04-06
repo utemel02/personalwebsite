@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { MailIcon, LinkedinIcon, GithubIcon, CheckCircleIcon, AlertCircleIcon } from "lucide-react";
+import { MailIcon, LinkedinIcon, GithubIcon, CheckCircleIcon, AlertCircleIcon, InstagramIcon } from "lucide-react";
 import { Button } from "@/components/Button";
 import Image from "next/image";
 
@@ -78,8 +78,8 @@ export default function ContactPage() {
     setIsSubmitting(true);
     
     try {
-      // In a real app, this would be an API call to submit the form
-      // For this demo, we'll just simulate a successful submission after a delay
+      // In a real app, this would send an email to umuttemel2004@gmail.com
+      // For demo purposes, we'll simulate a successful submission
       await new Promise(resolve => setTimeout(resolve, 1500));
       
       // Reset form after successful submission
@@ -257,11 +257,11 @@ export default function ContactPage() {
                   Email
                 </h3>
                 <a 
-                  href="mailto:contact@umuttemel.com" 
+                  href="mailto:umuttemel2004@gmail.com" 
                   className="flex items-center text-amber-600 dark:text-amber-400 hover:underline"
                 >
                   <MailIcon className="h-5 w-5 mr-2" />
-                  contact@umuttemel.com
+                  umuttemel2004@gmail.com
                 </a>
               </div>
               
@@ -270,13 +270,13 @@ export default function ContactPage() {
                   LinkedIn
                 </h3>
                 <a 
-                  href="https://linkedin.com/in/umuttemel" 
+                  href="https://linkedin.com/in/umut-temel" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="flex items-center text-amber-600 dark:text-amber-400 hover:underline"
                 >
                   <LinkedinIcon className="h-5 w-5 mr-2" />
-                  linkedin.com/in/umuttemel
+                  linkedin.com/in/umut-temel
                 </a>
               </div>
               
@@ -285,13 +285,28 @@ export default function ContactPage() {
                   GitHub
                 </h3>
                 <a 
-                  href="https://github.com/username" 
+                  href="https://github.com/utemel02" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="flex items-center text-amber-600 dark:text-amber-400 hover:underline"
                 >
                   <GithubIcon className="h-5 w-5 mr-2" />
-                  github.com/username
+                  github.com/utemel02
+                </a>
+              </div>
+              
+              <div>
+                <h3 className="text-lg font-semibold text-stone-800 dark:text-amber-100 mb-2">
+                  Instagram
+                </h3>
+                <a 
+                  href="https://www.instagram.com/umut.temelll/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center text-amber-600 dark:text-amber-400 hover:underline"
+                >
+                  <InstagramIcon className="h-5 w-5 mr-2" />
+                  @umut.temelll
                 </a>
               </div>
             </div>

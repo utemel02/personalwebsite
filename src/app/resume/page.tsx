@@ -8,9 +8,7 @@ import { Button } from "@/components/Button";
 export default function ResumePage() {
   // Handler for downloading résumé PDF
   const handleDownloadResume = () => {
-    // In a real application, this would download a PDF file
-    // For this demo, we'll just link to a placeholder
-    window.open("/resume-umut-temel.pdf", "_blank");
+    window.open("/Umut Temel Resume 5.11.pdf", "_blank");
   };
   
   const fadeIn = {
@@ -58,10 +56,9 @@ export default function ResumePage() {
             Summary
           </h2>
           <p className="text-stone-600 dark:text-amber-200">
-            AI Engineer and Cybersecurity Specialist with a strong background in developing secure, intelligent applications. 
-            Experience includes research at NATO's Cyber Defence Centre and Michigan State University's AI Ethics Lab. 
-            Passionate about creating ethical AI solutions with robust security measures. Skilled in full-stack development, 
-            machine learning, and information security.
+            Computer Science Engineering and Supply Chain Management student at Michigan State University with experience in AI consulting,
+            undergraduate research, and full-stack development. Strong academic performance with a 3.98 GPA and involvement in student leadership
+            as a Resident Assistant. Seeking opportunities to apply technical knowledge in challenging software engineering roles.
           </p>
         </motion.section>
         
@@ -78,27 +75,18 @@ export default function ResumePage() {
           
           <div className="space-y-6">
             <div className="border-l-4 border-amber-400 dark:border-amber-600 pl-4">
-              <h3 className="text-xl font-semibold text-stone-800 dark:text-amber-100">Michigan State University</h3>
-              <p className="text-amber-600 dark:text-amber-400 font-medium">Master of Science in Computer Science</p>
-              <p className="text-stone-500 dark:text-stone-400">2020 - 2022</p>
-              <ul className="mt-2 space-y-1 text-stone-600 dark:text-amber-200">
-                <li>• Specialization in Artificial Intelligence and Machine Learning</li>
-                <li>• GPA: 3.9/4.0</li>
-                <li>• Dean's List all semesters</li>
-                <li>• Recipient of the Outstanding Graduate Student Award</li>
-                <li>• Thesis: "Ethical Considerations in AI-Driven Security Systems"</li>
-              </ul>
+              <h3 className="text-xl font-semibold text-stone-800 dark:text-amber-100">Michigan State University, Broad College of Business</h3>
+              <p className="text-amber-600 dark:text-amber-400 font-medium">Bachelor of Arts, Supply Chain Management</p>
+              <p className="text-stone-500 dark:text-stone-400">Expected May 2026</p>
             </div>
             
             <div className="border-l-4 border-amber-400 dark:border-amber-600 pl-4">
               <h3 className="text-xl font-semibold text-stone-800 dark:text-amber-100">Michigan State University</h3>
-              <p className="text-amber-600 dark:text-amber-400 font-medium">Bachelor of Science in Computer Science</p>
-              <p className="text-stone-500 dark:text-stone-400">2016 - 2020</p>
+              <p className="text-amber-600 dark:text-amber-400 font-medium">Bachelor of Science, Computer Science Engineering</p>
+              <p className="text-stone-500 dark:text-stone-400">Expected May 2026</p>
               <ul className="mt-2 space-y-1 text-stone-600 dark:text-amber-200">
-                <li>• Minor in Cybersecurity</li>
-                <li>• GPA: 3.8/4.0</li>
-                <li>• Dean's List all semesters</li>
-                <li>• President of the MSU Cybersecurity Club</li>
+                <li>• Cumulative GPA: 3.98/4.00</li>
+                <li>• Dean's List: 4 Semesters</li>
               </ul>
             </div>
           </div>
@@ -118,44 +106,43 @@ export default function ResumePage() {
           <div className="space-y-6">
             <div className="border-l-4 border-amber-400 dark:border-amber-600 pl-4">
               <h3 className="text-xl font-semibold text-stone-800 dark:text-amber-100">
-                NATO Cooperative Cyber Defence Centre of Excellence
+                SHAPE/NATO
               </h3>
-              <p className="text-amber-600 dark:text-amber-400 font-medium">AI Security Research Intern</p>
-              <p className="text-stone-500 dark:text-stone-400">Summer 2021</p>
+              <p className="text-amber-600 dark:text-amber-400 font-medium">AI Consultant/Intern</p>
+              <p className="text-stone-500 dark:text-stone-400">June 2024 - August 2024</p>
               <ul className="mt-2 space-y-1 text-stone-600 dark:text-amber-200">
-                <li>• Developed an AI-driven threat detection system for critical infrastructure protection</li>
-                <li>• Implemented machine learning algorithms that improved detection rates by 27%</li>
-                <li>• Collaborated with international security experts on AI vulnerability countermeasures</li>
-                <li>• Presented research findings at the Centre's quarterly security symposium</li>
+                <li>• Enhanced the cybersecurity operations by developing and implementing new AI-driven security protocols, resulting in significantly improved overall security measures.</li>
+                <li>• Assisted in documenting technical projects, ensuring clear and detailed records, which improved project execution efficiency and facilitated better knowledge transfer within the team.</li>
+                <li>• Consulted with division members, offering strategic AI insights to strengthen initiatives, enhancing the effectiveness of cyber strategies and contributing to more robust solutions.</li>
+                <li>• Contributed to both technical and management aspects of projects by leveraging AI technologies and participating in project management activities, leading to more cohesive and effective project outcomes.</li>
               </ul>
             </div>
             
             <div className="border-l-4 border-amber-400 dark:border-amber-600 pl-4">
               <h3 className="text-xl font-semibold text-stone-800 dark:text-amber-100">
-                Michigan State University - AI Ethics Lab
+                Michigan State University
               </h3>
-              <p className="text-amber-600 dark:text-amber-400 font-medium">Research Assistant</p>
-              <p className="text-stone-500 dark:text-stone-400">2019 - 2022</p>
+              <p className="text-amber-600 dark:text-amber-400 font-medium">Undergraduate Research Assistant</p>
+              <p className="text-stone-500 dark:text-stone-400">September 2022 - June 2024</p>
               <ul className="mt-2 space-y-1 text-stone-600 dark:text-amber-200">
-                <li>• Conducted research on bias detection and mitigation in machine learning models</li>
-                <li>• Developed Cloud Cards, a visualization tool for identifying bias in dataset labels</li>
-                <li>• Published two papers in peer-reviewed conferences on fairness in AI systems</li>
-                <li>• Led a team of 3 undergraduate students on dataset diversity initiatives</li>
-                <li>• Created educational materials on ethical AI development for computer science courses</li>
+                <li>• Promoted Computer Science, STEM and Robotics to elementary school students with Prof. Aman Yadav as a part of a team.</li>
+                <li>• Researched the ethical problems around computing, and collected data using questionnaires and examined them using Excel.</li>
+                <li>• Utilized WordPress to make the website for our lab, increasing exposure to our research and allowed us to share our work easily.</li>
+                <li>• Gained knowledge in responsible conduct and professional development through participation in Collaborative Institutional Training Initiative (CITI) and professional development seminar for Research Assistants.</li>
               </ul>
             </div>
             
             <div className="border-l-4 border-amber-400 dark:border-amber-600 pl-4">
               <h3 className="text-xl font-semibold text-stone-800 dark:text-amber-100">
-                Tech Innovation Labs
+                Michigan State University
               </h3>
-              <p className="text-amber-600 dark:text-amber-400 font-medium">Software Engineering Intern</p>
-              <p className="text-stone-500 dark:text-stone-400">Summer 2019</p>
+              <p className="text-amber-600 dark:text-amber-400 font-medium">Resident Assistant</p>
+              <p className="text-stone-500 dark:text-stone-400">August 2023 - Present</p>
               <ul className="mt-2 space-y-1 text-stone-600 dark:text-amber-200">
-                <li>• Developed features for a secure document management system using React and Node.js</li>
-                <li>• Implemented encryption protocols for sensitive data storage</li>
-                <li>• Conducted security audits and vulnerability assessments</li>
-                <li>• Created automated testing suites using Jest and Cypress</li>
+                <li>• Managed a floor of 48 residents in a 2500 student community and determined residential student conduct with a focus on academic achievement and community safety.</li>
+                <li>• Provided crisis intervention and support in a 2 person team as part of a 24-hour on-call rotation for the 2500 student community.</li>
+                <li>• Collaborated with colleagues to program events leveraging our campus partners and university resources leading to a community with genuine intentions and relationships.</li>
+                <li>• Helped conduct drills to model the evacuation patterns for the building to improve safety of residents and students.</li>
               </ul>
             </div>
           </div>
@@ -174,29 +161,13 @@ export default function ResumePage() {
           
           <div className="space-y-4">
             <div>
-              <h3 className="text-lg font-semibold text-stone-800 dark:text-amber-100">Cloud Cards</h3>
+              <h3 className="text-lg font-semibold text-stone-800 dark:text-amber-100">Cloud Cards | Full Stack Developer</h3>
               <p className="text-stone-600 dark:text-amber-200">
-                An interactive visualization tool for AI researchers to identify and address bias in dataset labels.
-                Frontend built with React and D3.js, backend analytics with Python and TensorFlow.
-                Adopted by multiple research institutions for ethical AI development.
-              </p>
-            </div>
-            
-            <div>
-              <h3 className="text-lg font-semibold text-stone-800 dark:text-amber-100">Secure ML Pipeline Framework</h3>
-              <p className="text-stone-600 dark:text-amber-200">
-                Open-source framework for creating secure machine learning pipelines with built-in safeguards against
-                adversarial attacks and data poisoning. Implements robust validation, anomaly detection, and
-                monitoring capabilities.
-              </p>
-            </div>
-            
-            <div>
-              <h3 className="text-lg font-semibold text-stone-800 dark:text-amber-100">Ethical Computing Research Initiative</h3>
-              <p className="text-stone-600 dark:text-amber-200">
-                Led research examining the ethical implications of AI in decision-making systems.
-                Created guidelines and assessment tools for development teams to evaluate potential biases
-                and negative impacts of AI applications.
+                Architected and developed a full-stack digital business card platform using Next.js 13, TypeScript, MongoDB, and NextAuth.js, 
+                resulting in a scalable application with seamless NFC-enabled profile sharing and 100+ active users. Implemented comprehensive 
+                user features including RESTful APIs for profile management, Stripe payment processing for premium subscriptions, and custom 
+                analytics dashboard with Chart.js. Engineered a responsive frontend with Tailwind CSS and Framer Motion animations, incorporating 
+                dark mode support and accessibility features, leading to consistent user experience across all devices and increased user retention.
               </p>
             </div>
           </div>
@@ -217,8 +188,7 @@ export default function ResumePage() {
             <div>
               <h3 className="text-lg font-semibold text-stone-800 dark:text-amber-100 mb-2">Proficient</h3>
               <div className="flex flex-wrap gap-2">
-                {["JavaScript", "TypeScript", "Python", "React", "Next.js", "Node.js", "TensorFlow", 
-                  "Cybersecurity", "Machine Learning", "AI Ethics", "Git", "Docker"].map(skill => (
+                {["Java", "Excel", "Word", "LoggerPro", "Python", "C++", "C#", "HTML/CSS", "SQL", "JavaScript", "TypeScript", "Next.js"].map(skill => (
                   <span key={skill} className="bg-amber-100 dark:bg-stone-700 px-3 py-1 rounded-full text-xs text-stone-700 dark:text-amber-200">
                     {skill}
                   </span>
@@ -229,8 +199,7 @@ export default function ResumePage() {
             <div>
               <h3 className="text-lg font-semibold text-stone-800 dark:text-amber-100 mb-2">Intermediate</h3>
               <div className="flex flex-wrap gap-2">
-                {["Java", "C++", "AWS", "Azure", "PyTorch", "GraphQL", "Docker", "Kubernetes", 
-                  "SQL", "NoSQL", "CI/CD"].map(skill => (
+                {["SPSS", "Google Cloud", "Google Firebase", "Amazon AWS"].map(skill => (
                   <span key={skill} className="bg-amber-100 dark:bg-stone-700 px-3 py-1 rounded-full text-xs text-stone-700 dark:text-amber-200">
                     {skill}
                   </span>
@@ -238,6 +207,25 @@ export default function ResumePage() {
               </div>
             </div>
           </div>
+        </motion.section>
+
+        {/* Activities Section */}
+        <motion.section 
+          {...fadeIn} 
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="mb-4"
+        >
+          <h2 className="text-2xl font-bold text-stone-800 dark:text-amber-100 mb-4 flex items-center">
+            <BookOpenIcon className="mr-2 h-5 w-5" />
+            Activities
+          </h2>
+          
+          <ul className="space-y-2 text-stone-600 dark:text-amber-200">
+            <li>• Spartan Hackers, Member (September 2022 - Present)</li>
+            <li>• Artificial Intelligence Club, Member (September 2022 - Present)</li>
+            <li>• Research Assistant (September 2022 - May 2024)</li>
+            <li>• Residential Assistant (September 2023 - Present)</li>
+          </ul>
         </motion.section>
       </div>
       

@@ -10,7 +10,7 @@ import Image from "next/image";
 export default function HomePage() {
   const router = useRouter();
   const [descriptorIndex, setDescriptorIndex] = useState(0);
-  const descriptors = ["AI Engineer", "Cybersecurity Researcher", "Full-Stack Developer"];
+  const descriptors = ["Computer Science Student", "Supply Chain Management Student", "Full Stack Developer"];
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -44,9 +44,9 @@ export default function HomePage() {
             </motion.p>
           </div>
           <p className="text-stone-600 dark:text-amber-200 mb-8">
-            I'm passionate about developing innovative solutions at the intersection of AI and cybersecurity. 
-            With experience from my NATO internship and success with Cloud Cards, I build secure and 
-            intelligent applications that solve real-world problems.
+            I'm a dual-degree student at Michigan State University pursuing Computer Science Engineering 
+            and Supply Chain Management. With a 3.98 GPA and experience at SHAPE/NATO as an AI Consultant, 
+            I'm passionate about developing innovative solutions and maintaining a strong academic record.
           </p>
           <div className="flex flex-wrap gap-4">
             <Button 
@@ -98,21 +98,21 @@ export default function HomePage() {
         className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16"
       >
         <div className="bg-amber-50 dark:bg-stone-800 p-6 rounded-lg border border-amber-200 dark:border-stone-700">
-          <h3 className="text-xl font-bold text-stone-800 dark:text-amber-100 mb-3">AI Innovation</h3>
+          <h3 className="text-xl font-bold text-stone-800 dark:text-amber-100 mb-3">AI Consulting</h3>
           <p className="text-stone-600 dark:text-amber-200">
-            Developing cutting-edge AI solutions for complex problems in security and automation.
+            Enhanced cybersecurity operations at SHAPE/NATO by developing AI-driven security protocols and providing strategic insights.
           </p>
         </div>
         <div className="bg-amber-50 dark:bg-stone-800 p-6 rounded-lg border border-amber-200 dark:border-stone-700">
-          <h3 className="text-xl font-bold text-stone-800 dark:text-amber-100 mb-3">Cybersecurity</h3>
+          <h3 className="text-xl font-bold text-stone-800 dark:text-amber-100 mb-3">Full Stack Development</h3>
           <p className="text-stone-600 dark:text-amber-200">
-            Implementing secure systems and researching advanced security techniques for modern applications.
+            Created Cloud Cards, a digital business card platform with Next.js, TypeScript, MongoDB, and NFC-enabled profile sharing.
           </p>
         </div>
         <div className="bg-amber-50 dark:bg-stone-800 p-6 rounded-lg border border-amber-200 dark:border-stone-700">
-          <h3 className="text-xl font-bold text-stone-800 dark:text-amber-100 mb-3">Full-Stack Development</h3>
+          <h3 className="text-xl font-bold text-stone-800 dark:text-amber-100 mb-3">Research & Leadership</h3>
           <p className="text-stone-600 dark:text-amber-200">
-            Building end-to-end applications with modern frameworks like Next.js, React, and Node.js.
+            Conducted research on ethical computing while serving as a Resident Assistant managing a floor of 48 residents.
           </p>
         </div>
       </motion.div>

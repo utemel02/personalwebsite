@@ -1,18 +1,11 @@
+"use client"
+
 import React from "react";
-import "@/app/globals.css";
-import { Metadata } from "next";
-import { ThemeProvider } from "@/components/theme/ThemeProvider";
+import "./globals.css";
 import Link from "next/link";
 import Image from "next/image";
+import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import { ThemeToggle } from "@/components/theme-toggle";
-
-export const metadata: Metadata = {
-  title: "Umut Temel - AI & Cybersecurity Innovator",
-  description: "Personal website of Umut Temel - AI Engineer, Cybersecurity Researcher, and Full-Stack Developer",
-  icons: {
-    icon: "/favicon.ico",
-  },
-};
 
 export default function RootLayout({
   children,
@@ -21,8 +14,18 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <title>Umut Temel - AI & Cybersecurity Innovator</title>
+        <meta name="description" content="Personal website of Umut Temel - AI Engineer, Cybersecurity Researcher, and Full-Stack Developer" />
+        <link rel="icon" href="/favicon.ico" />
+      </head>
       <body className="min-h-screen bg-gradient-to-b from-amber-50 to-amber-100 dark:from-stone-900 dark:to-stone-800">
-        <ThemeProvider defaultTheme="system" enableSystem>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
           <div className="flex flex-col min-h-screen">
             <header className="sticky top-0 z-50 w-full border-b border-amber-200 dark:border-stone-700 bg-amber-50/80 dark:bg-stone-900/90 backdrop-blur-sm">
               <div className="container mx-auto px-4 h-16 flex items-center justify-between">
@@ -198,7 +201,7 @@ export default function RootLayout({
                   
                   <div className="flex space-x-6 mb-4 md:mb-0">
                     <a 
-                      href="https://github.com/yourusername" 
+                      href="https://github.com/utemel02" 
                       target="_blank" 
                       rel="noreferrer"
                       className="text-stone-600 hover:text-amber-600 dark:text-amber-200 dark:hover:text-amber-400"
@@ -218,7 +221,7 @@ export default function RootLayout({
                       </svg>
                     </a>
                     <a 
-                      href="https://linkedin.com/in/yourusername" 
+                      href="https://linkedin.com/in/umut-temel" 
                       target="_blank" 
                       rel="noreferrer"
                       className="text-stone-600 hover:text-amber-600 dark:text-amber-200 dark:hover:text-amber-400"
@@ -240,11 +243,11 @@ export default function RootLayout({
                       </svg>
                     </a>
                     <a 
-                      href="https://twitter.com/yourusername" 
+                      href="https://www.instagram.com/umut.temelll/" 
                       target="_blank" 
                       rel="noreferrer"
                       className="text-stone-600 hover:text-amber-600 dark:text-amber-200 dark:hover:text-amber-400"
-                      aria-label="Twitter"
+                      aria-label="Instagram"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -256,7 +259,9 @@ export default function RootLayout({
                         strokeLinejoin="round"
                         className="h-5 w-5"
                       >
-                        <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
                       </svg>
                     </a>
                   </div>

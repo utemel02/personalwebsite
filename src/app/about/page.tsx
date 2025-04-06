@@ -24,14 +24,16 @@ export default function AboutPage() {
         <motion.div 
           initial={{ opacity: 0 }} 
           animate={{ opacity: 1 }}
-          className="relative w-40 h-40 md:w-56 md:h-56 rounded-full overflow-hidden border-4 border-amber-200 dark:border-stone-700 shadow-lg"
+          className="relative w-40 h-40 md:w-56 md:h-56 rounded-full overflow-hidden border-4 border-amber-300 dark:border-stone-600 shadow-xl"
         >
           <Image
             src="/linkedInpfp.jpeg"
             alt="Umut Temel"
             fill
             className="object-cover"
+            sizes="(max-width: 768px) 160px, 224px"
             priority
+            quality={95}
           />
         </motion.div>
         <div>
@@ -48,8 +50,9 @@ export default function AboutPage() {
             transition={{ delay: 0.1 }}
             className="text-stone-600 dark:text-amber-200"
           >
-            AI Engineer and Cybersecurity Specialist passionate about creating innovative, 
-            secure solutions at the intersection of artificial intelligence and information security.
+            Hello! I'm Umut Temel, a dual-degree student at Michigan State University pursuing a Bachelor of Science in Computer Science Engineering 
+            and a Bachelor of Arts in Supply Chain Management, set to graduate in May 2026. I'm maintaining a 3.98 GPA 
+            while balancing academic excellence with practical experience.
           </motion.p>
         </div>
       </div>
@@ -63,16 +66,13 @@ export default function AboutPage() {
         <h2 className="text-2xl font-bold text-stone-800 dark:text-amber-100 mb-4">Background</h2>
         <div className="bg-amber-50 dark:bg-stone-800 p-6 rounded-lg border border-amber-200 dark:border-stone-700">
           <p className="text-stone-600 dark:text-amber-200 mb-4">
-            I'm Umut Temel, a dedicated computer scientist with a passion for AI and cybersecurity. My journey in technology 
-            began during my undergraduate years at Michigan State University, where I developed a strong foundation in 
-            computer science principles while simultaneously pursuing specialized knowledge in artificial intelligence 
-            and information security.
+            My professional journey includes working as an AI Consultant/Intern at SHAPE/NATO, where I enhanced cybersecurity 
+            operations by developing cutting-edge AI-driven security protocols. I also serve as an Undergraduate Research Assistant 
+            at Michigan State University, investigating ethical computing practices and their impact on marginalized communities.
           </p>
           <p className="text-stone-600 dark:text-amber-200">
-            Throughout my academic and professional career, I've been driven by a desire to create innovative solutions 
-            that leverage cutting-edge AI techniques while maintaining robust security measures. This dual focus has 
-            allowed me to develop a unique perspective on modern software development, where intelligence and security 
-            are not competing priorities but complementary aspects of truly excellent systems.
+            Beyond my technical endeavors, I'm a Resident Assistant at Michigan State University, where I manage a floor of 48 residents, 
+            promoting a positive living environment while developing my leadership and conflict resolution skills.
           </p>
         </div>
       </motion.section>
@@ -87,9 +87,9 @@ export default function AboutPage() {
         <div className="bg-amber-50 dark:bg-stone-800 p-6 rounded-lg border border-amber-200 dark:border-stone-700">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <h3 className="text-xl font-semibold text-stone-800 dark:text-amber-100 mb-2">Programming Languages</h3>
+              <h3 className="text-xl font-semibold text-stone-800 dark:text-amber-100 mb-2">Proficient</h3>
               <div className="flex flex-wrap gap-2">
-                {skills.programming.map((skill) => (
+                {["Java", "Python", "C++", "C#", "HTML/CSS", "SQL", "JavaScript", "TypeScript", "Next.js", "Excel", "Word"].map((skill) => (
                   <span key={skill} className="bg-amber-100 dark:bg-stone-700 px-3 py-1 rounded-full text-sm text-stone-700 dark:text-amber-200">
                     {skill}
                   </span>
@@ -97,29 +97,9 @@ export default function AboutPage() {
               </div>
             </div>
             <div>
-              <h3 className="text-xl font-semibold text-stone-800 dark:text-amber-100 mb-2">Frameworks & Libraries</h3>
+              <h3 className="text-xl font-semibold text-stone-800 dark:text-amber-100 mb-2">Intermediate</h3>
               <div className="flex flex-wrap gap-2">
-                {skills.frameworks.map((skill) => (
-                  <span key={skill} className="bg-amber-100 dark:bg-stone-700 px-3 py-1 rounded-full text-sm text-stone-700 dark:text-amber-200">
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
-            <div>
-              <h3 className="text-xl font-semibold text-stone-800 dark:text-amber-100 mb-2">Tools & Platforms</h3>
-              <div className="flex flex-wrap gap-2">
-                {skills.tools.map((skill) => (
-                  <span key={skill} className="bg-amber-100 dark:bg-stone-700 px-3 py-1 rounded-full text-sm text-stone-700 dark:text-amber-200">
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
-            <div>
-              <h3 className="text-xl font-semibold text-stone-800 dark:text-amber-100 mb-2">Cybersecurity</h3>
-              <div className="flex flex-wrap gap-2">
-                {skills.cybersecurity.map((skill) => (
+                {["SPSS", "Google Cloud", "Google Firebase", "Amazon AWS", "LoggerPro"].map((skill) => (
                   <span key={skill} className="bg-amber-100 dark:bg-stone-700 px-3 py-1 rounded-full text-sm text-stone-700 dark:text-amber-200">
                     {skill}
                   </span>
@@ -140,24 +120,20 @@ export default function AboutPage() {
         <div className="bg-amber-50 dark:bg-stone-800 p-6 rounded-lg border border-amber-200 dark:border-stone-700">
           <div className="mb-6">
             <h3 className="text-xl font-semibold text-stone-800 dark:text-amber-100">Michigan State University</h3>
-            <p className="text-amber-600 dark:text-amber-400 font-medium">Master of Science in Computer Science</p>
-            <p className="text-stone-600 dark:text-amber-200">2020 - 2022</p>
-            <p className="text-stone-600 dark:text-amber-200 mt-2">
-              Specialization in Artificial Intelligence and Machine Learning. GPA: 3.9/4.0
-            </p>
+            <p className="text-amber-600 dark:text-amber-400 font-medium">B.S. Computer Science Engineering</p>
             <p className="text-stone-600 dark:text-amber-200">
-              Dean's List all semesters. Recipient of the Outstanding Graduate Student Award.
+              Expected Graduation: May 2026<br />
+              GPA: 3.98/4.00<br />
+              Dean's List: Fall 2022, Spring 2023, Fall 2023, Spring 2024
             </p>
           </div>
           <div>
             <h3 className="text-xl font-semibold text-stone-800 dark:text-amber-100">Michigan State University</h3>
-            <p className="text-amber-600 dark:text-amber-400 font-medium">Bachelor of Science in Computer Science</p>
-            <p className="text-stone-600 dark:text-amber-200">2016 - 2020</p>
-            <p className="text-stone-600 dark:text-amber-200 mt-2">
-              Minor in Cybersecurity. GPA: 3.8/4.0
-            </p>
+            <p className="text-amber-600 dark:text-amber-400 font-medium">B.A. Supply Chain Management</p>
             <p className="text-stone-600 dark:text-amber-200">
-              Dean's List all semesters. President of the MSU Cybersecurity Club.
+              Expected Graduation: May 2026<br />
+              GPA: 3.98/4.00<br />
+              Relevant Coursework: Supply Chain Analysis, Operations Management
             </p>
           </div>
         </div>
@@ -172,29 +148,27 @@ export default function AboutPage() {
         <h2 className="text-2xl font-bold text-stone-800 dark:text-amber-100 mb-4">Professional Experience</h2>
         <div className="bg-amber-50 dark:bg-stone-800 p-6 rounded-lg border border-amber-200 dark:border-stone-700">
           <div className="mb-6">
-            <h3 className="text-xl font-semibold text-stone-800 dark:text-amber-100">NATO Cooperative Cyber Defence Centre of Excellence</h3>
-            <p className="text-amber-600 dark:text-amber-400 font-medium">AI Security Research Intern</p>
-            <p className="text-stone-600 dark:text-amber-200">Summer 2021</p>
+            <h3 className="text-xl font-semibold text-stone-800 dark:text-amber-100">SHAPE/NATO</h3>
+            <p className="text-amber-600 dark:text-amber-400 font-medium">AI Consultant/Intern</p>
+            <p className="text-stone-600 dark:text-amber-200">May 2023 - August 2023</p>
             <p className="text-stone-600 dark:text-amber-200 mt-2">
-              Conducted research on AI-driven threat detection systems for critical infrastructure protection. Developed a 
-              prototype system that improved detection rates by 27% compared to traditional signature-based methods.
+              Enhanced cybersecurity operations by developing AI-driven security protocols
             </p>
-            <p className="text-stone-600 dark:text-amber-200">
-              Collaborated with international security experts to identify potential vulnerabilities in AI systems and 
-              develop countermeasures against emerging threats.
+          </div>
+          <div className="mb-6">
+            <h3 className="text-xl font-semibold text-stone-800 dark:text-amber-100">Michigan State University</h3>
+            <p className="text-amber-600 dark:text-amber-400 font-medium">Undergraduate Research Assistant</p>
+            <p className="text-stone-600 dark:text-amber-200">January 2023 - Present</p>
+            <p className="text-stone-600 dark:text-amber-200 mt-2">
+              Investigating ethical computing practices and their impact on marginalized communities
             </p>
           </div>
           <div>
             <h3 className="text-xl font-semibold text-stone-800 dark:text-amber-100">Michigan State University</h3>
-            <p className="text-amber-600 dark:text-amber-400 font-medium">Research Assistant - AI Ethics Lab</p>
-            <p className="text-stone-600 dark:text-amber-200">2019 - 2022</p>
+            <p className="text-amber-600 dark:text-amber-400 font-medium">Resident Assistant</p>
+            <p className="text-stone-600 dark:text-amber-200">August 2022 - Present</p>
             <p className="text-stone-600 dark:text-amber-200 mt-2">
-              Worked on ethical computing initiatives, focusing on bias detection and mitigation in machine learning models. 
-              Published two papers in peer-reviewed conferences on fairness in AI systems.
-            </p>
-            <p className="text-stone-600 dark:text-amber-200">
-              Developed Cloud Cards, an innovative tool for visualizing and addressing bias in dataset labels, which was 
-              adopted by multiple research institutions.
+              Managing a floor of 48 residents, promoting a positive living and learning environment
             </p>
           </div>
         </div>
@@ -205,22 +179,19 @@ export default function AboutPage() {
         {...fadeIn} 
         transition={{ duration: 0.6, delay: 0.5 }}
       >
-        <h2 className="text-2xl font-bold text-stone-800 dark:text-amber-100 mb-4">Personal Philosophy</h2>
+        <h2 className="text-2xl font-bold text-stone-800 dark:text-amber-100 mb-4">Activities</h2>
         <div className="bg-amber-50 dark:bg-stone-800 p-6 rounded-lg border border-amber-200 dark:border-stone-700">
           <p className="text-stone-600 dark:text-amber-200 mb-4">
-            I believe that the most effective technology is created at the intersection of innovation and responsibility. 
-            In all my work, I strive to build systems that not only push technical boundaries but also respect user 
-            privacy, security, and accessibility.
+            <span className="font-medium">Spartan Hackers, Member</span> | September 2022 - Present
           </p>
           <p className="text-stone-600 dark:text-amber-200 mb-4">
-            As artificial intelligence becomes increasingly integrated into our digital infrastructure, I'm committed to 
-            ensuring that these systems are developed with robust security measures and ethical considerations from the 
-            ground up.
+            <span className="font-medium">Artificial Intelligence Club, Member</span> | September 2022 - Present
+          </p>
+          <p className="text-stone-600 dark:text-amber-200 mb-4">
+            <span className="font-medium">Research Assistant</span> | September 2022 - May 2024
           </p>
           <p className="text-stone-600 dark:text-amber-200">
-            Outside of technology, I enjoy hiking, playing chess, and contributing to open-source projects. I'm a firm 
-            believer in lifelong learning and continuously seek out new challenges that allow me to grow both personally 
-            and professionally.
+            <span className="font-medium">Residential Assistant</span> | September 2023 - Present
           </p>
         </div>
       </motion.section>

@@ -23,34 +23,13 @@ export default function ProjectsPage() {
     {
       id: "cloud-cards",
       title: "Cloud Cards",
-      tagline: "AI Dataset Bias Visualization Tool",
+      tagline: "Digital Business Card Platform",
       description: 
-        "Cloud Cards is an interactive tool designed to help AI researchers and developers identify and address bias in dataset labels. By providing intuitive visualizations of label distributions across different demographic groups, Cloud Cards enables more ethical and fair AI development. The tool was adopted by multiple research institutions and has been cited in several publications on AI ethics. I designed and implemented the frontend visualization components using React and D3.js, while also contributing to the backend analytics engine built with Python and TensorFlow.",
-      techStack: ["React", "D3.js", "Python", "TensorFlow", "Flask", "AWS"],
+        "Architected and developed a full-stack digital business card platform using Next.js 13, TypeScript, MongoDB, and NextAuth.js, resulting in a scalable application with seamless NFC-enabled profile sharing and 100+ active users. Implemented comprehensive user features including RESTful APIs for profile management, Stripe payment processing for premium subscriptions, and custom analytics dashboard with Chart.js. Engineered a responsive frontend with Tailwind CSS and Framer Motion animations, incorporating dark mode support and accessibility features, leading to consistent user experience across all devices and increased user retention.",
+      techStack: ["Next.js 13", "TypeScript", "MongoDB", "NextAuth.js", "Stripe", "Chart.js", "Tailwind CSS", "Framer Motion"],
       image: "/cloud_whitelogo.png",
-      demoLink: "https://example.com/cloud-cards",
+      demoLink: "https://www.cloud-cards.link/umut",
       codeLink: "https://github.com/username/cloud-cards",
-      expanded: false
-    },
-    {
-      id: "nato-ai",
-      title: "NATO AI Security Framework",
-      tagline: "Threat Detection for Critical Infrastructure",
-      description: 
-        "During my internship at the NATO Cooperative Cyber Defence Centre of Excellence, I contributed to the development of an AI-driven threat detection system for critical infrastructure protection. This project implemented advanced machine learning algorithms to identify potential cyber threats in real-time, improving detection rates by 27% compared to traditional signature-based methods. I was responsible for designing and implementing the anomaly detection module using supervised and unsupervised learning techniques, as well as conducting rigorous testing against simulated attack scenarios.",
-      techStack: ["Python", "TensorFlow", "Cybersecurity", "Anomaly Detection", "Docker"],
-      image: "/cloud_whitelogo.png",
-      expanded: false
-    },
-    {
-      id: "ethical-computing",
-      title: "Ethical Computing Framework",
-      tagline: "Bias Mitigation in Machine Learning Systems",
-      description: 
-        "As part of my research at Michigan State University's AI Ethics Lab, I developed a comprehensive framework for detecting and mitigating bias in machine learning systems. This project involved creating tools to analyze training data, model architectures, and output distributions to identify potential sources of unfairness. The framework includes both technical components (statistical analysis tools, model auditing systems) and process guidelines for development teams. This work resulted in two peer-reviewed publications and has been integrated into curriculum materials for computer science ethics courses.",
-      techStack: ["Python", "Fairness Metrics", "Statistical Analysis", "Jupyter", "Scikit-learn"],
-      image: "/cloud_whitelogo.png",
-      codeLink: "https://github.com/username/ethical-computing",
       expanded: false
     }
   ]);
@@ -83,7 +62,7 @@ export default function ProjectsPage() {
         animate={{ opacity: 1 }} 
         className="text-4xl font-bold text-stone-800 dark:text-amber-100 mb-4"
       >
-        Projects
+        Featured Project
       </motion.h1>
       
       <motion.p
@@ -92,7 +71,7 @@ export default function ProjectsPage() {
         transition={{ delay: 0.1 }}
         className="text-stone-600 dark:text-amber-200 mb-12"
       >
-        Here are some of the key projects I've worked on, showcasing my experience in AI, cybersecurity, and full-stack development.
+        Featured project: Cloud Cards - a full-stack digital business card platform showcasing my expertise in modern web development with Next.js and TypeScript.
       </motion.p>
       
       <motion.div
