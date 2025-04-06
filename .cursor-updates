@@ -40,3 +40,5 @@
 - Updated social media links: added Instagram, removed Twitter, and updated contact email address in footer and contact page.
 - Implemented Gmail API integration for contact form using nodemailer, OAuth2 authentication, and created detailed setup documentation.
 - Fixed build errors by preventing server-side rendering of pages that use tRPC hooks, creating client-component wrappers with Suspense boundaries for dashboard and new-project pages.
+- Fix profile photo styling in About page to ensure proper circular display with consistent dimensions and responsive behavior.
+- Updated Next.js from version 15.1.0 to 15.2.3 to address the authorization bypass vulnerability in middleware (Dependabot alert #5) and fixed other security vulnerabilities using npm audit fix.
