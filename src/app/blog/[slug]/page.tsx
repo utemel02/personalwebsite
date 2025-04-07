@@ -19,73 +19,85 @@ const blogPosts = {
     content: `
 # My Experience as a NATO AI Consultant
 
-Working as an AI Consultant at SHAPE/NATO was one of the most impactful experiences of my early career. This post reflects on my journey, the challenges I faced, and the innovative solutions we implemented to enhance cybersecurity operations.
+Working as an AI Consultant at SHAPE/NATO was one of the most impactful experiences of my early career. This post reflects on my journey through corporate procedures, technical documentation, and risk assessment in an international security organization.
 
-## The Opportunity
+## The Corporate Environment
 
-In May 2023, I joined SHAPE/NATO as an AI Consultant/Intern, where I was tasked with:
+When I joined SHAPE/NATO in May 2023, I was immediately immersed in a highly structured corporate environment that required:
 
-1. **Developing AI-driven security protocols** to enhance cybersecurity operations
-2. **Implementing advanced AI systems** for operational process analysis
-3. **Creating comprehensive documentation** and conducting staff training sessions
-4. **Providing strategic insights** to influence NATO cybersecurity policy decisions
+- Adherence to strict security protocols and clearance procedures
+- Following detailed documentation standards for all technical work
+- Participating in formal review processes for all implementations
+- Coordinating with multiple departments and stakeholders
+- Learning military communication protocols and terminology
 
-## Challenges in an International Security Environment
+## Working with Legacy Systems
 
-Working within an international security organization presented unique challenges:
+A significant part of my role involved working directly with HTML and legacy systems:
 
-- **Complex stakeholder management**: Navigating different national interests and security protocols
-- **Legacy system integration**: Implementing modern AI solutions with existing infrastructure
-- **High security standards**: Ensuring all AI solutions met strict security and confidentiality requirements
-- **Cross-cultural collaboration**: Working with teams from diverse backgrounds and technical expertise
+- Analyzing and documenting existing system architectures
+- Creating technical documentation in raw HTML format for internal systems
+- Developing compatibility layers between modern AI solutions and legacy infrastructure
+- Maintaining strict version control and change management procedures
+- Ensuring backward compatibility while implementing new features
 
-## Implementing AI-Driven Security Solutions
+## Risk Assessment Framework
 
-One of my primary responsibilities was developing AI-driven security protocols:
+One of my key contributions was developing a comprehensive risk assessment framework for AI implementation:
 
-\`\`\`python
-# Example: Anomaly detection system for network traffic
-def analyze_network_patterns(traffic_data, historical_baseline):
-    """Detect anomalous patterns in network traffic using machine learning"""
-    # Preprocess the data
-    processed_data = preprocess_traffic_data(traffic_data)
-    
-    # Apply machine learning models to detect anomalies
-    anomalies = anomaly_detection_model.predict(processed_data, historical_baseline)
-    
-    # Filter and categorize detected anomalies
-    categorized_threats = threat_categorization(anomalies)
-    
-    return categorized_threats
-\`\`\`
+### Immediate Risks
+- Security vulnerabilities in AI models
+- Data privacy concerns in international contexts
+- Integration challenges with existing systems
+- Training data quality and bias issues
 
-This system helped identify potential security threats before they could cause harm to the organization's infrastructure.
+### Future Risks
+- Long-term AI system maintenance requirements
+- Potential adversarial attacks on AI models
+- Evolution of AI capabilities and security implications
+- Cross-border data governance challenges
+
+## Documentation and Compliance
+
+My role required extensive documentation work:
+
+- Creating detailed technical specifications in HTML format
+- Developing standard operating procedures (SOPs)
+- Writing implementation guides for security teams
+- Maintaining compliance documentation for international standards
+- Producing risk assessment reports for stakeholders
 
 ## Impact and Results
 
-Our AI initiatives led to significant improvements in SHAPE/NATO's cybersecurity posture:
+Our systematic approach to AI implementation led to:
 
-- **30% increase in operational efficiency** through process automation
-- **Reduced false positive alerts** by implementing more sophisticated detection algorithms
-- **Enhanced threat detection capabilities** for identifying novel attack vectors
-- **Improved response times** for security incidents through automated preliminary analysis
-
-![AI Security Framework](/placeholder-blog-image.jpg)
+- Establishment of clear AI governance procedures
+- Development of comprehensive risk assessment protocols
+- Creation of standardized documentation templates
+- Implementation of secure AI testing environments
+- Improved cross-department collaboration processes
 
 ## Key Lessons Learned
 
-This experience taught me several valuable lessons:
+This experience taught me valuable lessons about working in a large international organization:
 
-1. **Technical excellence matters**: In high-stakes environments, the quality of your work has real-world implications
-2. **Communication is crucial**: Technical solutions must be explained clearly to non-technical stakeholders
-3. **Security by design**: AI systems must incorporate security principles from the ground up, not as an afterthought
-4. **Continuous learning**: Security threats evolve rapidly, requiring ongoing adaptation and improvement
+- **Process Matters**: Following established procedures ensures security and consistency
+- **Documentation is Critical**: Clear, detailed documentation is essential for complex systems
+- **Risk Management**: Proactive risk assessment is crucial for AI implementation
+- **International Collaboration**: Working across cultures requires clear communication
+- **Legacy Integration**: Modern solutions must work with existing infrastructure
 
-## Conclusion
+## Looking Forward
 
-My time at SHAPE/NATO provided invaluable exposure to the intersection of AI, cybersecurity, and international relations. The experience solidified my interest in using technology to solve complex security challenges and reinforced the importance of responsible AI development.
+The experience at SHAPE/NATO has shaped my approach to AI implementation in several ways:
 
-I remain grateful for the opportunity to contribute to such important work at an early stage in my career, and I continue to apply the lessons learned in my current studies and research.
+- Emphasizing thorough documentation and process adherence
+- Prioritizing security and risk assessment in all projects
+- Understanding the importance of stakeholder communication
+- Appreciating the complexity of international collaboration
+- Recognizing the value of systematic approach to innovation
+
+I continue to apply these lessons in my current work, always keeping in mind the importance of balancing innovation with security and proper procedure.
     `
   },
   "building-cloud-cards": {
@@ -98,27 +110,77 @@ I remain grateful for the opportunity to contribute to such important work at an
     content: `
 # Building Cloud Cards: A Digital Business Card Platform
 
-Cloud Cards is one of my most significant development projects to date - a digital business card platform built with Next.js, TypeScript, and MongoDB. This post explores the development journey, technical challenges, and lessons learned along the way.
+Cloud Cards represents my venture into modernizing professional networking through digital business cards. This project combines cutting-edge web technologies with practical business applications, creating a platform that's caught the attention of major organizations.
 
 ## Project Overview
 
-Cloud Cards allows users to:
+- Built with Next.js, TypeScript, and MongoDB for robust performance and scalability
+- Implemented NFC technology for seamless contact sharing
+- Designed with a focus on user experience and modern aesthetics
+- Created both web platform and mobile-responsive interfaces
+- Integrated secure payment processing and user authentication
 
-- Create digital business cards with customizable templates
-- Share profile information via QR codes and NFC technology
-- Track profile views and engagement analytics
-- Update information in real-time across all sharing points
+## Technical Implementation
 
-## Technical Stack
+- Utilized Next.js App Router for optimized page routing and server-side rendering
+- Implemented TypeScript for enhanced code reliability and maintainability
+- Designed a scalable MongoDB database structure for user profiles and analytics
+- Created custom API endpoints for seamless data management
+- Integrated Tailwind CSS for responsive and modern UI design
+- Developed secure authentication flow using NextAuth.js
+- Implemented real-time analytics for card usage tracking
 
-The application was built using modern web technologies:
+## Key Features
 
-1. **Frontend**: Next.js, TypeScript, Tailwind CSS
-2. **Backend**: Node.js with Express
-3. **Database**: MongoDB with Mongoose ODM
-4. **Authentication**: NextAuth.js
-5. **Hosting**: Vercel
-6. **Additional**: NFC integration, QR code generation
+- One-tap NFC sharing capability for instant profile exchange
+- Customizable digital business card templates
+- Real-time analytics dashboard for tracking card usage
+- QR code generation for easy profile sharing
+- Integrated contact management system
+- Mobile-first responsive design
+- Dark mode support for better accessibility
+
+## MSU Athletics Presentation
+
+One of our most exciting opportunities came when we presented Cloud Cards to the Michigan State University coaching staff:
+
+- Demonstrated the platform to MSU Football coaching staff
+- Received enthusiastic feedback about potential recruitment applications
+- Discussed customization options for team-specific branding
+- Explored integration possibilities with existing recruitment processes
+- Generated significant interest in bulk purchase options for the entire coaching staff
+
+## Business Impact
+
+- Successfully launched beta version with positive user feedback
+- Attracted interest from multiple university departments
+- Established potential partnership opportunities with MSU Athletics
+- Created scalable pricing model for individual and enterprise users
+- Developed custom solutions for organizational needs
+
+## Technical Challenges Overcome
+
+- Optimized NFC communication for various device types
+- Implemented secure data handling for sensitive contact information
+- Created efficient caching system for improved performance
+- Developed cross-platform compatibility solutions
+- Enhanced security measures for enterprise-level usage
+
+## Future Development Plans
+
+- Expanding enterprise-level features for large organizations
+- Implementing advanced analytics capabilities
+- Developing additional customization options
+- Creating integrated CRM functionalities
+- Planning iOS and Android native apps
+
+## Try It Out
+
+Want to see Cloud Cards in action? Visit my personal digital business card: https://www.cloud-cards.link/umut
+
+## Looking Forward
+
+Cloud Cards continues to evolve based on user feedback and market demands. The positive response from MSU Athletics has opened new possibilities for expanding into the sports recruitment sector, while maintaining our focus on providing a versatile digital networking solution for professionals across all industries.
     `
   }
 };
@@ -182,14 +244,14 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
     <div className="container mx-auto px-4 py-12 max-w-4xl">
       <div className="mb-8">
         <Link href="/blog" className="inline-block mb-6">
-          <Button 
-            variant="ghost" 
-            size="sm"
+        <Button 
+          variant="ghost" 
+          size="sm"
             className="flex items-center text-stone-600 dark:text-amber-200"
-          >
-            <ArrowLeftIcon className="mr-2 h-4 w-4" />
-            Back to All Posts
-          </Button>
+        >
+          <ArrowLeftIcon className="mr-2 h-4 w-4" />
+          Back to All Posts
+        </Button>
         </Link>
         
         <h1 className="text-4xl font-bold text-stone-800 dark:text-amber-100 mb-4">
@@ -238,7 +300,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           Share This Post
         </h3>
         <ShareButtons title={post.title} />
-      </div>
+        </div>
     </div>
   );
 } 

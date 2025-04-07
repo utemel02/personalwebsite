@@ -66,6 +66,32 @@ export function BlogContent({ content }: BlogContentProps) {
               return <li key={lineIndex} className="ml-6 list-disc">{line.substring(2)}</li>;
             }
             
+            // URLs - Add this section to handle URLs in text
+            const urlRegex = /(https?:\/\/[^\s]+)/g;
+            if (line.match(urlRegex)) {
+              return (
+                <p key={lineIndex} className="my-4">
+                  {line.split(urlRegex).map((text, i) => {
+                    // Every odd index will be a URL
+                    if (i % 2 === 1) {
+                      return (
+                        <a 
+                          key={i} 
+                          href={text} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-amber-600 hover:text-amber-800 dark:text-amber-400 dark:hover:text-amber-300 underline"
+                        >
+                          {text}
+                        </a>
+                      );
+                    }
+                    return text;
+                  })}
+                </p>
+              );
+            }
+            
             // Regular paragraph
             if (line.trim() !== '') {
               return <p key={lineIndex} className="my-4">{line}</p>;

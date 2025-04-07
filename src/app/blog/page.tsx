@@ -31,14 +31,6 @@ export default function BlogPage() {
       slug: "nato-ai-consultant-experience"
     },
     {
-      id: "2",
-      title: "Ethical Computing: Impact on Marginalized Communities",
-      date: "2023-07-15",
-      excerpt: "An exploration of my research at Michigan State University on ethical computing practices and their influence on marginalized communities, including lessons learned and future directions.",
-      tags: ["Ethics", "Research", "AI", "Computing"],
-      slug: "ethical-computing-research"
-    },
-    {
       id: "3",
       title: "Building Cloud Cards: A Digital Business Card Platform",
       date: "2023-05-22",
@@ -53,7 +45,7 @@ export default function BlogPage() {
       excerpt: "Insights and strategies for successfully managing dual degrees in Computer Science Engineering and Supply Chain Management while maintaining academic excellence.",
       tags: ["Education", "Computer Science", "Supply Chain", "Personal"],
       slug: "dual-degree-journey"
-    },
+    }
   ];
 
   // Filter posts by tag if a tag is selected
