@@ -182,6 +182,78 @@ Want to see Cloud Cards in action? Visit my personal digital business card: http
 
 Cloud Cards continues to evolve based on user feedback and market demands. The positive response from MSU Athletics has opened new possibilities for expanding into the sports recruitment sector, while maintaining our focus on providing a versatile digital networking solution for professionals across all industries.
     `
+  },
+  "dual-degree-journey": {
+    title: "Balancing Dual Degrees in Tech and Business",
+    date: "2023-03-18",
+    author: "Umut Temel",
+    authorTitle: "CS & Supply Chain Student | AI Researcher",
+    authorImage: "/linkedInpfp.jpeg",
+    tags: ["Education", "Computer Science", "Supply Chain", "Personal"],
+    content: `
+# Balancing Dual Degrees in Tech and Business
+
+Pursuing dual degrees in Computer Science Engineering and Supply Chain Management at Michigan State University has been both challenging and incredibly rewarding. This post shares my journey, strategies, and insights for successfully navigating these two distinct yet complementary fields.
+
+## The Power of Interdisciplinary Education
+
+- Combining technical expertise from Computer Science with business acumen from Supply Chain Management creates a unique skill set
+- Understanding both the technical and operational aspects of businesses provides a holistic perspective
+- Developing both analytical and strategic thinking abilities enhances problem-solving capabilities
+- Building versatility for a rapidly changing job market where tech and business increasingly overlap
+- Creating opportunities to bridge communication gaps between technical and business teams
+
+## Why Michigan State University
+
+- MSU boasts the #1 ranked Supply Chain Management program in the United States
+- The program offers unparalleled industry connections and experiential learning opportunities
+- Cutting-edge research in supply chain technology provides insights into emerging trends
+- Strong emphasis on practical applications through case studies and industry partnerships
+- Access to advanced logistics and operations research facilities and technologies
+- Complementary strength in Computer Science with focus on applied technology
+
+## Foundation from the International Baccalaureate Program
+
+- My IB experience in high school created a critical foundation for managing the dual-degree workload
+- The program's rigorous curriculum taught advanced time management and prioritization skills
+- IB's emphasis on independent research prepared me for self-directed university learning
+- Development of strong writing and analytical skills transferable across both technical and business courses
+- Experience with balanced workloads across multiple subjects created mental frameworks for handling diverse coursework
+- The international perspective provided valuable context for understanding global supply chains
+
+## Daily Challenges and Solutions
+
+- Juggling programming assignments with supply chain case studies requires strategic scheduling
+- Using digital tools to create structured study plans and track progress across both disciplines
+- Finding synergies between courses where technical skills can enhance business projects
+- Leveraging different types of thinking (logical vs. strategic) to maintain mental freshness
+- Building in flexibility to accommodate intensive project periods in either program
+- Creating distinct work environments for different types of coursework to enhance focus
+
+## Career Advantages of the Dual-Degree Approach
+
+- Standing out to employers seeking candidates who understand both technological implementation and business operations
+- Ability to work in technical roles with business insights or business roles with technical understanding
+- Preparation for specialized careers in supply chain technology, logistics optimization, and ERP implementation
+- Foundation for entrepreneurial ventures that leverage both technical innovation and operational efficiency
+- Versatility to pivot between sectors as market demands and personal interests evolve
+- Capacity to identify technological solutions to business problems others might miss
+
+## Key Lessons Learned
+
+- Balance is achievable with proper planning and realistic expectations
+- Finding connections between seemingly disparate fields enhances learning in both
+- Building a support network of peers in both programs provides valuable perspective
+- Communicating effectively with professors about dual-degree challenges helps secure needed flexibility
+- Taking opportunities to apply computer science skills to supply chain problems creates unique academic contributions
+- Maintaining physical and mental well-being is essential to sustaining long-term academic performance
+
+## Looking Forward
+
+As I progress through my dual-degree journey, I continue to discover new ways that these fields complement each other. The future of both supply chain management and computer science is increasingly intertwined, with innovations like blockchain for supply chain transparency, AI for demand forecasting, and advanced analytics for logistics optimization.
+
+I'm excited to be positioned at this intersection, with the skills and knowledge to contribute to the technological transformation of global supply chains.
+    `
   }
 };
 
@@ -190,7 +262,8 @@ export async function generateMetadata({
 }: { 
   params: { slug: string } 
 }): Promise<Metadata> {
-  const slug = params.slug;
+  // Ensure params is fully resolved before accessing properties
+  const { slug } = params;
   const post = blogPosts[slug as keyof typeof blogPosts];
   
   if (!post) {
@@ -212,8 +285,13 @@ export async function generateMetadata({
   };
 }
 
-export default function BlogPostPage({ params }: { params: { slug: string } }) {
-  const slug = params.slug;
+export default async function BlogPostPage({ 
+  params 
+}: { 
+  params: { slug: string } 
+}) {
+  // Ensure params is fully resolved before accessing properties
+  const { slug } = params;
   const post = blogPosts[slug as keyof typeof blogPosts];
   
   if (!post) {
